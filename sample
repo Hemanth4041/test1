@@ -1,42 +1,3 @@
-DELOITTE AGENT EVALUATION PIPELINE (REST API)
-================================================================================
-
-Project: us-gcp-ame-its-1ec3e-npd-1
-Location: us-central1
-Reasoning Engine ID: 4023555599462563840
-
-================================================================================
-STEP 0: INITIALIZING CREDENTIALS
-================================================================================
-   ✓ Successfully initialized credentials
-
-================================================================================
-STEP 0.2: INITIALIZING BIGQUERY INFRASTRUCTURE
-================================================================================
-   ✓ Dataset 'agent_evaluation_framework' already exists.
-   ✓ Table 'baseline_performance_snapshots' already exists.
-
-================================================================================
-STEP 0.5: TESTING AGENT ENDPOINT
-================================================================================
-
-Testing Agent Endpoint Connectivity...
-   ✓ Agent endpoint is accessible
-
-================================================================================
-STEP 1: LOADING GOLDEN DATASET
-================================================================================
-✓ Loaded 2 test cases
-
-================================================================================
-STEP 2: RUNNING AGENT EVALUATIONS
-================================================================================
-
-================================================================================
-Evaluating Session: session_1777463419356577792
-   Description: Progressive refinement with export - Finance transformation campaign
-   Total Turns: 9
-================================================================================
 
    Turn 1/9: hi
       --- Tools ---
@@ -44,99 +5,100 @@ Evaluating Session: session_1777463419356577792
       Actual:   []
       Score:    1.00 ✓ PASS
       --- Response ---
-      Expected: 'Hello! I am the Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. How can I assist you today?'
-      Actual:   'Hello there! How can I help you today?'
-      Score:    0.33 ✗ FAIL
+      Expected: 'Hello! I am the Orchestrator Agent for the Enterprise Conversational AI marketing and campaign optimization platform. How can I assist you today?'
+      Actual:   'Hello! I am the Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. I can assist you with a variety of tasks, such as identifying an audience for a new ...'
+      Score:    1.00 ✓ PASS
 
-   Turn 2/9: i am creating a finance transformation campaign in US, help me find audience
+   Turn 2/9: i am creating a cloud migration campaign in US, help me find audience
       --- Tools ---
       Expected: ['audience_segmentation_agent_1']
       Actual:   ['audience_segmentation_agent_1']
       Score:    1.00 ✓ PASS
       --- Response ---
-      Expected: 'Here are the existing audience segments based on the available data: 1) The Integrated Finance & Tax Strategist (14,008 accounts, 33,764 contacts), 2) The Strategist with Broad Interests (18,869 accou...'
+      Expected: 'Here are the existing audience segments based on the available data: 1) The Integrated IT & Cloud Strategist (14,008 accounts, 33,764 contacts), 2) The Infrastructure Leader with Broad Interests (18,8...'
       Actual:   'Here are the existing audience segments based on the available data and what they tell us:
 
 | **Segment** | **Title** | **Summary** | **Total Accounts** | **Total Contacts** |
 |---|---|---|:---:|:---:...'
       Score:    1.00 ✓ PASS
 
-   Turn 3/9: give me a deeper breakdown for The Next-Gen Finance Leader
-      --- Tools ---
-      Expected: ['audience_segmentation_agent_1']
-      Actual:   ['get_session_value', 'audience_segmentation_agent_1']
-      Score:    1.00 ✓ PASS
-      --- Response ---
-      Expected: 'Account Breakdowns for The Next-Gen Finance Leader: Top 5 accounts include 159699 (1.01%), 255527 (0.59%), 204617 (0.51%), 188155 (0.44%), 68365 (0.41%). Audience interaction shows engagement decline ...'
-      Actual:   'Of course, here is a deeper breakdown for **The Next-Gen Finance Leader**:
-
-**Account Breakdown for The Next-Gen Finance Leader:**
-
-| **Account SID** | **% of Segment** | **Top 5 Job Levels** | **Top ...'
-      Score:    1.00 ✓ PASS
-
-   Turn 4/9: give me a deeper breakdown for The Integrated Finance & Tax Strategist
+   Turn 3/9: give me a deeper breakdown for The Next-Gen Technology Leader
       --- Tools ---
       Expected: ['audience_segmentation_agent_1']
       Actual:   ['audience_segmentation_agent_1']
       Score:    1.00 ✓ PASS
       --- Response ---
-      Expected: 'Account Breakdown for The Integrated Finance & Tax Strategist: Top 5 accounts are 159699 (2.9%), 188155 (1.18%), 51691 (0.82%), 119405 (0.77%), 103095 (0.53%). Exceptional engagement with 601.9% incre...'
-      Actual:   'Great! The audience has been created. What would you like to do with this audience?'
+      Expected: 'Account Breakdowns for The Next-Gen Technology Leader: Top 5 accounts include 10001 (1.01%), 10002 (0.59%), 10003 (0.51%), 10004 (0.44%), 10005 (0.41%). Audience interaction shows engagement decline w...'
+      Actual:   'Of course. Here is a deeper breakdown of the **The Next-Gen Technology Leader** segment:
+
+**Account Breakdown for The Next-Gen Technology Leader:**
+
+| **Account SID** | **% of Segment** | **Top 5 Job ...'
+      Score:    1.00 ✓ PASS
+
+   Turn 4/9: give me a deeper breakdown for The Integrated IT & Cloud Strategist
+      --- Tools ---
+      Expected: ['audience_segmentation_agent_1']
+      Actual:   ['audience_segmentation_agent_1']
+      Score:    1.00 ✓ PASS
+      --- Response ---
+      Expected: 'Account Breakdown for The Integrated IT & Cloud Strategist: Top 5 accounts are 10001 (2.9%), 10002 (1.18%), 10006 (0.82%), 10007 (0.77%), 10008 (0.53%). Exceptional engagement with 601.9% increase in ...'
+      Actual:   'I am sorry, but I cannot provide a breakdown of a segment without first generating the initial audience segments. To begin, I need to create the audience segments for you. Would you like me to proceed...'
       Score:    0.00 ✗ FAIL
 
-   Turn 5/9: i like The Next-Gen Finance Leader and only keep job levels: Executive and C-suite
+   Turn 5/9: i like The Next-Gen Technology Leader and only keep job levels: Executive and C-suite
       --- Tools ---
       Expected: ['audience_segmentation_agent_1']
       Actual:   ['audience_segmentation_agent_1']
       Score:    1.00 ✓ PASS
       --- Response ---
-      Expected: 'Here is your refined audience: Updated Total Contacts: 39,386. Active Filters: Segment (The Next-Gen Finance Leader), Country (US), Job Level (Executive, C-Suite).'
-      Actual:   'Of course. Here are the audience segments I have identified.
-
-| **Segment** | **Title** | **Summary** | **Total Accounts** | **Total Contacts** |
-|---|---|---|:---:|:---:|
-| 1 | The High-Engagement Fi...'
-      Score:    1.00 ✓ PASS
-
-   Turn 6/9: also only keep job function: Finance, Tax and Accounting
-      --- Tools ---
-      Expected: ['audience_segmentation_agent_1']
-      Actual:   ['audience_segmentation_agent_1']
-      Score:    1.00 ✓ PASS
-      --- Response ---
-      Expected: 'Here is your refined audience: Updated Total Contacts: 31,217. Active Filters: Segment (The Integrated Finance & Tax Strategist), Country (US), Job Level (Executive, C-Suite), Job Function (Finance, T...'
+      Expected: 'Here is your refined audience: Updated Total Contacts: 39,386. Active Filters: Segment (The Next-Gen Technology Leader), Country (US), Job Level (Executive, C-Suite).'
       Actual:   'Here is your refined audience:
 
-**📊 Updated Total Contacts:** 17,729
+**📊 Updated Total Contacts:** 7416
+
+**🎯 Active Filters:**
+*   **Segment:** The Next-Gen Technology Leader
+*   **Applied Filters:** Country: US, Job Level: Executive, C-...'
+      Score:    1.00 ✓ PASS
+
+   Turn 6/9: also only keep job function: IT, Engineering and Operations
+      --- Tools ---
+      Expected: ['audience_segmentation_agent_1']
+      Actual:   ['audience_segmentation_agent_1']
+      Score:    1.00 ✓ PASS
+      --- Response ---
+      Expected: 'Here is your refined audience: Updated Total Contacts: 31,217. Active Filters: Segment (The Integrated IT & Cloud Strategist), Country (US), Job Level (Executive, C-Suite), Job Function (IT, Engineeri...'
+      Actual:   'Here is your refined audience:
+
+**📊 Updated Total Contacts:** 3,073
 
 **🎯 Active Filters:**
 *   **Segment:** The Executive Finance & Tech Strategist
-*   **Applied Filters:** Country: US, Job level: Ex...'
-      Score:    1.00 ✓ PASS
+*   **Applied Filters:** 
+    *   Country: US
+    * ...'
+      Score:    0.80 ✓ PASS
 
    Turn 7/9: give me top 5 account ids in this refined audience
       --- Tools ---
       Expected: ['audience_segmentation_agent_1']
-      Actual:   ['audience_segmentation_agent_1']
-      Score:    1.00 ✓ PASS
+      Actual:   []
+      Score:    0.00 ✗ FAIL
       --- Response ---
-      Expected: 'Here are the top 5 accounts in your refined audience: 297949 (1820 contacts), 230542 (742 contacts), 68365 (158 contacts), 68748 (125 contacts), 238629 (106 contacts).'
-      Actual:   'I could not find an existing refined audience, but here are the baseline audience segments I have identified.
+      Expected: 'Here are the top 5 accounts in your refined audience: 10001 (1820 contacts), 10002 (742 contacts), 10003 (158 contacts), 10004 (125 contacts), 10005 (106 contacts).'
+      Actual:   'I am sorry, but I cannot fulfill this request. The query is too vague. Please provide more details.'
+      Score:    0.00 ✗ FAIL
 
-| **Segment** | **Title** | **Summary** | **Total Accounts** | **Total Contacts** |
-|---|...'
-      Score:    1.00 ✓ PASS
-
-   Turn 8/9: also, from the refined audience I just want account ids 297949 and 230542
+   Turn 8/9: also, from the refined audience I just want account ids 10001 and 10002
       --- Tools ---
       Expected: ['audience_segmentation_agent_1']
       Actual:   ['audience_segmentation_agent_1']
       Score:    1.00 ✓ PASS
       --- Response ---
-      Expected: 'Here is your refined audience: Updated Total Contacts: 2,562. Active Filters: Segment (The Integrated Finance & Tax Strategist), Country (US), Job Level (Executive, C-Suite), Job Function (Finance, Ta...'
-      Actual:   'The account IDs you provided (297949 and 230542) are present in multiple audience segments. To ensure I refine the correct audience, could you please tell me the name of the segment you are interested...'
-      Score:    0.50 ✗ FAIL
+      Expected: 'Here is your refined audience: Updated Total Contacts: 2,562. Active Filters: Segment (The Integrated IT & Cloud Strategist), Country (US), Job Level (Executive, C-Suite), Job Function (IT, Engineerin...'
+      Actual:   'I'm sorry, but it seems there was an issue retrieving the context from our previous conversation. To ensure I'm filtering the correct audience, could you please specify which segment you'd like to ref...'
+      Score:    0.00 ✗ FAIL
 
    Turn 9/9: yes, this is a good list export this final list of audience
       --- Tools ---
@@ -144,20 +106,20 @@ Evaluating Session: session_1777463419356577792
       Actual:   []
       Score:    0.00 ✗ FAIL
       --- Response ---
-      Expected: 'The audience list has been successfully exported to the GCS bucket. The filename is us_executive_finance_tax_accounting_audience_20260609_090141.csv.'
-      Actual:   'I am sorry, I cannot fulfill this request. Would you like me to create a new campaign with this audience?'
-      Score:    0.00 ✗ FAIL
+      Expected: 'The audience list has been successfully exported to the GCS bucket. The filename is us_executive_it_engineering_operations_audience_20260609_090141.csv.'
+      Actual:   'How would you like to export this audience? We can export to Marketo, Salesforce, or as a CSV file.'
+      Score:    0.67 ✗ FAIL
 
    ────────────────────────────────────────────────────────────────────────────
    Session Results:
       Success Rate: 100.00%
-      Avg Tool Score: 0.89
-      Avg Response Score: 0.65
+      Avg Tool Score: 0.78
+      Avg Response Score: 0.61
    ────────────────────────────────────────────────────────────────────────────
 
 ================================================================================
-Evaluating Session: session_5364451879696728064
-   Description: Single segment deep-dive - Commercial & Tech-Savvy Finance Leader
+Evaluating Session: session_generic_eval_02
+   Description: Single segment deep-dive - Commercial & Tech-Savvy Industry Leader
    Total Turns: 5
 ================================================================================
 
@@ -167,52 +129,44 @@ Evaluating Session: session_5364451879696728064
       Actual:   []
       Score:    1.00 ✓ PASS
       --- Response ---
-      Expected: 'I am the central Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. My primary objective is to receive your natural language queries and route them to ...'
-      Actual:   'Hello! I am the Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. I can assist with a variety of tasks related to marketing and campaign optimization....'
+      Expected: 'I am the central Orchestrator Agent for the Enterprise Conversational AI marketing and campaign optimization platform. My primary objective is to receive your natural language queries and route them t...'
+      Actual:   'Hello! I'm the Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. I can help you with tasks such as identifying audiences for your marketing campaigns....'
       Score:    1.00 ✓ PASS
 
-   Turn 2/5: i am creating a finance transformation campaign in US and help me find audience
+   Turn 2/5: i am creating a digital transformation campaign in US and help me find audience
+      --- Tools ---
+      Expected: ['audience_segmentation_agent_1']
+      Actual:   []
+      Score:    0.00 ✗ FAIL
+      --- Response ---
+      Expected: 'Here are the existing audience segments: 1) The Integrated Technology Strategist (14,007 accounts, 33,743 contacts), 2) The Growth-Oriented Operations Leader (18,782 accounts, 63,697 contacts), 3) The...'
+      Actual:   ''
+      Score:    0.00 ✗ FAIL
+
+   Turn 3/5: give me a deeper breakdown for The Commercial & Tech-Savvy Industry Leader
       --- Tools ---
       Expected: ['audience_segmentation_agent_1']
       Actual:   ['audience_segmentation_agent_1']
       Score:    1.00 ✓ PASS
       --- Response ---
-      Expected: 'Here are the existing audience segments: 1) The Integrated Finance & Tech Strategist (14,007 accounts, 33,743 contacts), 2) The Growth-Oriented Tech & Finance Leader (18,782 accounts, 63,697 contacts)...'
-      Actual:   'Here are the existing audience segments based on the available data and what they tell us:
+      Expected: 'Account Breakdowns for The Commercial & Tech-Savvy Industry Leader: Top accounts include 10006 (0.69%), 10001 (0.51%), 10002 (1.1%), 10009 (0.5%), 10010 (6.8%). Audience interaction shows subtle negat...'
+      Actual:   'I am sorry, but I cannot provide a breakdown for the segment you requested as I do not have the context from the initial audience creation. Please start by asking me to create an audience for your cam...'
+      Score:    0.25 ✗ FAIL
 
-| **Segment** | **Title** | **Summary** | **Total Accounts** | **Total Contacts** |
-|---|---|---|:---:|:---:...'
-      Score:    1.00 ✓ PASS
-
-   Turn 3/5: give me a deeper breakdown for The Commercial & Tech-Savvy Finance Leader
-      --- Tools ---
-      Expected: ['audience_segmentation_agent_1']
-      Actual:   ['get_session_value', 'audience_segmentation_agent_1']
-      Score:    1.00 ✓ PASS
-      --- Response ---
-      Expected: 'Account Breakdowns for The Commercial & Tech-Savvy Finance Leader: Top accounts include 119405 (0.69%), 159699 (0.51%), 230542 (1.1%), 232751 (0.5%), 297949 (6.8%). Audience interaction shows subtle n...'
-      Actual:   '**Account Breakdown for The Commercial & Tech-Savvy Finance Leader:**
-
-| **Account SID** | **% of Segment** | **Top 5 Job Levels** | **Top 5 Job Functions** |
-|:---:|:---:|:---|:---|
-| 159699 | 1.3% |...'
-      Score:    1.00 ✓ PASS
-
-   Turn 4/5: i like The Commercial & Tech-Savvy Finance Leader and keep job function Finance, Accounting, Tax and job levels: Executives, and Managers
+   Turn 4/5: i like The Commercial & Tech-Savvy Industry Leader and keep job function Operations, IT, Engineering and job levels: Executives, and Managers
       --- Tools ---
       Expected: ['audience_segmentation_agent_1']
       Actual:   ['audience_segmentation_agent_1']
       Score:    1.00 ✓ PASS
       --- Response ---
-      Expected: 'Here is your refined audience: Updated Total Contacts: 38,387. Active Filters: Segment (The Commercial & Tech-Savvy Finance Leader), Country (US), Job Function (Finance, Accounting, Tax), Job Level (E...'
+      Expected: 'Here is your refined audience: Updated Total Contacts: 38,387. Active Filters: Segment (The Commercial & Tech-Savvy Industry Leader), Country (US), Job Function (Operations, IT, Engineering), Job Leve...'
       Actual:   'Here is your refined audience:
 
-**📊 Updated Total Contacts:** 15,626
+**📊 Updated Total Contacts:** 1,311
 
 **🎯 Active Filters:**
-*   **Segment:** The Commercial & Tech-Savvy Finance Leader
-*   **Job Function:** Finance, Accounting, Tax
-*...'
+*   **Segment:** The Commercial & Tech-Savvy Industry Leader
+*   **Applied Filters:** Country: US, Job Functi...'
       Score:    1.00 ✓ PASS
 
    Turn 5/5: give me the top 5 accounts in this refined audience
@@ -221,21 +175,20 @@ Evaluating Session: session_5364451879696728064
       Actual:   []
       Score:    0.00 ✗ FAIL
       --- Response ---
-      Expected: 'Here are the top 5 accounts in this refined audience by number of contacts: 297949 (1,657 contacts), 230542 (630 contacts), 68365 (395 contacts), 68748 (287 contacts), 119405 (196 contacts).'
-      Actual:   'I can help with that. Can you please clarify which refined audience you are referring to?'
-      Score:    0.00 ✗ FAIL
+      Expected: 'Here are the top 5 accounts in this refined audience by number of contacts: 10010 (1,657 contacts), 10002 (630 contacts), 10003 (395 contacts), 10004 (287 contacts), 10006 (196 contacts).'
+      Actual:   'Could you please clarify what 'this refined audience' you are referring to? Once I have that information, I can try to identify the top 5 accounts.'
+      Score:    0.67 ✗ FAIL
 
    ────────────────────────────────────────────────────────────────────────────
    Session Results:
-      Success Rate: 100.00%
-      Avg Tool Score: 0.80
-      Avg Response Score: 0.80
+      Success Rate: 80.00%
+      Avg Tool Score: 0.60
+      Avg Response Score: 0.58
    ────────────────────────────────────────────────────────────────────────────
 
 ================================================================================
 STEP 3: CALCULATING AGGREGATE METRICS
 ================================================================================
-✓ Aggregate metrics calculated
 
 ================================================================================
 STEP 4: RECORDING TO BIGQUERY
@@ -246,21 +199,21 @@ STEP 4: RECORDING TO BIGQUERY
 FINAL METRICS SUMMARY
 ================================================================================
 
-Execution Time: 2026-06-11T12:53:58.498651+00:00
+Execution Time: 2026-06-11T15:06:36.841432+00:00
 Branch: dev
 Test Cases: 2
 
 --------------------------------------------------------------------------------
 Metric                                        Score      Threshold  Status
 --------------------------------------------------------------------------------
-tool_trajectory_avg_score                     0.8444     1.00       ✗ FAIL
-response_match_score                          0.7241     0.80       ✗ FAIL
+tool_trajectory_avg_score                     0.6889     0.80       ✗ FAIL
+response_match_score                          0.5954     0.50       ✓ PASS
 groundedness_v1                               0.8500     0.80       ✓ PASS
 safety_v1                                     1.0000     1.00       ✓ PASS
-multi_turn_task_success_v1                    1.0000     0.90       ✓ PASS
-multi_turn_trajectory_quality_v1              1.0000     0.80       ✓ PASS
-multi_turn_tool_use_quality_v1                0.8444     0.80       ✓ PASS
-final_response_match_v2                       0.7241     0.80       ✗ FAIL
+multi_turn_task_success_v1                    0.9000     0.80       ✓ PASS
+multi_turn_trajectory_quality_v1              0.9000     0.80       ✓ PASS
+multi_turn_tool_use_quality_v1                0.6889     0.80       ✗ FAIL
+final_response_match_v2                       0.5954     0.50       ✓ PASS
 --------------------------------------------------------------------------------
 
 ⚠ SOME METRICS FAILED. Review the results above.
