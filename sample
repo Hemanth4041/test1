@@ -174,3 +174,180 @@ final_response_match_v2                       0.0000     0.80       ✗ FAIL
 
 ⚠ SOME METRICS FAILED. Review the results above.
 ================================================================================
+
+D:\Users\heganta\bqml-data-foundation-for-cai\agent\evaluation>python run_evaluation_pipeline.py
+================================================================================
+DELOITTE AGENT EVALUATION PIPELINE (REST API)
+================================================================================
+
+Project: us-gcp-ame-its-1ec3e-npd-1
+Location: us-central1
+Reasoning Engine ID: 4023555599462563840
+
+================================================================================
+STEP 0: INITIALIZING CREDENTIALS
+================================================================================
+   ✓ Successfully initialized credentials
+
+================================================================================
+STEP 0.2: INITIALIZING BIGQUERY INFRASTRUCTURE
+================================================================================
+   ✓ Created dataset 'agent_evaluation_framework'.
+   ✓ Created table 'baseline_performance_snapshots' with correct schema.
+
+================================================================================
+STEP 0.5: TESTING AGENT ENDPOINT
+================================================================================
+
+Testing Agent Endpoint Connectivity...
+   ✓ Agent endpoint is accessible
+
+================================================================================
+STEP 1: LOADING GOLDEN DATASET
+================================================================================
+✓ Loaded 2 test cases
+
+================================================================================
+STEP 2: RUNNING AGENT EVALUATIONS
+================================================================================
+
+================================================================================
+Evaluating Session: session_1777463419356577792
+   Description: Progressive refinement with export - Finance transformation campaign
+   Total Turns: 9
+================================================================================
+
+   Turn 1/9: hi...
+      Tools Expected: 0, Found: 0
+      Tool Score: 1.00 ✓ PASS
+      Response Score: 0.00 ✗ FAIL
+
+   Turn 2/9: i am creating a finance transformation campaign in US, help ...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 3/9: give me a deeper breakdown for The Next-Gen Finance Leader...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 4/9: give me a deeper breakdown for The Integrated Finance & Tax ...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 5/9: i like The Next-Gen Finance Leader and only keep job levels:...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 6/9: also only keep job function: Finance, Tax and Accounting...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 7/9: give me top 5 account ids in this refined audience...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 8/9: also, from the refined audience I just want account ids 2979...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 9/9: yes, this is a good list export this final list of audience...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   ────────────────────────────────────────────────────────────────────────────
+   Session Results:
+      Success Rate: 0.00%
+      Avg Tool Score: 0.11
+      Avg Response Score: 0.00
+   ────────────────────────────────────────────────────────────────────────────
+
+================================================================================
+Evaluating Session: session_5364451879696728064
+   Description: Single segment deep-dive - Commercial & Tech-Savvy Finance Leader
+   Total Turns: 5
+================================================================================
+
+   Turn 1/5: hi how can you help...
+      Tools Expected: 0, Found: 0
+      Tool Score: 1.00 ✓ PASS
+      Response Score: 0.00 ✗ FAIL
+
+   Turn 2/5: i am creating a finance transformation campaign in US and he...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 3/5: give me a deeper breakdown for The Commercial & Tech-Savvy F...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 4/5: i like The Commercial & Tech-Savvy Finance Leader and keep j...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   Turn 5/5: give me the top 5 accounts in this refined audience...
+      Tools Expected: 1, Found: 0
+      Tool Score: 0.00 ✗ FAIL
+      Response Score: 0.00 ✗ FAIL
+      [DEBUG] Agent returned: []...
+
+   ────────────────────────────────────────────────────────────────────────────
+   Session Results:
+      Success Rate: 0.00%
+      Avg Tool Score: 0.20
+      Avg Response Score: 0.00
+   ────────────────────────────────────────────────────────────────────────────
+
+================================================================================
+STEP 3: CALCULATING AGGREGATE METRICS
+================================================================================
+✓ Aggregate metrics calculated
+
+================================================================================
+STEP 4: RECORDING TO BIGQUERY
+================================================================================
+   ✓ Results recorded to BigQuery
+
+================================================================================
+FINAL METRICS SUMMARY
+================================================================================
+
+Execution Time: 2026-06-11T11:35:25.042832+00:00
+Branch: dev
+Test Cases: 2
+
+--------------------------------------------------------------------------------
+Metric                                        Score      Threshold  Status
+--------------------------------------------------------------------------------
+tool_trajectory_avg_score                     0.1556     1.00       ✗ FAIL
+response_match_score                          0.0000     0.80       ✗ FAIL
+groundedness_v1                               0.8500     0.80       ✓ PASS
+safety_v1                                     1.0000     1.00       ✓ PASS
+multi_turn_task_success_v1                    0.0000     0.90       ✗ FAIL
+multi_turn_trajectory_quality_v1              0.0000     0.80       ✗ FAIL
+multi_turn_tool_use_quality_v1                0.1556     0.80       ✗ FAIL
+final_response_match_v2                       0.0000     0.80       ✗ FAIL
+--------------------------------------------------------------------------------
+
+⚠ SOME METRICS FAILED. Review the results above.
