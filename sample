@@ -1,165 +1,38 @@
-
-2026-06-12 14:37:33.957 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 14:37:33.957 IST
-    raise SessionNotFoundError(message)
-2026-06-12 14:37:35.003 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: s4518f7df5a8c48478888
-2026-06-12 14:37:36.374 IST
-[20]      INFO:     169.254.169.126:33712 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 14:37:36.454 IST
-Exception in thread Thread-88 (_asyncio_thread_main):
-2026-06-12 14:37:36.455 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 14:37:36.455 IST
-      event_queue.put(event)
-2026-06-12 14:37:36.455 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 14:37:36.455 IST
-    async for event in agen:
-2026-06-12 14:37:36.455 IST
-      yield event
-2026-06-12 14:37:36.455 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 14:37:36.455 IST
-    session = await self._get_or_create_session(
-2026-06-12 14:37:36.455 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 14:37:36.455 IST
-    ...<3 lines>...
-2026-06-12 14:37:36.455 IST
-    )
-2026-06-12 14:37:36.455 IST
-    ^
-2026-06-12 14:37:36.455 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 14:37:36.455 IST
-    raise SessionNotFoundError(message)
-2026-06-12 14:37:37.523 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: s4518f7df5a8c48478888
-2026-06-12 14:37:38.832 IST
-[21]      INFO:     169.254.169.126:33720 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 14:37:38.923 IST
-Exception in thread Thread-52 (_asyncio_thread_main):
-2026-06-12 14:37:38.924 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 14:37:38.924 IST
-      event_queue.put(event)
-2026-06-12 14:37:38.924 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 14:37:38.924 IST
-    async for event in agen:
-2026-06-12 14:37:38.924 IST
-      yield event
-2026-06-12 14:37:38.924 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 14:37:38.924 IST
-    session = await self._get_or_create_session(
-2026-06-12 14:37:38.924 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 14:37:38.924 IST
-    ...<3 lines>...
-2026-06-12 14:37:38.924 IST
-    )
-2026-06-12 14:37:38.924 IST
-    ^
-2026-06-12 14:37:38.924 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 14:37:38.924 IST
-    raise SessionNotFoundError(message)
-2026-06-12 14:37:39.933 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: s4518f7df5a8c48478888
-2026-06-12 14:37:41.339 IST
-[20]      INFO:     169.254.169.126:33730 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 14:37:41.432 IST
-Exception in thread Thread-90 (_asyncio_thread_main):
-2026-06-12 14:37:41.433 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 14:37:41.433 IST
-      event_queue.put(event)
-2026-06-12 14:37:41.433 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 14:37:41.433 IST
-    async for event in agen:
-2026-06-12 14:37:41.433 IST
-      yield event
-2026-06-12 14:37:41.433 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 14:37:41.433 IST
-    session = await self._get_or_create_session(
-2026-06-12 14:37:41.433 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 14:37:41.433 IST
-    ...<3 lines>...
-2026-06-12 14:37:41.433 IST
-    )
-2026-06-12 14:37:41.433 IST
-    ^
-2026-06-12 14:37:41.433 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 14:37:41.433 IST
-    raise SessionNotFoundError(message)
-2026-06-12 14:37:42.453 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: s4518f7df5a8c48478888
-2026-06-12 14:37:43.875 IST
-[18]      INFO:     169.254.169.126:33744 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 14:37:43.969 IST
-Exception in thread Thread-94 (_asyncio_thread_main):
-2026-06-12 14:37:43.970 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 14:37:43.970 IST
-      event_queue.put(event)
-2026-06-12 14:37:43.970 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 14:37:43.970 IST
-    async for event in agen:
-2026-06-12 14:37:43.970 IST
-      yield event
-2026-06-12 14:37:43.970 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 14:37:43.970 IST
-    session = await self._get_or_create_session(
-2026-06-12 14:37:43.970 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 14:37:43.970 IST
-    ...<3 lines>...
-2026-06-12 14:37:43.970 IST
-    )
-2026-06-12 14:37:43.970 IST
-    ^
-2026-06-12 14:37:43.970 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 14:37:43.970 IST
-    raise SessionNotFoundError(message)
-2026-06-12 14:37:44.973 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: s4518f7df5a8c48478888
-2026-06-12 14:37:46.529 IST
-[23]      INFO:     169.254.169.126:44212 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 14:37:46.612 IST
-Exception in thread Thread-20 (_asyncio_thread_main):
-2026-06-12 14:37:46.613 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 14:37:46.614 IST
-      event_queue.put(event)
-2026-06-12 14:37:46.614 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 14:37:46.614 IST
-    async for event in agen:
-2026-06-12 14:37:46.614 IST
-      yield event
-2026-06-12 14:37:46.614 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 14:37:46.614 IST
-    session = await self._get_or_create_session(
-2026-06-12 14:37:46.614 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 14:37:46.614 IST
-    ...<3 lines>...
-2026-06-12 14:37:46.614 IST
-    )
-2026-06-12 14:37:46.614 IST
-    ^
-2026-06-12 14:37:46.614 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 14:37:46.614 IST
-    raise SessionNotFoundError(message)
+DEFAULT 2026-06-12T09:19:29.792182Z [16] INFO: 169.254.169.126:19894 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T09:19:30.189990Z [16] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T09:19:31.416581Z [16] INFO: Response received from the model.
+DEFAULT 2026-06-12T09:19:31.417184Z [16] INFO: {"session_id": "3537176804030676992", "agent_name": "root_agent", "event": "model_response", "message": "Hello! How can I help you today?"}
+DEFAULT 2026-06-12T09:19:33.932905Z [18] INFO: 169.254.169.126:19902 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T09:19:34.378389Z [18] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T09:19:36.470115Z [18] INFO: Response received from the model.
+DEFAULT 2026-06-12T09:19:36.471211Z [18] INFO: {"session_id": "7793078451895795712", "agent_name": "root_agent", "event": "function_call", "function_name": "audience_segmentation_agent_1"}
+DEFAULT 2026-06-12T09:19:36.580158Z [18] INFO: {"session_id": "7793078451895795712", "event": "tool_start", "tool_name": "audience_segmentation_agent_1", "args": {"request": "I am creating a finance transformation campaign in US, help me find audience"}}
+DEFAULT 2026-06-12T09:19:36.589084Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "agent_name": "audience_segmentation_agent_1", "event": "query_to_model", "message": "I am creating a finance transformation campaign in US, help me find audience"}
+DEFAULT 2026-06-12T09:19:36.591821Z [18] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T09:19:43.173669Z [18] INFO: Response received from the model.
+DEFAULT 2026-06-12T09:19:43.174337Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "get_segments"}
+DEFAULT 2026-06-12T09:19:43.175438Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "event": "tool_start", "tool_name": "get_segments", "args": {"centroid_id": 0}}
+DEFAULT 2026-06-12T09:19:45.039257Z [18] INFO: [{"centroid_id":1,"total_number_of_contacts":46335,"total_number_of_accounts":18175,"account_industry_breakdown":"[{\"account_industry\":\"Financial Services\",\"percentage_of_segment\":21.1},{\"account_industry\":\"Consumer\",\"percentage_of_segment\":20.49},{\"account_industry\":\"Technology, Media & Telecom\",\"percentage_of_segment\":19.82},{\"account_industry\":\"Unknown\",\"percentage_of_segment\":13.03},{\"account_industry\":\"Energy, Resources & Industrials\",\"percentage_of_segment\":10.25},{\"account_industry\":\"Life Sciences & Health Care\",\"percentage_of_segment\":8.84},{\"account_industry\":\"Government & Public Services\",\"percentage_of_segment\":5.59},{\"account_industry\":\"Other\",\"percentage_of_segment\":0.88}]","job_level_breakdown":"[{\"account_sid\":188155,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":1.41,\"job_level_breakdown\":[{\"job_level\":\"Manager\",\"percentage_of_account\":59.46},{\"job_level\":\"Executive\",\"percentage_of_account\":29.45},{\"job_level\":\"Analyst\",\"percentage_of_account\":6.5},{\"job_level\":\"Unknown\",\"percentage_of_account\":3.63},{\"job_level\":\"Other\",\"percentage_of_account\":0.57}]},{\"account_sid\":119405,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":1.33,\"job_level_breakdown\":[{\"job_level\":\"Executive\",\"percentage_of_account\":57.61},{\"job_level\":\"Manager\",\"percentage_of_account\":30.63},{\"job_level\":\"Analyst\",\"percentage_of_account\":9.53},{\"job_level\":\"C-Suite\",\"percentage_of_account\":1.42},{\"job_level\":\"Unknown\",\"percentage_of_account\":0.81}]},{\"account_sid\":159699,\"parent_account_client_segment\":\"No Segment\",\"percentage_of_segment\":0.9,\"job_level_breakdown\":[{\"job_level\":\"Internal\",\"percentage_of_account\":100}]},{\"account_sid\":51691,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":0.81,\"job_level_breakdown\":[{\"job_level\":\"Executive\",\"percentage_of_account\":52},{\"job_level\":\"Manager\",\"percentage_of_account\":37.67},{\"job_level\":\"Analyst\",\"percentage_of_account\":4.67},{\"job_level\":\"C-Suite\",\"percentage_of_account\":2.67},{\"job_level\":\"Unknown\",\"percentage_of_account\":2.67}]},{\"account_sid\":102750,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":0.51,\"job_level_breakdown\":[{\"job_level\":\"Manager\",\"percentage_of_account\":50},{\"job_level\":\"Executive\",\"percentage_of_account\":34.57},{\"job_level\":\"Ana…
+DEFAULT 2026-06-12T09:19:45.039280Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "event": "tool_end", "tool_name": "get_segments"}
+DEFAULT 2026-06-12T09:19:45.045721Z [18] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T09:19:51.502380Z [18] INFO: Response received from the model.
+DEFAULT 2026-06-12T09:19:51.503604Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "set_session_value"}
+DEFAULT 2026-06-12T09:19:51.504287Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "event": "tool_start", "tool_name": "set_session_value", "args": {"key": "persona_to_centroid_id_mapping", "value": "{\"The Cross-Industry Tech-Savvy Financier\": 1, \"The Executive Decision-Maker\": 2, \"The Broad-Based Professional\": 3, \"The High-Volume, Low-Engagement Audience\": 4, \"The Highly-Engaged Niche\": 5}"}}
+DEFAULT 2026-06-12T09:19:51.504768Z [18] INFO: stored '{"The Cross-Industry Tech-Savvy Financier": 1, "The Executive Decision-Maker": 2, "The Broad-Based Professional": 3, "The High-Volume, Low-Engagement Audience": 4, "The Highly-Engaged Niche": 5}' in 'persona_to_centroid_id_mapping'
+DEFAULT 2026-06-12T09:19:51.504943Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "event": "tool_end", "tool_name": "set_session_value", "action": "session_update", "updated_key": "persona_to_centroid_id_mapping", "updated_value": "{\"The Cross-Industry Tech-Savvy Financier\": 1, \"The Executive Decision-Maker\": 2, \"The Broad-Based Professional\": 3, \"The High-Volume, Low-Engagement Audience\": 4, \"The Highly-Engaged Niche\": 5}"}
+DEFAULT 2026-06-12T09:19:51.512527Z [18] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T09:19:53.887664Z [18] INFO: Response received from the model.
+DEFAULT 2026-06-12T09:19:53.889424Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "set_session_value"}
+DEFAULT 2026-06-12T09:19:53.890226Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "event": "tool_start", "tool_name": "set_session_value", "args": {"value": "contact_country = 'US'", "key": "baseline_filters"}}
+DEFAULT 2026-06-12T09:19:53.890404Z [18] INFO: stored 'contact_country = 'US'' in 'baseline_filters'
+DEFAULT 2026-06-12T09:19:53.890483Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "event": "tool_end", "tool_name": "set_session_value", "action": "session_update", "updated_key": "baseline_filters", "updated_value": "contact_country = 'US'"}
+DEFAULT 2026-06-12T09:19:53.897847Z [18] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T09:20:02.357682Z [18] INFO: Response received from the model.
+DEFAULT 2026-06-12T09:20:02.358999Z [18] INFO: {"session_id": "6c71f99c-d6a5-4817-8c4c-a7a6a2c007d5", "agent_name": "audience_segmentation_agent_1", "event": "model_response", "message": "Here are the existing audience segments based on the available data and what they tell us:\n\n| **Segment** | **Title** | **Summary** | **Total Accounts** | **Total Contacts** |\n|---|---|---|:---:|:---:|\n| 1 | The Cross-Industry Tech-Savvy Financier | This segment is composed of highly engaged professionals across various industries, with a strong presence in Finance and IT. They are likely interested in technology-driven financial solutions. | 18,175 | 46,335 |\n| 2 | The Executive Decision-Maker | This large group consists mainly of executives and C-suite leaders in Finance and Sales/Marketing, making them key decision-makers for significant finance transformation projects. | 25,809 | 114,453 |\n| 3 | The Broad-Based Professional | A very large and diverse segment with a mix of job levels and functions. While their engagement is low, their size may offer broad reach. | 48,312 | 183,571 |\n| 4 | The High-Volume, Low-Engagement Audience | This segment has a high volume of contacts but suffers from very poor engagement. They may not be the best fit for a targeted campaign. | 29,897 | 92,072 |\n| 5 | The Highly-Engaged Niche | A smaller, niche segment that shows exceptionally high engagement and click-through rates. They are highly receptive to targeted content. | 11,717 | 29,387 |\n\nWould you like to see the top account breakdowns for a specific segment, or would you like to apply filters to narrow down an audience?"}
+DEFAULT 2026-06-12T09:20:02.359753Z [18] INFO: Closing runner...
+DEFAULT 2026-06-12T09:20:02.359847Z [18] INFO: Closing toolset: BigQueryToolset
+DEFAULT 2026-06-12T09:20:02.359886Z [18] INFO: Successfully closed toolset: BigQueryToolset
+DEFAULT 2026-06-12T09:20:02.359924Z [18] INFO: Runner closed.
+DEFAULT 2026-06-12T09:20:02.360138Z [18] INFO: {"session_id": "7793078451895795712", "event": "tool_end", "tool_name": "audience_segmentation_agent_1"}
+DEFAULT 2026-06-12T09:20:05.093581Z [17] INFO: 169.254.169.126:34216 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T09:20:05.497599Z [17] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
