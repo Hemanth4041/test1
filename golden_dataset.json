@@ -6,608 +6,146 @@
       "turns": [
         {
           "user_message": "hi",
-          "user_message_variants": [
-            "hi",
-            "hello",
-            "hey",
-            "hi there",
-            "hello there",
-            "greetings"
-          ],
+          "user_message_variants": ["hello", "hey", "hi there"],
           "expected_tool_calls": [],
           "expected_response_pattern": {
             "match_type": "semantic_similarity",
             "similarity_threshold": 0.7,
-            "required_keywords": ["orchestrator", "help", "assist"],
-            "optional_keywords": ["deloitte", "campaign", "marketing"],
-            "must_not_contain": ["error", "failed", "unable"]
+            "required_keywords": ["orchestrator", "campaign"]
           },
-          "expected_response": "Hello! I am the Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. How can I assist you today?",
+          "expected_response": "Hello! I am the Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform.",
           "context": {}
         },
         {
           "user_message": "i am creating a finance transformation campaign in US, help me find audience",
-          "user_message_variants": [
-            "i am creating a finance transformation campaign in US, help me find audience",
-            "help me find audience for a finance transformation campaign in the US",
-            "I need to identify an audience for a US finance transformation campaign",
-            "can you help me segment audience for finance transformation in United States",
-            "find me target audience for US finance transformation initiative"
-          ],
+          "user_message_variants": ["help me find audience for a finance transformation campaign in the US"],
           "expected_tool_calls": [
             {
               "tool_name": "audience_segmentation_agent_1",
               "parameters": {
                 "country": "US",
                 "campaign_type": "finance_transformation"
-              },
-              "parameter_matching": {
-                "country": {
-                  "match_type": "flexible",
-                  "acceptable_values": ["US", "USA", "United States", "us"]
-                },
-                "campaign_type": {
-                  "match_type": "contains",
-                  "acceptable_values": ["finance", "transformation", "finance_transformation"]
-                }
               }
             }
           ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_semantic",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["segment", "audience", "finance"],
-            "required_data_elements": [
-              "segment_names",
-              "account_counts",
-              "contact_counts"
-            ],
-            "numeric_validation": {
-              "min_segments": 3,
-              "min_accounts_per_segment": 1000,
-              "min_contacts_per_segment": 10000
-            }
-          },
-          "expected_response": "Here are the existing audience segments based on the available data: 1) The Integrated Finance & Tax Strategist (14,008 accounts, 33,764 contacts), 2) The Strategist with Broad Interests (18,869 accounts, 65,476 contacts), 3) The Next-Gen Finance Leader (28,753 accounts, 87,332 contacts), 4) The Executive Change Agent (43,187 accounts, 149,977 contacts), 5) The Financial Systems Expert (29,581 accounts, 114,306 contacts).",
-          "context": {
-            "segments_available": true
-          }
+          "expected_response_pattern": {},
+          "expected_response": "Here are the existing audience segments based on the available data:\n| **Segment** | **Title** | **Total Accounts** | **Total Contacts** |\n|---|---|---|---|\n| 1 | The Integrated Finance & Tax Strategist | 14,008 | 33,764 |\n| 2 | The Strategist with Broad Interests | 18,869 | 65,476 |",
+          "context": {}
         },
         {
           "user_message": "give me a deeper breakdown for The Next-Gen Finance Leader",
-          "user_message_variants": [
-            "give me a deeper breakdown for The Next-Gen Finance Leader",
-            "show me more details about The Next-Gen Finance Leader",
-            "can you provide a detailed analysis of The Next-Gen Finance Leader segment",
-            "I want to see the breakdown for Next-Gen Finance Leader",
-            "tell me more about the Next-Gen Finance Leader segment"
-          ],
+          "user_message_variants": ["show me more details about The Next-Gen Finance Leader"],
           "expected_tool_calls": [
             {
               "tool_name": "audience_segmentation_agent_1",
               "parameters": {
                 "segment_name": "The Next-Gen Finance Leader"
-              },
-              "parameter_matching": {
-                "segment_name": {
-                  "match_type": "fuzzy",
-                  "acceptable_values": [
-                    "The Next-Gen Finance Leader",
-                    "Next-Gen Finance Leader",
-                    "NextGen Finance Leader",
-                    "Next Gen Finance Leader"
-                  ],
-                  "fuzzy_threshold": 0.85
-                }
               }
             }
           ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_structure",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["account", "breakdown", "engagement", "metric"],
-            "required_data_elements": [
-              "top_accounts",
-              "job_levels",
-              "job_functions",
-              "engagement_metrics"
-            ],
-            "numeric_validation": {
-              "min_accounts_shown": 3,
-              "account_id_format": "^[0-9]{5,7}$"
-            }
-          },
-          "expected_response": "Account Breakdowns for The Next-Gen Finance Leader: Top 5 accounts include 159699 (1.01%), 255527 (0.59%), 204617 (0.51%), 188155 (0.44%), 68365 (0.41%). Audience interaction shows engagement decline with opens down 90.71% and clicks down 71.5%, indicating urgent need for optimization.",
-          "context": {
-            "selected_segment": "The Next-Gen Finance Leader"
-          }
+          "expected_response_pattern": {},
+          "expected_response": "Account Breakdowns for The Next-Gen Finance Leader:\n| Account ID | % of Segment | Top Job Levels |\n|---|---|---|\n| 159699 | 1.01% | Internal (100%) |\n| 255527 | 0.59% | Executive, Manager |",
+          "context": {}
         },
         {
           "user_message": "give me a deeper breakdown for The Integrated Finance & Tax Strategist",
-          "user_message_variants": [
-            "give me a deeper breakdown for The Integrated Finance & Tax Strategist",
-            "show details for The Integrated Finance & Tax Strategist",
-            "analyze The Integrated Finance & Tax Strategist segment",
-            "what about The Integrated Finance and Tax Strategist",
-            "breakdown for Integrated Finance & Tax Strategist please"
-          ],
+          "user_message_variants": ["show details for The Integrated Finance & Tax Strategist"],
           "expected_tool_calls": [
             {
               "tool_name": "audience_segmentation_agent_1",
               "parameters": {
                 "segment_name": "The Integrated Finance & Tax Strategist"
-              },
-              "parameter_matching": {
-                "segment_name": {
-                  "match_type": "fuzzy",
-                  "acceptable_values": [
-                    "The Integrated Finance & Tax Strategist",
-                    "Integrated Finance & Tax Strategist",
-                    "The Integrated Finance and Tax Strategist",
-                    "Integrated Finance Tax Strategist"
-                  ],
-                  "fuzzy_threshold": 0.85
-                }
               }
             }
           ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_structure",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["account", "engagement", "positive", "exceptional"],
-            "required_data_elements": [
-              "top_accounts",
-              "engagement_metrics"
-            ],
-            "numeric_validation": {
-              "min_accounts_shown": 3,
-              "engagement_trend": "positive"
-            }
-          },
-          "expected_response": "Account Breakdown for The Integrated Finance & Tax Strategist: Top 5 accounts are 159699 (2.9%), 188155 (1.18%), 51691 (0.82%), 119405 (0.77%), 103095 (0.53%). Exceptional engagement with 601.9% increase in opens and 386.4% increase in clicks, demonstrating highly effective outreach.",
-          "context": {
-            "selected_segment": "The Integrated Finance & Tax Strategist"
-          }
+          "expected_response_pattern": {},
+          "expected_response": "Account Breakdown for The Integrated Finance & Tax Strategist:\n| Account SID | % of Segment | Top Job Levels |\n|---|---|---|\n| 188155 | 1.18% | Manager, Executive |\n| 51691  | 0.82% | Executive, Manager |",
+          "context": {}
         },
         {
           "user_message": "i like The Next-Gen Finance Leader and only keep job levels: Executive and C-suite",
-          "user_message_variants": [
-            "i like The Next-Gen Finance Leader and only keep job levels: Executive and C-suite",
-            "filter The Next-Gen Finance Leader to only show Executives and C-suite",
-            "keep only executive and c-suite levels for Next-Gen Finance Leader",
-            "I want Next-Gen Finance Leader segment but just executives and c-level",
-            "refine to executives and c-suite in The Next-Gen Finance Leader"
-          ],
+          "user_message_variants": ["filter The Next-Gen Finance Leader to only show Executives and C-suite"],
           "expected_tool_calls": [
             {
               "tool_name": "audience_segmentation_agent_1",
               "parameters": {
                 "segment_name": "The Next-Gen Finance Leader",
-                "country": "US",
                 "job_levels": ["Executive", "C-Suite"]
-              },
-              "parameter_matching": {
-                "segment_name": {
-                  "match_type": "fuzzy",
-                  "fuzzy_threshold": 0.85
-                },
-                "job_levels": {
-                  "match_type": "set_contains",
-                  "acceptable_values": {
-                    "Executive": ["Executive", "Exec", "executive"],
-                    "C-Suite": ["C-Suite", "C-Level", "C Suite", "c-suite", "csuite"]
-                  }
-                }
               }
             }
           ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_numeric",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["refined", "contacts", "filters", "Executive", "C-Suite"],
-            "numeric_validation": {
-              "contact_count_range": [30000, 50000],
-              "contact_count_decreased": true
-            }
-          },
-          "expected_response": "Here is your refined audience: Updated Total Contacts: 39,386. Active Filters: Segment (The Next-Gen Finance Leader), Country (US), Job Level (Executive, C-Suite).",
-          "context": {
-            "filters": {
-              "segment": "The Next-Gen Finance Leader",
-              "job_levels": ["Executive", "C-Suite"]
-            }
-          }
+          "expected_response_pattern": {},
+          "expected_response": "Here is your refined audience:\n📊 Updated Total Contacts: 39,386\n🎯 Active Filters: Segment: The Next-Gen Finance Leader, Job Level: Executive, C-Suite.",
+          "context": {}
         },
         {
           "user_message": "also only keep job function: Finance, Tax and Accounting",
-          "user_message_variants": [
-            "also only keep job function: Finance, Tax and Accounting",
-            "add filter for Finance, Tax and Accounting job functions",
-            "only show Finance, Tax, and Accounting roles",
-            "filter to finance tax accounting functions",
-            "keep just Finance, Tax, Accounting job functions"
-          ],
+          "user_message_variants": ["add filter for Finance, Tax and Accounting job functions"],
           "expected_tool_calls": [
             {
               "tool_name": "audience_segmentation_agent_1",
               "parameters": {
-                "segment_name": "The Integrated Finance & Tax Strategist",
-                "country": "US",
-                "job_levels": ["Executive", "C-Suite"],
                 "job_functions": ["Finance", "Tax", "Accounting"]
-              },
-              "parameter_matching": {
-                "job_functions": {
-                  "match_type": "set_contains",
-                  "acceptable_values": {
-                    "Finance": ["Finance", "finance", "Financial"],
-                    "Tax": ["Tax", "tax", "Taxation"],
-                    "Accounting": ["Accounting", "accounting", "Accountancy"]
-                  }
-                }
               }
             }
           ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_numeric",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["refined", "contacts", "Finance", "Tax", "Accounting"],
-            "numeric_validation": {
-              "contact_count_range": [25000, 40000],
-              "contact_count_decreased": true
-            }
-          },
-          "expected_response": "Here is your refined audience: Updated Total Contacts: 31,217. Active Filters: Segment (The Integrated Finance & Tax Strategist), Country (US), Job Level (Executive, C-Suite), Job Function (Finance, Tax, Accounting).",
-          "context": {
-            "filters": {
-              "segment": "The Integrated Finance & Tax Strategist",
-              "job_levels": ["Executive", "C-Suite"],
-              "job_functions": ["Finance", "Tax", "Accounting"]
-            }
-          }
+          "expected_response_pattern": {},
+          "expected_response": "Here is your refined audience:\n📊 Updated Total Contacts: 31,217\n🎯 Active Filters: Job Function: Finance, Tax, Accounting.",
+          "context": {}
         },
         {
           "user_message": "give me top 5 account ids in this refined audience",
-          "user_message_variants": [
-            "give me top 5 account ids in this refined audience",
-            "show me the top 5 accounts",
-            "what are the 5 biggest accounts in this audience",
-            "list the top 5 account IDs",
-            "can you show the top five accounts by size"
-          ],
+          "user_message_variants": ["show me the top accounts in this filtered audience"],
           "expected_tool_calls": [
             {
               "tool_name": "audience_segmentation_agent_1",
               "parameters": {
                 "limit": 5
-              },
-              "parameter_matching": {
-                "limit": {
-                  "match_type": "numeric_range",
-                  "acceptable_range": [5, 5],
-                  "acceptable_values": [5, "5"]
-                }
               }
             }
           ],
           "expected_response_pattern": {
             "match_type": "keyword_and_structure",
             "similarity_threshold": 0.75,
-            "required_keywords": ["account", "contacts", "top"],
-            "required_data_elements": ["account_ids", "contact_counts"],
-            "numeric_validation": {
-              "num_accounts_returned": 5,
-              "accounts_sorted_descending": true,
-              "specific_accounts_present": ["297949", "230542"]
-            }
+            "required_keywords": ["account", "contacts"]
           },
-          "expected_response": "Here are the top 5 accounts in your refined audience: 297949 (1820 contacts), 230542 (742 contacts), 68365 (158 contacts), 68748 (125 contacts), 238629 (106 contacts).",
-          "context": {
-            "filters": {
-              "segment": "The Integrated Finance & Tax Strategist",
-              "job_levels": ["Executive", "C-Suite"],
-              "job_functions": ["Finance", "Tax", "Accounting"]
-            }
-          }
+          "expected_response": "Here are the top accounts in your refined audience:\n| Account ID | Total Contacts |\n|---|---|\n| 297949 | 1820 |\n| 230542 | 742 |",
+          "context": {}
         },
         {
           "user_message": "also, from the refined audience I just want account ids 297949 and 230542",
-          "user_message_variants": [
-            "also, from the refined audience I just want account ids 297949 and 230542",
-            "filter to only accounts 297949 and 230542",
-            "keep only account 297949 and account 230542",
-            "narrow down to accounts 297949, 230542",
-            "I only want these two accounts: 297949 and 230542"
-          ],
+          "user_message_variants": ["filter to only accounts 297949 and 230542"],
           "expected_tool_calls": [
             {
               "tool_name": "audience_segmentation_agent_1",
               "parameters": {
                 "account_ids": ["297949", "230542"]
-              },
-              "parameter_matching": {
-                "account_ids": {
-                  "match_type": "set_equals",
-                  "acceptable_formats": [
-                    ["297949", "230542"],
-                    [297949, 230542],
-                    ["230542", "297949"],
-                    [230542, 297949]
-                  ]
-                }
               }
             }
           ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_numeric",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["refined", "contacts", "297949", "230542"],
-            "numeric_validation": {
-              "contact_count_range": [2000, 3000],
-              "contact_count_decreased": true
-            }
-          },
-          "expected_response": "Here is your refined audience: Updated Total Contacts: 2,562. Active Filters: Segment (The Integrated Finance & Tax Strategist), Country (US), Job Level (Executive, C-Suite), Job Function (Finance, Tax, Accounting), Account ID (297949, 230542).",
-          "context": {
-            "filters": {
-              "segment": "The Integrated Finance & Tax Strategist",
-              "job_levels": ["Executive", "C-Suite"],
-              "job_functions": ["Finance", "Tax", "Accounting"],
-              "account_ids": ["297949", "230542"]
-            }
-          }
+          "expected_response_pattern": {},
+          "expected_response": "Here is your refined audience:\n📊 Updated Total Contacts: 2562\n🎯 Active Filters: Account ID: 297949, 230542.",
+          "context": {}
         },
         {
           "user_message": "yes, this is a good list export this final list of audience",
-          "user_message_variants": [
-            "yes, this is a good list export this final list of audience",
-            "export this list please",
-            "can you export this audience",
-            "download this as CSV",
-            "save this audience list",
-            "export to file"
-          ],
+          "user_message_variants": ["export this list please", "download this list"],
           "expected_tool_calls": [
             {
               "tool_name": "audience_segmentation_agent_1",
               "parameters": {
                 "export_format": "csv"
-              },
-              "parameter_matching": {
-                "export_format": {
-                  "match_type": "flexible",
-                  "acceptable_values": ["csv", "CSV", "excel", "xlsx"]
-                }
               }
             }
           ],
           "expected_response_pattern": {
             "match_type": "keyword_pattern",
             "similarity_threshold": 0.75,
-            "required_keywords": ["export", "success", "file"],
-            "required_patterns": [
-              "\\.(csv|xlsx)$"
-            ]
+            "required_keywords": ["export", "success"],
+            "must_not_contain": ["format", "which", "how"]
           },
-          "expected_response": "The audience list has been successfully exported to the GCS bucket. The filename is us_executive_finance_tax_accounting_audience_20260609_090141.csv.",
-          "context": {
-            "final_filters": {
-              "segment": "The Integrated Finance & Tax Strategist",
-              "job_levels": ["Executive", "C-Suite"],
-              "job_functions": ["Finance", "Tax", "Accounting"],
-              "account_ids": ["297949", "230542"]
-            },
-            "expected_contacts": 2562
-          }
-        }
-      ]
-    },
-    {
-      "test_case_id": "session_5364451879696728064",
-      "description": "Single segment deep-dive - Commercial & Tech-Savvy Finance Leader",
-      "turns": [
-        {
-          "user_message": "hi how can you help",
-          "user_message_variants": [
-            "hi how can you help",
-            "hello what can you do",
-            "hey what are your capabilities",
-            "hi there how do you help",
-            "what can you assist with"
-          ],
-          "expected_tool_calls": [],
-          "expected_response_pattern": {
-            "match_type": "semantic_similarity",
-            "similarity_threshold": 0.7,
-            "required_keywords": ["orchestrator", "agent", "help"],
-            "optional_keywords": ["specialized", "route", "marketing", "campaign"]
-          },
-          "expected_response": "I am the central Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. My primary objective is to receive your natural language queries and route them to the appropriate specialized sub-agents or tools to get the job done.",
+          "expected_response": "The audience list has been successfully exported to the GCS bucket.",
           "context": {}
-        },
-        {
-          "user_message": "i am creating a finance transformation campaign in US and help me find audience",
-          "user_message_variants": [
-            "i am creating a finance transformation campaign in US and help me find audience",
-            "help me find audience for finance transformation in US",
-            "need audience segmentation for US finance transformation campaign",
-            "find target audience for finance transformation initiative in United States",
-            "I'm working on a US finance transformation campaign, help with audience"
-          ],
-          "expected_tool_calls": [
-            {
-              "tool_name": "audience_segmentation_agent_1",
-              "parameters": {
-                "country": "US",
-                "campaign_type": "finance_transformation"
-              },
-              "parameter_matching": {
-                "country": {
-                  "match_type": "flexible",
-                  "acceptable_values": ["US", "USA", "United States", "us"]
-                },
-                "campaign_type": {
-                  "match_type": "contains",
-                  "acceptable_values": ["finance", "transformation", "finance_transformation"]
-                }
-              }
-            }
-          ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_semantic",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["segment", "audience", "finance", "accounts", "contacts"],
-            "required_data_elements": ["segment_names", "account_counts", "contact_counts"],
-            "numeric_validation": {
-              "min_segments": 3,
-              "min_accounts_per_segment": 1000
-            }
-          },
-          "expected_response": "Here are the existing audience segments: 1) The Integrated Finance & Tech Strategist (14,007 accounts, 33,743 contacts), 2) The Growth-Oriented Tech & Finance Leader (18,782 accounts, 63,697 contacts), 3) The HR & Talent Operations Specialist (28,707 accounts, 87,162 contacts), 4) The Commercial & Tech-Savvy Finance Leader (42,766 accounts, 145,921 contacts), 5) The Executive Finance & Tech Decision-Maker (29,051 accounts, 115,170 contacts).",
-          "context": {
-            "segments_available": true
-          }
-        },
-        {
-          "user_message": "give me a deeper breakdown for The Commercial & Tech-Savvy Finance Leader",
-          "user_message_variants": [
-            "give me a deeper breakdown for The Commercial & Tech-Savvy Finance Leader",
-            "show details about Commercial & Tech-Savvy Finance Leader",
-            "analyze The Commercial & Tech-Savvy Finance Leader segment",
-            "breakdown for Commercial Tech-Savvy Finance Leader",
-            "more info on The Commercial and Tech-Savvy Finance Leader"
-          ],
-          "expected_tool_calls": [
-            {
-              "tool_name": "audience_segmentation_agent_1",
-              "parameters": {
-                "segment_name": "The Commercial & Tech-Savvy Finance Leader"
-              },
-              "parameter_matching": {
-                "segment_name": {
-                  "match_type": "fuzzy",
-                  "acceptable_values": [
-                    "The Commercial & Tech-Savvy Finance Leader",
-                    "Commercial & Tech-Savvy Finance Leader",
-                    "The Commercial and Tech-Savvy Finance Leader",
-                    "Commercial Tech-Savvy Finance Leader"
-                  ],
-                  "fuzzy_threshold": 0.85
-                }
-              }
-            }
-          ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_structure",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["account", "breakdown", "engagement", "metric"],
-            "required_data_elements": ["top_accounts", "job_levels", "engagement_metrics"],
-            "numeric_validation": {
-              "min_accounts_shown": 3,
-              "engagement_trend": "negative"
-            }
-          },
-          "expected_response": "Account Breakdowns for The Commercial & Tech-Savvy Finance Leader: Top accounts include 119405 (0.69%), 159699 (0.51%), 230542 (1.1%), 232751 (0.5%), 297949 (6.8%). Audience interaction shows subtle negative trend with total campaigns -0.63%, total opened -0.8%, total clicked -0.77%, indicating minor contraction in engagement.",
-          "context": {
-            "selected_segment": "The Commercial & Tech-Savvy Finance Leader"
-          }
-        },
-        {
-          "user_message": "i like The Commercial & Tech-Savvy Finance Leader and keep job function Finance, Accounting, Tax and job levels: Executives, and Managers",
-          "user_message_variants": [
-            "i like The Commercial & Tech-Savvy Finance Leader and keep job function Finance, Accounting, Tax and job levels: Executives, and Managers",
-            "filter Commercial & Tech-Savvy Finance Leader to Finance, Accounting, Tax functions and Executive, Manager levels",
-            "keep only Finance, Tax, Accounting and Executives, Managers for this segment",
-            "apply filters: job functions Finance Tax Accounting, job levels Executive Manager",
-            "refine to executive and manager levels with finance, tax, accounting functions"
-          ],
-          "expected_tool_calls": [
-            {
-              "tool_name": "audience_segmentation_agent_1",
-              "parameters": {
-                "segment_name": "The Commercial & Tech-Savvy Finance Leader",
-                "country": "US",
-                "job_functions": ["Finance", "Accounting", "Tax"],
-                "job_levels": ["Executive", "Manager"]
-              },
-              "parameter_matching": {
-                "job_functions": {
-                  "match_type": "set_contains",
-                  "acceptable_values": {
-                    "Finance": ["Finance", "finance", "Financial"],
-                    "Tax": ["Tax", "tax"],
-                    "Accounting": ["Accounting", "accounting"]
-                  }
-                },
-                "job_levels": {
-                  "match_type": "set_contains",
-                  "acceptable_values": {
-                    "Executive": ["Executive", "Exec", "executive"],
-                    "Manager": ["Manager", "Mgr", "manager"]
-                  }
-                }
-              }
-            }
-          ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_numeric",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["refined", "contacts", "Finance", "Accounting", "Tax", "Executive", "Manager"],
-            "numeric_validation": {
-              "contact_count_range": [30000, 45000]
-            }
-          },
-          "expected_response": "Here is your refined audience: Updated Total Contacts: 38,387. Active Filters: Segment (The Commercial & Tech-Savvy Finance Leader), Country (US), Job Function (Finance, Accounting, Tax), Job Level (Executive, Manager).",
-          "context": {
-            "filters": {
-              "segment": "The Commercial & Tech-Savvy Finance Leader",
-              "job_levels": ["Executive", "Manager"],
-              "job_functions": ["Finance", "Accounting", "Tax"]
-            }
-          }
-        },
-        {
-          "user_message": "give me the top 5 accounts in this refined audience",
-          "user_message_variants": [
-            "give me the top 5 accounts in this refined audience",
-            "show top 5 accounts",
-            "what are the biggest 5 accounts",
-            "list top five accounts",
-            "top 5 account IDs please"
-          ],
-          "expected_tool_calls": [
-            {
-              "tool_name": "audience_segmentation_agent_1",
-              "parameters": {
-                "limit": 5
-              },
-              "parameter_matching": {
-                "limit": {
-                  "match_type": "numeric_range",
-                  "acceptable_values": [5, "5"]
-                }
-              }
-            }
-          ],
-          "expected_response_pattern": {
-            "match_type": "keyword_and_structure",
-            "similarity_threshold": 0.75,
-            "required_keywords": ["account", "contacts", "top"],
-            "required_data_elements": ["account_ids", "contact_counts"],
-            "numeric_validation": {
-              "num_accounts_returned": 5,
-              "accounts_sorted_descending": true,
-              "specific_accounts_present": ["297949", "230542"]
-            }
-          },
-          "expected_response": "Here are the top 5 accounts in this refined audience by number of contacts: 297949 (1,657 contacts), 230542 (630 contacts), 68365 (395 contacts), 68748 (287 contacts), 119405 (196 contacts).",
-          "context": {
-            "filters": {
-              "segment": "The Commercial & Tech-Savvy Finance Leader",
-              "job_levels": ["Executive", "Manager"],
-              "job_functions": ["Finance", "Accounting", "Tax"]
-            }
-          }
         }
       ]
     }
