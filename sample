@@ -1,172 +1,170 @@
-026-06-12 15:12:30.651 IST
-[17]      INFO:     169.254.169.126:56852 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 15:12:30.653 IST
-[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:30.653 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 15:12:30.653 IST
-        user_id=user_id,
-2026-06-12 15:12:30.653 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 15:12:30.653 IST
-    ...<2 lines>...
-2026-06-12 15:12:30.653 IST
-        **kwargs,
-2026-06-12 15:12:30.653 IST
-        ^^^^^^^^^
-2026-06-12 15:12:30.653 IST
-    ):
-2026-06-12 15:12:30.653 IST
+2026-06-12 15:15:41.212 IST
+[19]      INFO:     169.254.169.126:38348 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:15:41.341 IST
+Exception in thread Thread-40 (_asyncio_thread_main):
+2026-06-12 15:15:41.342 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 15:15:41.342 IST
+      event_queue.put(event)
+2026-06-12 15:15:41.342 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 15:15:41.342 IST
+    async for event in agen:
+2026-06-12 15:15:41.342 IST
+      yield event
+2026-06-12 15:15:41.342 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 15:15:41.342 IST
+    session = await self._get_or_create_session(
+2026-06-12 15:15:41.342 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 15:15:41.342 IST
+    ...<3 lines>...
+2026-06-12 15:15:41.342 IST
+    )
+2026-06-12 15:15:41.342 IST
     ^
-2026-06-12 15:12:31.758 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:33.076 IST
-[17]      INFO:     169.254.169.126:56860 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 15:12:33.078 IST
-[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:33.078 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 15:12:33.078 IST
-        user_id=user_id,
-2026-06-12 15:12:33.078 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 15:12:33.078 IST
-    ...<2 lines>...
-2026-06-12 15:12:33.078 IST
-        **kwargs,
-2026-06-12 15:12:33.078 IST
-        ^^^^^^^^^
-2026-06-12 15:12:33.078 IST
-    ):
-2026-06-12 15:12:33.078 IST
+2026-06-12 15:15:41.342 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 15:15:41.342 IST
+    raise SessionNotFoundError(message)
+2026-06-12 15:15:42.401 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: d6b6d8dc-007e-414c-bfb1-6fad0d4a7f76
+2026-06-12 15:15:43.760 IST
+[15]      INFO:     169.254.169.126:38362 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:15:43.849 IST
+Exception in thread Thread-48 (_asyncio_thread_main):
+2026-06-12 15:15:43.851 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 15:15:43.851 IST
+      event_queue.put(event)
+2026-06-12 15:15:43.851 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 15:15:43.851 IST
+    async for event in agen:
+2026-06-12 15:15:43.851 IST
+      yield event
+2026-06-12 15:15:43.851 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 15:15:43.851 IST
+    session = await self._get_or_create_session(
+2026-06-12 15:15:43.851 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 15:15:43.851 IST
+    ...<3 lines>...
+2026-06-12 15:15:43.851 IST
+    )
+2026-06-12 15:15:43.851 IST
     ^
-2026-06-12 15:12:34.167 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:35.615 IST
-[20]      INFO:     169.254.169.126:41860 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 15:12:35.616 IST
-[20]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:35.616 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 15:12:35.616 IST
-        user_id=user_id,
-2026-06-12 15:12:35.616 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 15:12:35.616 IST
-    ...<2 lines>...
-2026-06-12 15:12:35.616 IST
-        **kwargs,
-2026-06-12 15:12:35.616 IST
-        ^^^^^^^^^
-2026-06-12 15:12:35.616 IST
-    ):
-2026-06-12 15:12:35.616 IST
+2026-06-12 15:15:43.851 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 15:15:43.851 IST
+    raise SessionNotFoundError(message)
+2026-06-12 15:15:44.921 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: d6b6d8dc-007e-414c-bfb1-6fad0d4a7f76
+2026-06-12 15:15:46.256 IST
+[16]      INFO:     169.254.169.126:35318 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:15:46.348 IST
+Exception in thread Thread-58 (_asyncio_thread_main):
+2026-06-12 15:15:46.349 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 15:15:46.349 IST
+      event_queue.put(event)
+2026-06-12 15:15:46.349 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 15:15:46.349 IST
+    async for event in agen:
+2026-06-12 15:15:46.349 IST
+      yield event
+2026-06-12 15:15:46.349 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 15:15:46.349 IST
+    session = await self._get_or_create_session(
+2026-06-12 15:15:46.349 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 15:15:46.349 IST
+    ...<3 lines>...
+2026-06-12 15:15:46.349 IST
+    )
+2026-06-12 15:15:46.349 IST
     ^
-2026-06-12 15:12:36.688 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:38.128 IST
-[17]      INFO:     169.254.169.126:41868 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 15:12:38.129 IST
-[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:38.129 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 15:12:38.129 IST
-        user_id=user_id,
-2026-06-12 15:12:38.129 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 15:12:38.129 IST
-    ...<2 lines>...
-2026-06-12 15:12:38.129 IST
-        **kwargs,
-2026-06-12 15:12:38.129 IST
-        ^^^^^^^^^
-2026-06-12 15:12:38.129 IST
-    ):
-2026-06-12 15:12:38.129 IST
+2026-06-12 15:15:46.349 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 15:15:46.349 IST
+    raise SessionNotFoundError(message)
+2026-06-12 15:15:47.441 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: d6b6d8dc-007e-414c-bfb1-6fad0d4a7f76
+2026-06-12 15:15:48.877 IST
+[17]      INFO:     169.254.169.126:35326 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:15:48.966 IST
+Exception in thread Thread-130 (_asyncio_thread_main):
+2026-06-12 15:15:48.967 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 15:15:48.967 IST
+      event_queue.put(event)
+2026-06-12 15:15:48.967 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 15:15:48.967 IST
+    async for event in agen:
+2026-06-12 15:15:48.967 IST
+      yield event
+2026-06-12 15:15:48.967 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 15:15:48.967 IST
+    session = await self._get_or_create_session(
+2026-06-12 15:15:48.967 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 15:15:48.967 IST
+    ...<3 lines>...
+2026-06-12 15:15:48.967 IST
+    )
+2026-06-12 15:15:48.967 IST
     ^
-2026-06-12 15:12:39.208 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:40.714 IST
-[18]      INFO:     169.254.169.126:41872 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 15:12:40.715 IST
-[18]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:40.715 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 15:12:40.715 IST
-        user_id=user_id,
-2026-06-12 15:12:40.715 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 15:12:40.715 IST
-    ...<2 lines>...
-2026-06-12 15:12:40.715 IST
-        **kwargs,
-2026-06-12 15:12:40.715 IST
-        ^^^^^^^^^
-2026-06-12 15:12:40.715 IST
-    ):
-2026-06-12 15:12:40.715 IST
+2026-06-12 15:15:48.967 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 15:15:48.967 IST
+    raise SessionNotFoundError(message)
+2026-06-12 15:15:50.072 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: d6b6d8dc-007e-414c-bfb1-6fad0d4a7f76
+2026-06-12 15:15:51.342 IST
+[20]      INFO:     169.254.169.126:35330 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:15:51.396 IST
+Exception in thread Thread-106 (_asyncio_thread_main):
+2026-06-12 15:15:51.398 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 15:15:51.398 IST
+      event_queue.put(event)
+2026-06-12 15:15:51.398 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 15:15:51.398 IST
+    async for event in agen:
+2026-06-12 15:15:51.398 IST
+      yield event
+2026-06-12 15:15:51.398 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 15:15:51.398 IST
+    session = await self._get_or_create_session(
+2026-06-12 15:15:51.398 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 15:15:51.398 IST
+    ...<3 lines>...
+2026-06-12 15:15:51.398 IST
+    )
+2026-06-12 15:15:51.398 IST
     ^
-2026-06-12 15:12:41.728 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:43.254 IST
-[20]      INFO:     169.254.169.126:41886 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 15:12:43.255 IST
-[20]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:43.255 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 15:12:43.255 IST
-        user_id=user_id,
-2026-06-12 15:12:43.255 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 15:12:43.255 IST
-    ...<2 lines>...
-2026-06-12 15:12:43.255 IST
-        **kwargs,
-2026-06-12 15:12:43.255 IST
-        ^^^^^^^^^
-2026-06-12 15:12:43.255 IST
-    ):
-2026-06-12 15:12:43.255 IST
-    ^
-2026-06-12 15:12:44.357 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:45.918 IST
-[17]      INFO:     169.254.169.126:15664 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 15:12:45.919 IST
-[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:45.919 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 15:12:45.919 IST
-        user_id=user_id,
-2026-06-12 15:12:45.919 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 15:12:45.919 IST
-    ...<2 lines>...
-2026-06-12 15:12:45.919 IST
-        **kwargs,
-2026-06-12 15:12:45.919 IST
-        ^^^^^^^^^
-2026-06-12 15:12:45.919 IST
-    ):
-2026-06-12 15:12:45.919 IST
-    ^
-2026-06-12 15:12:46.987 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:48.374 IST
-[23]      INFO:     169.254.169.126:15672 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 15:12:48.375 IST
-[23]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 15:12:48.376 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 15:12:48.376 IST
-        user_id=user_id,
-2026-06-12 15:12:48.376 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 15:12:48.376 IST
-    ...<2 lines>...
-2026-06-12 15:12:48.376 IST
-        **kwargs,
-2026-06-12 15:12:48.376 IST
-        ^^^^^^^^^
-2026-06-12 15:12:48.376 IST
-    ):
+2026-06-12 15:15:51.398 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 15:15:51.398 IST
+    raise SessionNotFoundError(message)
+2026-06-12 15:15:52.481 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: d6b6d8dc-007e-414c-bfb1-6fad0d4a7f76
+2026-06-12 15:15:53.992 IST
+[18]      INFO:     169.254.169.126:35342 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:15:54.085 IST
+Exception in thread Thread-120 (_asyncio_thread_main):
+2026-06-12 15:15:54.086 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 15:15:54.086 IST
+      event_queue.put(event)
+2026-06-12 15:15:54.086 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
