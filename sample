@@ -21,296 +21,244 @@ Severity
 Time
 Summary
 No older entries found matching the current filter.
-2026-06-12 12:42:30.908 IST
-[20]      INFO:     DEBUG: Session Get 'persona_to_centroid_id_mapping' -> 'None'
-2026-06-12 12:42:30.908 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "event": "tool_end", "tool_name": "get_session_value"}
-2026-06-12 12:42:30.913 IST
-[20]      INFO:     Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-2026-06-12 12:42:37.367 IST
-[20]      INFO:     Response received from the model.
-2026-06-12 12:42:37.368 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "get_segments"}
-2026-06-12 12:42:37.369 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "event": "tool_start", "tool_name": "get_segments", "args": {"centroid_id": 0}}
-2026-06-12 12:42:39.037 IST
-[20]      INFO:     [{"centroid_id":1,"total_number_of_contacts":46335,"total_number_of_accounts":18175,"account_industry_breakdown":"[{\"account_industry\":\"Financial Services\",\"percentage_of_segment\":21.1},{\"account_industry\":\"Consumer\",\"percentage_of_segment\":20.49},{\"account_industry\":\"Technology, Media & Telecom\",\"percentage_of_segment\":19.82},{\"account_industry\":\"Unknown\",\"percentage_of_segment\":13.03},{\"account_industry\":\"Energy, Resources & Industrials\",\"percentage_of_segment\":10.25},{\"account_industry\":\"Life Sciences & Health Care\",\"percentage_of_segment\":8.84},{\"account_industry\":\"Government & Public Services\",\"percentage_of_segment\":5.59},{\"account_industry\":\"Other\",\"percentage_of_segment\":0.88}]","job_level_breakdown":"[{\"account_sid\":188155,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":1.41,\"job_level_breakdown\":[{\"job_level\":\"Manager\",\"percentage_of_account\":59.46},{\"job_level\":\"Executive\",\"percentage_of_account\":29.45},{\"job_level\":\"Analyst\",\"percentage_of_account\":6.5},{\"job_level\":\"Unknown\",\"percentage_of_account\":3.63},{\"job_level\":\"Other\",\"percentage_of_account\":0.57}]},{\"account_sid\":119405,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":1.33,\"job_level_breakdown\":[{\"job_level\":\"Executive\",\"percentage_of_account\":57.61},{\"job_level\":\"Manager\",\"percentage_of_account\":30.63},{\"job_level\":\"Analyst\",\"percentage_of_account\":9.53},{\"job_level\":\"C-Suite\",\"percentage_of_account\":1.42},{\"job_level\":\"Unknown\",\"percentage_of_account\":0.81}]},{\"account_sid\":159699,\"parent_account_client_segment\":\"No Segment\",\"percentage_of_segment\":0.9,\"job_level_breakdown\":[{\"job_level\":\"Internal\",\"percentage_of_account\":100}]},{\"account_sid\":51691,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":0.81,\"job_level_breakdown\":[{\"job_level\":\"Executive\",\"percentage_of_account\":52},{\"job_level\":\"Manager\",\"percentage_of_account\":37.67},{\"job_level\":\"Analyst\",\"percentage_of_account\":4.67},{\"job_level\":\"C-Suite\",\"percentage_of_account\":2.67},{\"job_level\":\"Unknown\",\"percentage_of_account\":2.67}]},{\"account_sid\":102750,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":0.51,\"job_level_breakdown\":[{\"job_level\":\"Manager\",\"percentage_of_account\":50},{\"job_level\":\"Executive\",\"percentage_of_account\":34.57},{\"job_level\":\"Ana… [message truncated due to size]
-2026-06-12 12:42:39.037 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "event": "tool_end", "tool_name": "get_segments"}
-2026-06-12 12:42:39.044 IST
-[20]      INFO:     Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-2026-06-12 12:42:45.340 IST
-[20]      INFO:     Response received from the model.
-2026-06-12 12:42:45.341 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "set_session_value"}
-2026-06-12 12:42:45.341 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "set_session_value"}
-2026-06-12 12:42:45.341 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "event": "tool_start", "tool_name": "set_session_value", "args": {"key": "persona_to_centroid_id_mapping", "value": "{\"The Integrated Finance & Tax Strategist\": 1, \"The Next-Gen Finance Leader\": 2, \"The Disengaged Finance Professional\": 3, \"The Broad-Market Finance Audience\": 4, \"The Niche Finance Specialist\": 5}"}}
-2026-06-12 12:42:45.342 IST
-[20]      INFO:     stored '{"The Integrated Finance & Tax Strategist": 1, "The Next-Gen Finance Leader": 2, "The Disengaged Finance Professional": 3, "The Broad-Market Finance Audience": 4, "The Niche Finance Specialist": 5}' in 'persona_to_centroid_id_mapping'
-2026-06-12 12:42:45.342 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "event": "tool_end", "tool_name": "set_session_value", "action": "session_update", "updated_key": "persona_to_centroid_id_mapping", "updated_value": "{\"The Integrated Finance & Tax Strategist\": 1, \"The Next-Gen Finance Leader\": 2, \"The Disengaged Finance Professional\": 3, \"The Broad-Market Finance Audience\": 4, \"The Niche Finance Specialist\": 5}"}
-2026-06-12 12:42:45.342 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "event": "tool_start", "tool_name": "set_session_value", "args": {"value": "", "key": "baseline_filters"}}
-2026-06-12 12:42:45.342 IST
-[20]      INFO:     stored '' in 'baseline_filters'
-2026-06-12 12:42:45.342 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "event": "tool_end", "tool_name": "set_session_value", "action": "session_update", "updated_key": "baseline_filters", "updated_value": ""}
-2026-06-12 12:42:45.348 IST
-[20]      INFO:     Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-2026-06-12 12:42:53.208 IST
-[20]      INFO:     Response received from the model.
-2026-06-12 12:42:53.209 IST
-[20]      INFO:     {"session_id": "c31ae464-216c-4b03-849d-0f071af8e892", "agent_name": "audience_segmentation_agent_1", "event": "model_response", "message": "Of course. Here are the existing audience segments based on the available data:\n\n| **Segment** | **Title** | **Summary** | **Total Accounts** | **Total Contacts** |\n|---|---|---|:---:|:---:|\n| 1 | The Integrated Finance & Tax Strategist | This segment shows exceptional engagement growth with a significant increase in total campaigns and interactions. The content is highly effective, with soaring open and click rates, indicating a strong connection with the audience. | 18,175 | 46,335 |\n| 2 | The Next-Gen Finance Leader | While there has been a severe reduction in activity, a remarkable surge in open rates signals highly effective messaging for a smaller, more receptive audience. This indicates strong initial content resonance and an opportunity to rebuild engagement. | 25,809 | 114,453 |\n| 3 | The Disengaged Finance Professional | This segment reveals a severe downturn in engagement, with plummeting interaction rates and a critical loss of audience interest. Immediate strategic changes are needed to address the alarming drop in campaign impact. | 48,312 | 183,571 |\n| 4 | The Broad-Market Finance Audience | Despite a massive surge in total campaigns and emails sent, engagement quality has critically deteriorated. The staggering decline in open and click rates reveals an unsustainable high-volume strategy and an oversaturated audience. | 29,897 | 92,072 |\n| 5 | The Niche Finance Specialist | Engagement quality has dramatically improved despite a significant reduction in overall campaign volume. A remarkable increase in the click-through rate demonstrates exceptional content resonance and high promise for future engagement with targeted, high-value campaigns. | 11,717 | 29,387 |\n\nWould you like to see the top account breakdowns for a specific segment, or would you like to apply filters to narrow down an audience?"}
-2026-06-12 12:42:53.210 IST
-[20]      INFO:     Closing runner...
-2026-06-12 12:42:53.210 IST
-[20]      INFO:     Closing toolset: BigQueryToolset
-2026-06-12 12:42:53.210 IST
-[20]      INFO:     Successfully closed toolset: BigQueryToolset
-2026-06-12 12:42:53.210 IST
-[20]      INFO:     Runner closed.
-2026-06-12 12:42:53.211 IST
-[20]      INFO:     {"session_id": "3822398916368793600", "event": "tool_end", "tool_name": "audience_segmentation_agent_1"}
-2026-06-12 12:47:52.299 IST
-[20]      INFO:     169.254.169.126:19692 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:47:52.558 IST
-[20]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:47:52.558 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:47:52.558 IST
-        user_id=user_id,
-2026-06-12 12:47:52.558 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:47:52.558 IST
-    ...<2 lines>...
-2026-06-12 12:47:52.558 IST
-        **kwargs,
-2026-06-12 12:47:52.558 IST
-        ^^^^^^^^^
-2026-06-12 12:47:52.558 IST
-    ):
-2026-06-12 12:47:52.558 IST
+2026-06-12 12:52:46.153 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 12:52:46.153 IST
+      event_queue.put(event)
+2026-06-12 12:52:46.153 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 12:52:46.153 IST
+    async for event in agen:
+2026-06-12 12:52:46.153 IST
+      yield event
+2026-06-12 12:52:46.153 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 12:52:46.153 IST
+    session = await self._get_or_create_session(
+2026-06-12 12:52:46.153 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:52:46.153 IST
+    ...<3 lines>...
+2026-06-12 12:52:46.153 IST
+    )
+2026-06-12 12:52:46.153 IST
     ^
-2026-06-12 12:47:53.623 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:47:57.614 IST
-[18]      INFO:     169.254.169.126:2644 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:47:57.790 IST
-[18]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:47:57.790 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:47:57.790 IST
-        user_id=user_id,
-2026-06-12 12:47:57.790 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:47:57.790 IST
-    ...<2 lines>...
-2026-06-12 12:47:57.790 IST
-        **kwargs,
-2026-06-12 12:47:57.790 IST
-        ^^^^^^^^^
-2026-06-12 12:47:57.790 IST
-    ):
-2026-06-12 12:47:57.790 IST
+2026-06-12 12:52:46.153 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 12:52:46.153 IST
+    raise SessionNotFoundError(message)
+2026-06-12 12:52:47.259 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
+2026-06-12 12:52:48.567 IST
+[22]      INFO:     169.254.169.126:63680 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 12:52:48.643 IST
+Exception in thread Thread-12 (_asyncio_thread_main):
+2026-06-12 12:52:48.643 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 12:52:48.643 IST
+      event_queue.put(event)
+2026-06-12 12:52:48.643 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 12:52:48.643 IST
+    async for event in agen:
+2026-06-12 12:52:48.643 IST
+      yield event
+2026-06-12 12:52:48.643 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 12:52:48.643 IST
+    session = await self._get_or_create_session(
+2026-06-12 12:52:48.643 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:52:48.643 IST
+    ...<3 lines>...
+2026-06-12 12:52:48.643 IST
+    )
+2026-06-12 12:52:48.643 IST
     ^
-2026-06-12 12:47:58.883 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:00.215 IST
-[15]      INFO:     169.254.169.126:2660 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:48:00.601 IST
-[15]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:00.601 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:48:00.601 IST
-        user_id=user_id,
-2026-06-12 12:48:00.601 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:48:00.601 IST
-    ...<2 lines>...
-2026-06-12 12:48:00.601 IST
-        **kwargs,
-2026-06-12 12:48:00.601 IST
-        ^^^^^^^^^
-2026-06-12 12:48:00.601 IST
-    ):
-2026-06-12 12:48:00.601 IST
+2026-06-12 12:52:48.643 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 12:52:48.643 IST
+    raise SessionNotFoundError(message)
+2026-06-12 12:52:49.671 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
+2026-06-12 12:52:51.047 IST
+[17]      INFO:     169.254.169.126:63686 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 12:52:51.134 IST
+Exception in thread Thread-60 (_asyncio_thread_main):
+2026-06-12 12:52:51.135 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 12:52:51.135 IST
+      event_queue.put(event)
+2026-06-12 12:52:51.135 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 12:52:51.135 IST
+    async for event in agen:
+2026-06-12 12:52:51.135 IST
+      yield event
+2026-06-12 12:52:51.135 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 12:52:51.135 IST
+    session = await self._get_or_create_session(
+2026-06-12 12:52:51.135 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:52:51.135 IST
+    ...<3 lines>...
+2026-06-12 12:52:51.135 IST
+    )
+2026-06-12 12:52:51.135 IST
     ^
-2026-06-12 12:48:01.622 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:03.032 IST
-[18]      INFO:     169.254.169.126:2672 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:48:03.230 IST
-[18]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:03.230 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:48:03.230 IST
-        user_id=user_id,
-2026-06-12 12:48:03.230 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:48:03.230 IST
-    ...<2 lines>...
-2026-06-12 12:48:03.230 IST
-        **kwargs,
-2026-06-12 12:48:03.230 IST
-        ^^^^^^^^^
-2026-06-12 12:48:03.230 IST
-    ):
-2026-06-12 12:48:03.230 IST
+2026-06-12 12:52:51.135 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 12:52:51.135 IST
+    raise SessionNotFoundError(message)
+2026-06-12 12:52:52.190 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
+2026-06-12 12:52:53.544 IST
+[15]      INFO:     169.254.169.126:63696 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 12:52:53.626 IST
+Exception in thread Thread-34 (_asyncio_thread_main):
+2026-06-12 12:52:53.627 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 12:52:53.627 IST
+      event_queue.put(event)
+2026-06-12 12:52:53.627 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 12:52:53.627 IST
+    async for event in agen:
+2026-06-12 12:52:53.627 IST
+      yield event
+2026-06-12 12:52:53.627 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 12:52:53.627 IST
+    session = await self._get_or_create_session(
+2026-06-12 12:52:53.627 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:52:53.627 IST
+    ...<3 lines>...
+2026-06-12 12:52:53.627 IST
+    )
+2026-06-12 12:52:53.627 IST
     ^
-2026-06-12 12:48:04.251 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:05.629 IST
-[17]      INFO:     169.254.169.126:43932 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:48:05.836 IST
-[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:05.836 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:48:05.836 IST
-        user_id=user_id,
-2026-06-12 12:48:05.836 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:48:05.836 IST
-    ...<2 lines>...
-2026-06-12 12:48:05.836 IST
-        **kwargs,
-2026-06-12 12:48:05.836 IST
-        ^^^^^^^^^
-2026-06-12 12:48:05.836 IST
-    ):
-2026-06-12 12:48:05.836 IST
+2026-06-12 12:52:53.627 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 12:52:53.627 IST
+    raise SessionNotFoundError(message)
+2026-06-12 12:52:54.709 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
+2026-06-12 12:52:56.019 IST
+[23]      INFO:     169.254.169.126:21836 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 12:52:56.115 IST
+Exception in thread Thread-8 (_asyncio_thread_main):
+2026-06-12 12:52:56.116 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 12:52:56.116 IST
+      event_queue.put(event)
+2026-06-12 12:52:56.116 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 12:52:56.116 IST
+    async for event in agen:
+2026-06-12 12:52:56.116 IST
+      yield event
+2026-06-12 12:52:56.116 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 12:52:56.116 IST
+    session = await self._get_or_create_session(
+2026-06-12 12:52:56.116 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:52:56.116 IST
+    ...<3 lines>...
+2026-06-12 12:52:56.116 IST
+    )
+2026-06-12 12:52:56.116 IST
     ^
-2026-06-12 12:48:06.881 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:09.145 IST
-[18]      INFO:     169.254.169.126:43944 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:48:09.330 IST
-[18]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:09.330 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:48:09.330 IST
-        user_id=user_id,
-2026-06-12 12:48:09.330 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:48:09.330 IST
-    ...<2 lines>...
-2026-06-12 12:48:09.330 IST
-        **kwargs,
-2026-06-12 12:48:09.330 IST
-        ^^^^^^^^^
-2026-06-12 12:48:09.330 IST
-    ):
-2026-06-12 12:48:09.330 IST
-    ^
-2026-06-12 12:48:10.387 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:11.734 IST
-[22]      INFO:     169.254.169.126:43946 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:48:12.176 IST
-[22]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:12.176 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:48:12.176 IST
-        user_id=user_id,
-2026-06-12 12:48:12.176 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:48:12.176 IST
-    ...<2 lines>...
-2026-06-12 12:48:12.176 IST
-        **kwargs,
-2026-06-12 12:48:12.176 IST
-        ^^^^^^^^^
-2026-06-12 12:48:12.177 IST
-    ):
-2026-06-12 12:48:12.177 IST
-    ^
-2026-06-12 12:48:13.236 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:14.669 IST
-[17]      INFO:     169.254.169.126:45778 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:48:14.852 IST
-[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:14.852 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:48:14.852 IST
-        user_id=user_id,
-2026-06-12 12:48:14.852 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:48:14.852 IST
-    ...<2 lines>...
-2026-06-12 12:48:14.852 IST
-        **kwargs,
-2026-06-12 12:48:14.852 IST
-        ^^^^^^^^^
-2026-06-12 12:48:14.852 IST
-    ):
-2026-06-12 12:48:14.852 IST
-    ^
-2026-06-12 12:48:15.865 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:17.280 IST
-[17]      INFO:     169.254.169.126:45794 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:48:17.493 IST
-[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:17.493 IST
-Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
-2026-06-12 12:48:17.493 IST
-        user_id=user_id,
-2026-06-12 12:48:17.493 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:48:17.493 IST
-    ...<2 lines>...
-2026-06-12 12:48:17.493 IST
-        **kwargs,
-2026-06-12 12:48:17.493 IST
-        ^^^^^^^^^
-2026-06-12 12:48:17.493 IST
-    ):
-2026-06-12 12:48:17.493 IST
-    ^
-2026-06-12 12:48:18.494 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:19.907 IST
-[21]      INFO:     169.254.169.126:45804 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:48:20.102 IST
-[21]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
-2026-06-12 12:48:20.102 IST
+2026-06-12 12:52:56.116 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 12:52:56.116 IST
+    raise SessionNotFoundError(message)
+2026-06-12 12:52:57.119 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
+2026-06-12 12:52:58.545 IST
+[18]      INFO:     169.254.169.126:21850 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 12:52:58.615 IST
+Exception in thread Thread-54 (_asyncio_thread_main):
+2026-06-12 12:52:58.616 IST
 Traceback (most recent call last):
-  File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator
-    for chunk in output:
-                 ^^^^^^
-  File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query
-    for event in self._tmpl_attrs.get("runner").run(
-                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+  File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main
+    asyncio.run(_invoke_run_async())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async
+    async for event in agen:
 {
-insertId: "6a2bb2bc00018fe78db44774"
+insertId: "6a2bb3d2000967d14f943a0a"
 logName: "projects/us-gcp-ame-its-1ec3e-npd-1/logs/aiplatform.googleapis.com%2Freasoning_engine_stderr"
-receiveTimestamp: "2026-06-12T07:18:20.208660482Z"
+receiveTimestamp: "2026-06-12T07:22:58.870819988Z"
 resource: {2}
 severity: "ERROR"
 textPayload: "Traceback (most recent call last):
-  File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator
-    for chunk in output:
-                 ^^^^^^
-  File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query
-    for event in self._tmpl_attrs.get("runner").run(
-                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^"
-timestamp: "2026-06-12T07:18:20.102375Z"
+  File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main
+    asyncio.run(_invoke_run_async())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async
+    async for event in agen:"
+timestamp: "2026-06-12T07:22:58.616401Z"
 }
-2026-06-12 12:48:20.102 IST
-        user_id=user_id,
-2026-06-12 12:48:20.102 IST
-        ^^^^^^^^^^^^^^^^
-2026-06-12 12:48:20.102 IST
-    ...<2 lines>...
-2026-06-12 12:48:20.102 IST
-        **kwargs,
-2026-06-12 12:48:20.102 IST
-        ^^^^^^^^^
-2026-06-12 12:48:20.102 IST
-    ):
-2026-06-12 12:48:20.102 IST
+2026-06-12 12:52:58.616 IST
+      event_queue.put(event)
+2026-06-12 12:52:58.616 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 12:52:58.616 IST
+    async for event in agen:
+2026-06-12 12:52:58.616 IST
+      yield event
+2026-06-12 12:52:58.616 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 12:52:58.616 IST
+    session = await self._get_or_create_session(
+2026-06-12 12:52:58.616 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:52:58.616 IST
+    ...<3 lines>...
+2026-06-12 12:52:58.616 IST
+    )
+2026-06-12 12:52:58.616 IST
     ^
-2026-06-12 12:48:21.125 IST
-TypeError: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 12:52:58.616 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+2026-06-12 12:52:58.616 IST
+    raise SessionNotFoundError(message)
+2026-06-12 12:52:59.640 IST
+google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
+2026-06-12 12:53:01.021 IST
+[20]      INFO:     169.254.169.126:21856 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 12:53:01.512 IST
+Exception in thread Thread-62 (_asyncio_thread_main):
