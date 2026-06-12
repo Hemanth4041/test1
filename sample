@@ -1,264 +1,66 @@
-
-Sessions
-Trace
-State
-Search using session ID
-7051479849193439232
-7051479849193439232
-6/12/2026, 12:48:17 PM
-Read-only
-Playground preview
-Session ID
-7051479849193439232
-Read-only
-Chat is disabled to prevent changes to the end user's session.
-New Session
-Logs
-Severity
-Default
-Filter
-Severity
-Time
-Summary
-No older entries found matching the current filter.
-2026-06-12 12:52:46.153 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 12:52:46.153 IST
-      event_queue.put(event)
-2026-06-12 12:52:46.153 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 12:52:46.153 IST
-    async for event in agen:
-2026-06-12 12:52:46.153 IST
-      yield event
-2026-06-12 12:52:46.153 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 12:52:46.153 IST
-    session = await self._get_or_create_session(
-2026-06-12 12:52:46.153 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 12:52:46.153 IST
-    ...<3 lines>...
-2026-06-12 12:52:46.153 IST
-    )
-2026-06-12 12:52:46.153 IST
-    ^
-2026-06-12 12:52:46.153 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 12:52:46.153 IST
-    raise SessionNotFoundError(message)
-2026-06-12 12:52:47.259 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
-2026-06-12 12:52:48.567 IST
-[22]      INFO:     169.254.169.126:63680 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:52:48.643 IST
-Exception in thread Thread-12 (_asyncio_thread_main):
-2026-06-12 12:52:48.643 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 12:52:48.643 IST
-      event_queue.put(event)
-2026-06-12 12:52:48.643 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 12:52:48.643 IST
-    async for event in agen:
-2026-06-12 12:52:48.643 IST
-      yield event
-2026-06-12 12:52:48.643 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 12:52:48.643 IST
-    session = await self._get_or_create_session(
-2026-06-12 12:52:48.643 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 12:52:48.643 IST
-    ...<3 lines>...
-2026-06-12 12:52:48.643 IST
-    )
-2026-06-12 12:52:48.643 IST
-    ^
-2026-06-12 12:52:48.643 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 12:52:48.643 IST
-    raise SessionNotFoundError(message)
-2026-06-12 12:52:49.671 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
-2026-06-12 12:52:51.047 IST
-[17]      INFO:     169.254.169.126:63686 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:52:51.134 IST
-Exception in thread Thread-60 (_asyncio_thread_main):
-2026-06-12 12:52:51.135 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 12:52:51.135 IST
-      event_queue.put(event)
-2026-06-12 12:52:51.135 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 12:52:51.135 IST
-    async for event in agen:
-2026-06-12 12:52:51.135 IST
-      yield event
-2026-06-12 12:52:51.135 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 12:52:51.135 IST
-    session = await self._get_or_create_session(
-2026-06-12 12:52:51.135 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 12:52:51.135 IST
-    ...<3 lines>...
-2026-06-12 12:52:51.135 IST
-    )
-2026-06-12 12:52:51.135 IST
-    ^
-2026-06-12 12:52:51.135 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 12:52:51.135 IST
-    raise SessionNotFoundError(message)
-2026-06-12 12:52:52.190 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
-2026-06-12 12:52:53.544 IST
-[15]      INFO:     169.254.169.126:63696 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:52:53.626 IST
-Exception in thread Thread-34 (_asyncio_thread_main):
-2026-06-12 12:52:53.627 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 12:52:53.627 IST
-      event_queue.put(event)
-2026-06-12 12:52:53.627 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 12:52:53.627 IST
-    async for event in agen:
-2026-06-12 12:52:53.627 IST
-      yield event
-2026-06-12 12:52:53.627 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 12:52:53.627 IST
-    session = await self._get_or_create_session(
-2026-06-12 12:52:53.627 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 12:52:53.627 IST
-    ...<3 lines>...
-2026-06-12 12:52:53.627 IST
-    )
-2026-06-12 12:52:53.627 IST
-    ^
-2026-06-12 12:52:53.627 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 12:52:53.627 IST
-    raise SessionNotFoundError(message)
-2026-06-12 12:52:54.709 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
-2026-06-12 12:52:56.019 IST
-[23]      INFO:     169.254.169.126:21836 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:52:56.115 IST
-Exception in thread Thread-8 (_asyncio_thread_main):
-2026-06-12 12:52:56.116 IST
-Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
-2026-06-12 12:52:56.116 IST
-      event_queue.put(event)
-2026-06-12 12:52:56.116 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 12:52:56.116 IST
-    async for event in agen:
-2026-06-12 12:52:56.116 IST
-      yield event
-2026-06-12 12:52:56.116 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 12:52:56.116 IST
-    session = await self._get_or_create_session(
-2026-06-12 12:52:56.116 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 12:52:56.116 IST
-    ...<3 lines>...
-2026-06-12 12:52:56.116 IST
-    )
-2026-06-12 12:52:56.116 IST
-    ^
-2026-06-12 12:52:56.116 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 12:52:56.116 IST
-    raise SessionNotFoundError(message)
-2026-06-12 12:52:57.119 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
-2026-06-12 12:52:58.545 IST
-[18]      INFO:     169.254.169.126:21850 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:52:58.615 IST
-Exception in thread Thread-54 (_asyncio_thread_main):
-2026-06-12 12:52:58.616 IST
-Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner
-    self.run()
-    ~~~~~~~~^^
-  File "/usr/local/lib/python3.13/threading.py", line 995, in run
-    self._target(*self._args, **self._kwargs)
-    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main
-    asyncio.run(_invoke_run_async())
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run
-    return runner.run(main)
-           ~~~~~~~~~~^^^^^^
-  File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
-    return future.result()
-           ~~~~~~~~~~~~~^^
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async
-    async for event in agen:
-{
-insertId: "6a2bb3d2000967d14f943a0a"
-logName: "projects/us-gcp-ame-its-1ec3e-npd-1/logs/aiplatform.googleapis.com%2Freasoning_engine_stderr"
-receiveTimestamp: "2026-06-12T07:22:58.870819988Z"
-resource: {2}
-severity: "ERROR"
-textPayload: "Traceback (most recent call last):
-  File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner
-    self.run()
-    ~~~~~~~~^^
-  File "/usr/local/lib/python3.13/threading.py", line 995, in run
-    self._target(*self._args, **self._kwargs)
-    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main
-    asyncio.run(_invoke_run_async())
-    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
-  File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run
-    return runner.run(main)
-           ~~~~~~~~~~^^^^^^
-  File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run
-    return self._loop.run_until_complete(task)
-           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
-  File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
-    return future.result()
-           ~~~~~~~~~~~~~^^
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async
-    async for event in agen:"
-timestamp: "2026-06-12T07:22:58.616401Z"
-}
-2026-06-12 12:52:58.616 IST
-      event_queue.put(event)
-2026-06-12 12:52:58.616 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-2026-06-12 12:52:58.616 IST
-    async for event in agen:
-2026-06-12 12:52:58.616 IST
-      yield event
-2026-06-12 12:52:58.616 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-2026-06-12 12:52:58.616 IST
-    session = await self._get_or_create_session(
-2026-06-12 12:52:58.616 IST
-              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-2026-06-12 12:52:58.616 IST
-    ...<3 lines>...
-2026-06-12 12:52:58.616 IST
-    )
-2026-06-12 12:52:58.616 IST
-    ^
-2026-06-12 12:52:58.616 IST
-  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-2026-06-12 12:52:58.616 IST
-    raise SessionNotFoundError(message)
-2026-06-12 12:52:59.640 IST
-google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 503850331345503563
-2026-06-12 12:53:01.021 IST
-[20]      INFO:     169.254.169.126:21856 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-2026-06-12 12:53:01.512 IST
-Exception in thread Thread-62 (_asyncio_thread_main):
+DEFAULT 2026-06-12T07:28:04.254753Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+DEFAULT 2026-06-12T07:28:04.254773Z raise SessionNotFoundError(message)
+DEFAULT 2026-06-12T07:28:05.327686Z google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745
+DEFAULT 2026-06-12T07:28:06.734939Z [19] INFO: 169.254.169.126:32192 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T07:28:06.805532Z Exception in thread Thread-16 (_asyncio_thread_main):
+ERROR 2026-06-12T07:28:06.806568Z Traceback (most recent call last): File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner self.run() ~~~~~~~~^^ File "/usr/local/lib/python3.13/threading.py", line 995, in run self._target(*self._args, **self._kwargs) ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main asyncio.run(_invoke_run_async()) ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run return runner.run(main) ~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run return self._loop.run_until_complete(task) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete return future.result() ~~~~~~~~~~~~~^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async async for event in agen:
+DEFAULT 2026-06-12T07:28:06.806573Z event_queue.put(event)
+DEFAULT 2026-06-12T07:28:06.806578Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+DEFAULT 2026-06-12T07:28:06.806580Z async for event in agen:
+DEFAULT 2026-06-12T07:28:06.806583Z yield event
+DEFAULT 2026-06-12T07:28:06.806586Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+DEFAULT 2026-06-12T07:28:06.806589Z session = await self._get_or_create_session(
+DEFAULT 2026-06-12T07:28:06.806592Z ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+DEFAULT 2026-06-12T07:28:06.806594Z ...<3 lines>...
+DEFAULT 2026-06-12T07:28:06.806596Z )
+DEFAULT 2026-06-12T07:28:06.806599Z ^
+DEFAULT 2026-06-12T07:28:06.806602Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+DEFAULT 2026-06-12T07:28:06.806619Z raise SessionNotFoundError(message)
+DEFAULT 2026-06-12T07:28:07.849154Z google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745
+DEFAULT 2026-06-12T07:28:09.335373Z [19] INFO: 169.254.169.126:32198 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T07:28:09.403111Z Exception in thread Thread-18 (_asyncio_thread_main):
+ERROR 2026-06-12T07:28:09.404423Z Traceback (most recent call last): File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner self.run() ~~~~~~~~^^ File "/usr/local/lib/python3.13/threading.py", line 995, in run self._target(*self._args, **self._kwargs) ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main asyncio.run(_invoke_run_async()) ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run return runner.run(main) ~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run return self._loop.run_until_complete(task) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete return future.result() ~~~~~~~~~~~~~^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async async for event in agen:
+DEFAULT 2026-06-12T07:28:09.404428Z event_queue.put(event)
+DEFAULT 2026-06-12T07:28:09.404434Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+DEFAULT 2026-06-12T07:28:09.404437Z async for event in agen:
+DEFAULT 2026-06-12T07:28:09.404441Z yield event
+DEFAULT 2026-06-12T07:28:09.404445Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+DEFAULT 2026-06-12T07:28:09.404448Z session = await self._get_or_create_session(
+DEFAULT 2026-06-12T07:28:09.404452Z ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+DEFAULT 2026-06-12T07:28:09.404456Z ...<3 lines>...
+DEFAULT 2026-06-12T07:28:09.404459Z )
+DEFAULT 2026-06-12T07:28:09.404463Z ^
+DEFAULT 2026-06-12T07:28:09.404467Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+DEFAULT 2026-06-12T07:28:09.404485Z raise SessionNotFoundError(message)
+DEFAULT 2026-06-12T07:28:10.478063Z google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745
+DEFAULT 2026-06-12T07:28:11.789882Z [17] INFO: 169.254.169.126:32204 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T07:28:11.877765Z Exception in thread Thread-70 (_asyncio_thread_main):
+ERROR 2026-06-12T07:28:11.879140Z Traceback (most recent call last): File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner self.run() ~~~~~~~~^^ File "/usr/local/lib/python3.13/threading.py", line 995, in run self._target(*self._args, **self._kwargs) ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main asyncio.run(_invoke_run_async()) ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run return runner.run(main) ~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run return self._loop.run_until_complete(task) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete return future.result() ~~~~~~~~~~~~~^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async async for event in agen:
+DEFAULT 2026-06-12T07:28:11.879148Z event_queue.put(event)
+DEFAULT 2026-06-12T07:28:11.879154Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+DEFAULT 2026-06-12T07:28:11.879157Z async for event in agen:
+DEFAULT 2026-06-12T07:28:11.879161Z yield event
+DEFAULT 2026-06-12T07:28:11.879165Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+DEFAULT 2026-06-12T07:28:11.879168Z session = await self._get_or_create_session(
+DEFAULT 2026-06-12T07:28:11.879172Z ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+DEFAULT 2026-06-12T07:28:11.879175Z ...<3 lines>...
+DEFAULT 2026-06-12T07:28:11.879178Z )
+DEFAULT 2026-06-12T07:28:11.879182Z ^
+DEFAULT 2026-06-12T07:28:11.879186Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
+DEFAULT 2026-06-12T07:28:11.879207Z raise SessionNotFoundError(message)
+DEFAULT 2026-06-12T07:28:12.888300Z google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745
+  {
+    "textPayload": "google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745",
+    "insertId": "6a2bb50c000d8decb29d6654",
+    "resource": {
+      "type": "aiplatform.googleapis.com/ReasoningEngine",
+      "labels": {
+        "resource_container": "872952385847",
+        "location": "us-central1",
+        "reasoning_engine_id": "4023555599462563840"
+      }
+    },
+    "timestamp": "2026-06-12T07:28:12.888300Z",
+    "logName": "projects/us-gcp-ame-its-1ec3e-npd-1/logs/aiplatform.googleapis.com%2Freasoning_engine_stderr",
+    "receiveTimestamp": "2026-06-12T07:28:13.011650074Z"
+  }
