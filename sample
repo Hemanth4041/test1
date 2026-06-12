@@ -1,66 +1,72 @@
-DEFAULT 2026-06-12T07:28:04.254753Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-DEFAULT 2026-06-12T07:28:04.254773Z raise SessionNotFoundError(message)
-DEFAULT 2026-06-12T07:28:05.327686Z google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745
-DEFAULT 2026-06-12T07:28:06.734939Z [19] INFO: 169.254.169.126:32192 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-DEFAULT 2026-06-12T07:28:06.805532Z Exception in thread Thread-16 (_asyncio_thread_main):
-ERROR 2026-06-12T07:28:06.806568Z Traceback (most recent call last): File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner self.run() ~~~~~~~~^^ File "/usr/local/lib/python3.13/threading.py", line 995, in run self._target(*self._args, **self._kwargs) ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main asyncio.run(_invoke_run_async()) ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run return runner.run(main) ~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run return self._loop.run_until_complete(task) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete return future.result() ~~~~~~~~~~~~~^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async async for event in agen:
-DEFAULT 2026-06-12T07:28:06.806573Z event_queue.put(event)
-DEFAULT 2026-06-12T07:28:06.806578Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-DEFAULT 2026-06-12T07:28:06.806580Z async for event in agen:
-DEFAULT 2026-06-12T07:28:06.806583Z yield event
-DEFAULT 2026-06-12T07:28:06.806586Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-DEFAULT 2026-06-12T07:28:06.806589Z session = await self._get_or_create_session(
-DEFAULT 2026-06-12T07:28:06.806592Z ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-DEFAULT 2026-06-12T07:28:06.806594Z ...<3 lines>...
-DEFAULT 2026-06-12T07:28:06.806596Z )
-DEFAULT 2026-06-12T07:28:06.806599Z ^
-DEFAULT 2026-06-12T07:28:06.806602Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-DEFAULT 2026-06-12T07:28:06.806619Z raise SessionNotFoundError(message)
-DEFAULT 2026-06-12T07:28:07.849154Z google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745
-DEFAULT 2026-06-12T07:28:09.335373Z [19] INFO: 169.254.169.126:32198 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-DEFAULT 2026-06-12T07:28:09.403111Z Exception in thread Thread-18 (_asyncio_thread_main):
-ERROR 2026-06-12T07:28:09.404423Z Traceback (most recent call last): File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner self.run() ~~~~~~~~^^ File "/usr/local/lib/python3.13/threading.py", line 995, in run self._target(*self._args, **self._kwargs) ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main asyncio.run(_invoke_run_async()) ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run return runner.run(main) ~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run return self._loop.run_until_complete(task) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete return future.result() ~~~~~~~~~~~~~^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async async for event in agen:
-DEFAULT 2026-06-12T07:28:09.404428Z event_queue.put(event)
-DEFAULT 2026-06-12T07:28:09.404434Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-DEFAULT 2026-06-12T07:28:09.404437Z async for event in agen:
-DEFAULT 2026-06-12T07:28:09.404441Z yield event
-DEFAULT 2026-06-12T07:28:09.404445Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-DEFAULT 2026-06-12T07:28:09.404448Z session = await self._get_or_create_session(
-DEFAULT 2026-06-12T07:28:09.404452Z ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-DEFAULT 2026-06-12T07:28:09.404456Z ...<3 lines>...
-DEFAULT 2026-06-12T07:28:09.404459Z )
-DEFAULT 2026-06-12T07:28:09.404463Z ^
-DEFAULT 2026-06-12T07:28:09.404467Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-DEFAULT 2026-06-12T07:28:09.404485Z raise SessionNotFoundError(message)
-DEFAULT 2026-06-12T07:28:10.478063Z google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745
-DEFAULT 2026-06-12T07:28:11.789882Z [17] INFO: 169.254.169.126:32204 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-DEFAULT 2026-06-12T07:28:11.877765Z Exception in thread Thread-70 (_asyncio_thread_main):
-ERROR 2026-06-12T07:28:11.879140Z Traceback (most recent call last): File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner self.run() ~~~~~~~~^^ File "/usr/local/lib/python3.13/threading.py", line 995, in run self._target(*self._args, **self._kwargs) ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main asyncio.run(_invoke_run_async()) ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run return runner.run(main) ~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run return self._loop.run_until_complete(task) ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^ File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete return future.result() ~~~~~~~~~~~~~^^ File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async async for event in agen:
-DEFAULT 2026-06-12T07:28:11.879148Z event_queue.put(event)
-DEFAULT 2026-06-12T07:28:11.879154Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
-DEFAULT 2026-06-12T07:28:11.879157Z async for event in agen:
-DEFAULT 2026-06-12T07:28:11.879161Z yield event
-DEFAULT 2026-06-12T07:28:11.879165Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
-DEFAULT 2026-06-12T07:28:11.879168Z session = await self._get_or_create_session(
-DEFAULT 2026-06-12T07:28:11.879172Z ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-DEFAULT 2026-06-12T07:28:11.879175Z ...<3 lines>...
-DEFAULT 2026-06-12T07:28:11.879178Z )
-DEFAULT 2026-06-12T07:28:11.879182Z ^
-DEFAULT 2026-06-12T07:28:11.879186Z File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 435, in _get_or_create_session
-DEFAULT 2026-06-12T07:28:11.879207Z raise SessionNotFoundError(message)
-DEFAULT 2026-06-12T07:28:12.888300Z google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745
-  {
-    "textPayload": "google.adk.errors.session_not_found_error.SessionNotFoundError: Session not found: 567019644477538745",
-    "insertId": "6a2bb50c000d8decb29d6654",
-    "resource": {
-      "type": "aiplatform.googleapis.com/ReasoningEngine",
-      "labels": {
-        "resource_container": "872952385847",
-        "location": "us-central1",
-        "reasoning_engine_id": "4023555599462563840"
-      }
-    },
-    "timestamp": "2026-06-12T07:28:12.888300Z",
-    "logName": "projects/us-gcp-ame-its-1ec3e-npd-1/logs/aiplatform.googleapis.com%2Freasoning_engine_stderr",
-    "receiveTimestamp": "2026-06-12T07:28:13.011650074Z"
-  }
+STEP 2: RUNNING AGENT EVALUATIONS
+================================================================================
+
+Evaluating Session: session_1777463419356577792
+   Requesting new session ID from backend...
+   ✗ Failed to retrieve a valid session ID. Aborting test case.
+
+================================================================================
+STEP 3: CALCULATING AGGREGATE METRICS
+================================================================================
+
+================================================================================
+STEP 4: RECORDING TO BIGQUERY
+================================================================================
+   ✓ Results recorded to BigQuery
+
+================================================================================
+FINAL METRICS SUMMARY
+================================================================================
+
+Execution Time: 2026-06-12T07:34:43.506411+00:00
+Branch: dev
+Test Cases: 1
+
+--------------------------------------------------------------------------------
+Metric                                        Score      Threshold  Status
+--------------------------------------------------------------------------------
+tool_trajectory_avg_score                     0.0000     0.80       ✗ FAIL
+response_match_score                          0.0000     0.50       ✗ FAIL
+groundedness_v1                               0.0000     0.80       ✗ FAIL
+safety_v1                                     0.0000     1.00       ✗ FAIL
+multi_turn_task_success_v1                    0.0000     0.80       ✗ FAIL
+multi_turn_trajectory_quality_v1              0.0000     0.80       ✗ FAIL
+multi_turn_tool_use_quality_v1                0.0000     0.80       ✗ FAIL
+final_response_match_v2                       0.0000     0.50       ✗ FAIL
+--------------------------------------------------------------------------------
+
+⚠ SOME METRICS FAILED. Review the details in the output/ folder.
+================================================================================
+
+
+
+5936047293047242752	—	eval_user	Jun 12, 2026, 1:37:04 PM	Jun 12, 2026, 1:37:06 PM	
+405626950636273664	—	eval_system_test
+
+
+System ping
+
+#2
+System is online.
+
+
+DEFAULT 2026-06-12T07:33:18.013140Z [19] INFO: Closing toolset: BigQueryToolset
+DEFAULT 2026-06-12T07:33:18.013143Z [19] INFO: Successfully closed toolset: BigQueryToolset
+DEFAULT 2026-06-12T07:33:18.013247Z [19] INFO: Runner closed.
+DEFAULT 2026-06-12T07:33:18.013413Z [19] INFO: {"session_id": "9155839551640436736", "event": "tool_end", "tool_name": "audience_segmentation_agent_1"}
+DEFAULT 2026-06-12T07:33:56.598182Z [18] INFO: 169.254.169.126:7916 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T07:33:56.978920Z [18] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T07:33:58.551469Z [18] INFO: Response received from the model.
+DEFAULT 2026-06-12T07:33:58.551979Z [18] INFO: {"session_id": "2436468907603656704", "agent_name": "root_agent", "event": "model_response", "message": "ack"}
+DEFAULT 2026-06-12T07:34:41.678107Z [21] INFO: 169.254.169.126:3176 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T07:34:42.122342Z [21] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T07:34:42.891468Z [21] INFO: Response received from the model.
+DEFAULT 2026-06-12T07:34:42.892058Z [21] INFO: {"session_id": "6352348783602302976", "agent_name": "root_agent", "event": "model_response", "message": "OK"}
+DEFAULT 2026-06-12T08:06:51.167712Z [18] INFO: 169.254.169.126:51140 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T08:06:51.605284Z [18] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T08:06:53.578242Z [18] INFO: Response received from the model.
+DEFAULT 2026-06-12T08:06:53.578720Z [18] INFO: {"session_id": "405626950636273664", "agent_name": "root_agent", "event": "model_response", "message": "System is online."}
+DEFAULT 2026-06-12T08:07:04.690225Z [18] INFO: 169.254.169.126:50506 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+DEFAULT 2026-06-12T08:07:05.120695Z [18] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
+DEFAULT 2026-06-12T08:07:06.216993Z [18] INFO: Response received from the model.
+DEFAULT 2026-06-12T08:07:06.217673Z [18] INFO: {"session_id": "5936047293047242752", "agent_name": "root_agent", "event": "model_response", "message": "OK"}
