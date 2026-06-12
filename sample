@@ -1,67 +1,172 @@
-DEFAULT 2026-06-12T09:32:10.985611Z [17] INFO: 169.254.169.126:53072 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-DEFAULT 2026-06-12T09:32:12.406470Z [17] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-DEFAULT 2026-06-12T09:32:14.049317Z [17] INFO: Response received from the model.
-DEFAULT 2026-06-12T09:32:14.049876Z [17] INFO: {"session_id": "8931081782736977920", "agent_name": "root_agent", "event": "model_response", "message": "Hello! I'm Gemini, your Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. How can I help you today?"}
-DEFAULT 2026-06-12T09:32:16.629317Z [22] INFO: 169.254.169.126:33816 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-DEFAULT 2026-06-12T09:32:17.003676Z [22] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-DEFAULT 2026-06-12T09:32:19.367921Z [22] INFO: Response received from the model.
-DEFAULT 2026-06-12T09:32:19.368649Z [22] INFO: {"session_id": "7670073887073239040", "agent_name": "root_agent", "event": "function_call", "function_name": "audience_segmentation_agent_1"}
-DEFAULT 2026-06-12T09:32:19.466421Z [22] INFO: {"session_id": "7670073887073239040", "event": "tool_start", "tool_name": "audience_segmentation_agent_1", "args": {"request": "user wants to create a finance transformation campaign in US"}}
-DEFAULT 2026-06-12T09:32:19.475154Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "agent_name": "audience_segmentation_agent_1", "event": "query_to_model", "message": "user wants to create a finance transformation campaign in US"}
-DEFAULT 2026-06-12T09:32:19.477567Z [22] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-DEFAULT 2026-06-12T09:32:22.726493Z [22] INFO: Response received from the model.
-DEFAULT 2026-06-12T09:32:22.727332Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "get_segments"}
-DEFAULT 2026-06-12T09:32:22.728404Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "event": "tool_start", "tool_name": "get_segments", "args": {"centroid_id": 0}}
-DEFAULT 2026-06-12T09:32:24.666420Z [22] INFO: [{"centroid_id":1,"total_number_of_contacts":46335,"total_number_of_accounts":18175,"account_industry_breakdown":"[{\"account_industry\":\"Financial Services\",\"percentage_of_segment\":21.1},{\"account_industry\":\"Consumer\",\"percentage_of_segment\":20.49},{\"account_industry\":\"Technology, Media & Telecom\",\"percentage_of_segment\":19.82},{\"account_industry\":\"Unknown\",\"percentage_of_segment\":13.03},{\"account_industry\":\"Energy, Resources & Industrials\",\"percentage_of_segment\":10.25},{\"account_industry\":\"Life Sciences & Health Care\",\"percentage_of_segment\":8.84},{\"account_industry\":\"Government & Public Services\",\"percentage_of_segment\":5.59},{\"account_industry\":\"Other\",\"percentage_of_segment\":0.88}]","job_level_breakdown":"[{\"account_sid\":188155,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":1.41,\"job_level_breakdown\":[{\"job_level\":\"Manager\",\"percentage_of_account\":59.46},{\"job_level\":\"Executive\",\"percentage_of_account\":29.45},{\"job_level\":\"Analyst\",\"percentage_of_account\":6.5},{\"job_level\":\"Unknown\",\"percentage_of_account\":3.63},{\"job_level\":\"Other\",\"percentage_of_account\":0.57}]},{\"account_sid\":119405,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":1.33,\"job_level_breakdown\":[{\"job_level\":\"Executive\",\"percentage_of_account\":57.61},{\"job_level\":\"Manager\",\"percentage_of_account\":30.63},{\"job_level\":\"Analyst\",\"percentage_of_account\":9.53},{\"job_level\":\"C-Suite\",\"percentage_of_account\":1.42},{\"job_level\":\"Unknown\",\"percentage_of_account\":0.81}]},{\"account_sid\":159699,\"parent_account_client_segment\":\"No Segment\",\"percentage_of_segment\":0.9,\"job_level_breakdown\":[{\"job_level\":\"Internal\",\"percentage_of_account\":100}]},{\"account_sid\":51691,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":0.81,\"job_level_breakdown\":[{\"job_level\":\"Executive\",\"percentage_of_account\":52},{\"job_level\":\"Manager\",\"percentage_of_account\":37.67},{\"job_level\":\"Analyst\",\"percentage_of_account\":4.67},{\"job_level\":\"C-Suite\",\"percentage_of_account\":2.67},{\"job_level\":\"Unknown\",\"percentage_of_account\":2.67}]},{\"account_sid\":102750,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":0.51,\"job_level_breakdown\":[{\"job_level\":\"Manager\",\"percentage_of_account\":50},{\"job_level\":\"Executive\",\"percentage_of_account\":34.57},{\"job_level\":\"Ana…
-DEFAULT 2026-06-12T09:32:24.666433Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "event": "tool_end", "tool_name": "get_segments"}
-DEFAULT 2026-06-12T09:32:24.673779Z [22] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-DEFAULT 2026-06-12T09:32:36.300762Z [22] INFO: Response received from the model.
-DEFAULT 2026-06-12T09:32:36.301910Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "set_session_value"}
-DEFAULT 2026-06-12T09:32:36.302008Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "set_session_value"}
-DEFAULT 2026-06-12T09:32:36.302686Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "event": "tool_start", "tool_name": "set_session_value", "args": {"value": "{\"The Proactive Finance Leader\": 1, \"The Discerning Executive\": 2, \"The Passive Observer\": 3, \"The Busy Professional\": 4, \"The Intentional Reader\": 5}", "key": "persona_to_centroid_id_mapping"}}
-DEFAULT 2026-06-12T09:32:36.302896Z [22] INFO: stored '{"The Proactive Finance Leader": 1, "The Discerning Executive": 2, "The Passive Observer": 3, "The Busy Professional": 4, "The Intentional Reader": 5}' in 'persona_to_centroid_id_mapping'
-DEFAULT 2026-06-12T09:32:36.303027Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "event": "tool_end", "tool_name": "set_session_value", "action": "session_update", "updated_key": "persona_to_centroid_id_mapping", "updated_value": "{\"The Proactive Finance Leader\": 1, \"The Discerning Executive\": 2, \"The Passive Observer\": 3, \"The Busy Professional\": 4, \"The Intentional Reader\": 5}"}
-DEFAULT 2026-06-12T09:32:36.303308Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "event": "tool_start", "tool_name": "set_session_value", "args": {"value": "contact_country = 'US'", "key": "baseline_filters"}}
-DEFAULT 2026-06-12T09:32:36.303475Z [22] INFO: stored 'contact_country = 'US'' in 'baseline_filters'
-DEFAULT 2026-06-12T09:32:36.303626Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "event": "tool_end", "tool_name": "set_session_value", "action": "session_update", "updated_key": "baseline_filters", "updated_value": "contact_country = 'US'"}
-DEFAULT 2026-06-12T09:32:36.309904Z [22] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-DEFAULT 2026-06-12T09:32:44.693172Z [22] INFO: Response received from the model.
-DEFAULT 2026-06-12T09:32:44.694979Z [22] INFO: {"session_id": "2cb4c0e0-ea28-4c10-81ba-9b07eae50bc8", "agent_name": "audience_segmentation_agent_1", "event": "model_response", "message": "Here are the existing audience segments based on the available data and what they tell us:\n\n| **Segment** | **Title** | **Summary** | **Total Accounts** | **Total Contacts** |\n|---|---|---|:---:|:---:|\n| 1 | The Proactive Finance Leader | This segment consists of highly engaged professionals in the finance and tech sectors. They are responsive to campaigns and show strong interest in financial and technological solutions. | 18,175 | 46,335 |\n| 2 | The Discerning Executive | This segment represents a discerning audience that, despite a decrease in interaction volume, shows exceptional engagement with the content they do open. They are likely senior-level executives who are selective about what they read. | 25,809 | 114,453 |\n| 3 | The Passive Observer | This is a large but disengaged audience. They have shown a significant decline in interaction and engagement, suggesting that current messaging is not resonating. | 48,312 | 183,571 |\n| 4 | The Busy Professional | This segment is characterized by a high volume of interactions but very low engagement quality (low open and click rates). They are likely overwhelmed by the number of communications and are not engaging meaningfully. | 29,897 | 92,072 |\n| 5 | The Intentional Reader | This smaller segment is highly engaged, with a very high click-through rate, despite a lower volume of overall interactions. This indicates a strong interest in the content they choose to engage with. | 11,717 | 29,387 |\n\nWould you like to see the top account breakdowns for a specific segment, or would you like to apply filters to narrow down an audience?"}
-DEFAULT 2026-06-12T09:32:44.695561Z [22] INFO: Closing runner...
-DEFAULT 2026-06-12T09:32:44.695603Z [22] INFO: Closing toolset: BigQueryToolset
-DEFAULT 2026-06-12T09:32:44.695693Z [22] INFO: Successfully closed toolset: BigQueryToolset
-DEFAULT 2026-06-12T09:32:44.696016Z [22] INFO: Runner closed.
-DEFAULT 2026-06-12T09:32:44.696037Z [22] INFO: {"session_id": "7670073887073239040", "event": "tool_end", "tool_name": "audience_segmentation_agent_1"}
-DEFAULT 2026-06-12T09:32:47.277363Z [16] INFO: 169.254.169.126:33558 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
-DEFAULT 2026-06-12T09:32:47.727538Z [16] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-DEFAULT 2026-06-12T09:32:53.585849Z [16] INFO: Response received from the model.
-DEFAULT 2026-06-12T09:32:53.586487Z [16] INFO: {"session_id": "8631592407516839936", "agent_name": "root_agent", "event": "function_call", "function_name": "audience_segmentation_agent_1"}
-DEFAULT 2026-06-12T09:32:53.711708Z [16] INFO: {"session_id": "8631592407516839936", "event": "tool_start", "tool_name": "audience_segmentation_agent_1", "args": {"request": "give me a deeper breakdown for The Next-Gen Finance Leader"}}
-DEFAULT 2026-06-12T09:32:53.718435Z [16] INFO: {"session_id": "8636ef85-1ff1-453f-a0c2-80d3d21b29e6", "agent_name": "audience_segmentation_agent_1", "event": "query_to_model", "message": "give me a deeper breakdown for The Next-Gen Finance Leader"}
-DEFAULT 2026-06-12T09:32:53.720920Z [16] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-DEFAULT 2026-06-12T09:32:59.641115Z [16] INFO: Response received from the model.
-DEFAULT 2026-06-12T09:32:59.641941Z [16] INFO: {"session_id": "8636ef85-1ff1-453f-a0c2-80d3d21b29e6", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "get_session_value"}
-DEFAULT 2026-06-12T09:32:59.643097Z [16] INFO: {"session_id": "8636ef85-1ff1-453f-a0c2-80d3d21b29e6", "event": "tool_start", "tool_name": "get_session_value", "args": {"key": "persona_to_centroid_id_mapping"}}
-DEFAULT 2026-06-12T09:32:59.643158Z [16] INFO: DEBUG: Session Get 'persona_to_centroid_id_mapping' -> 'None'
-DEFAULT 2026-06-12T09:32:59.643273Z [16] INFO: {"session_id": "8636ef85-1ff1-453f-a0c2-80d3d21b29e6", "event": "tool_end", "tool_name": "get_session_value"}
-DEFAULT 2026-06-12T09:32:59.649786Z [16] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-DEFAULT 2026-06-12T09:33:03.051546Z [16] INFO: Response received from the model.
-DEFAULT 2026-06-12T09:33:03.052701Z [16] INFO: {"session_id": "8636ef85-1ff1-453f-a0c2-80d3d21b29e6", "agent_name": "audience_segmentation_agent_1", "event": "function_call", "function_name": "get_segments"}
-DEFAULT 2026-06-12T09:33:03.053542Z [16] INFO: {"session_id": "8636ef85-1ff1-453f-a0c2-80d3d21b29e6", "event": "tool_start", "tool_name": "get_segments", "args": {"centroid_id": 0}}
-DEFAULT 2026-06-12T09:33:05.040260Z [16] INFO: [{"centroid_id":1,"total_number_of_contacts":46335,"total_number_of_accounts":18175,"account_industry_breakdown":"[{\"account_industry\":\"Financial Services\",\"percentage_of_segment\":21.1},{\"account_industry\":\"Consumer\",\"percentage_of_segment\":20.49},{\"account_industry\":\"Technology, Media & Telecom\",\"percentage_of_segment\":19.82},{\"account_industry\":\"Unknown\",\"percentage_of_segment\":13.03},{\"account_industry\":\"Energy, Resources & Industrials\",\"percentage_of_segment\":10.25},{\"account_industry\":\"Life Sciences & Health Care\",\"percentage_of_segment\":8.84},{\"account_industry\":\"Government & Public Services\",\"percentage_of_segment\":5.59},{\"account_industry\":\"Other\",\"percentage_of_segment\":0.88}]","job_level_breakdown":"[{\"account_sid\":188155,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":1.41,\"job_level_breakdown\":[{\"job_level\":\"Manager\",\"percentage_of_account\":59.46},{\"job_level\":\"Executive\",\"percentage_of_account\":29.45},{\"job_level\":\"Analyst\",\"percentage_of_account\":6.5},{\"job_level\":\"Unknown\",\"percentage_of_account\":3.63},{\"job_level\":\"Other\",\"percentage_of_account\":0.57}]},{\"account_sid\":119405,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":1.33,\"job_level_breakdown\":[{\"job_level\":\"Executive\",\"percentage_of_account\":57.61},{\"job_level\":\"Manager\",\"percentage_of_account\":30.63},{\"job_level\":\"Analyst\",\"percentage_of_account\":9.53},{\"job_level\":\"C-Suite\",\"percentage_of_account\":1.42},{\"job_level\":\"Unknown\",\"percentage_of_account\":0.81}]},{\"account_sid\":159699,\"parent_account_client_segment\":\"No Segment\",\"percentage_of_segment\":0.9,\"job_level_breakdown\":[{\"job_level\":\"Internal\",\"percentage_of_account\":100}]},{\"account_sid\":51691,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":0.81,\"job_level_breakdown\":[{\"job_level\":\"Executive\",\"percentage_of_account\":52},{\"job_level\":\"Manager\",\"percentage_of_account\":37.67},{\"job_level\":\"Analyst\",\"percentage_of_account\":4.67},{\"job_level\":\"C-Suite\",\"percentage_of_account\":2.67},{\"job_level\":\"Unknown\",\"percentage_of_account\":2.67}]},{\"account_sid\":102750,\"parent_account_client_segment\":\"ACP\",\"percentage_of_segment\":0.51,\"job_level_breakdown\":[{\"job_level\":\"Manager\",\"percentage_of_account\":50},{\"job_level\":\"Executive\",\"percentage_of_account\":34.57},{\"job_level\":\"Ana…
-DEFAULT 2026-06-12T09:33:05.042165Z [16] INFO: {"session_id": "8636ef85-1ff1-453f-a0c2-80d3d21b29e6", "event": "tool_end", "tool_name": "get_segments"}
-DEFAULT 2026-06-12T09:33:05.049384Z [16] INFO: Sending out request, model: gemini-2.5-pro, backend: GoogleLLMVariant.VERTEX_AI, stream: False
-
-
-
-STEP 2: RUNNING AGENT EVALUATIONS
-================================================================================
-
-Evaluating Session: session_1777463419356577792
-   Logging turn-by-turn details to: output/session_1777463419356577792.txt
-   -> Turn 1/9...
-      [DEBUG] Sending Payload: {"input": {"message": "hi", "user_id": "eval_user"}}
-   -> Turn 2/9...
-      [DEBUG] Sending Payload: {"input": {"message": "i am creating a finance transformation campaign in US, help me find audience", "user_id": "eval_user"}}
-   -> Turn 3/9...
-      [DEBUG] Sending Payload: {"input": {"message": "give me a deeper breakdown for The Next-Gen Finance Leader", "user_id": "eval_user"}}
+026-06-12 15:12:30.651 IST
+[17]      INFO:     169.254.169.126:56852 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:12:30.653 IST
+[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:30.653 IST
+Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-12 15:12:30.653 IST
+        user_id=user_id,
+2026-06-12 15:12:30.653 IST
+        ^^^^^^^^^^^^^^^^
+2026-06-12 15:12:30.653 IST
+    ...<2 lines>...
+2026-06-12 15:12:30.653 IST
+        **kwargs,
+2026-06-12 15:12:30.653 IST
+        ^^^^^^^^^
+2026-06-12 15:12:30.653 IST
+    ):
+2026-06-12 15:12:30.653 IST
+    ^
+2026-06-12 15:12:31.758 IST
+TypeError: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:33.076 IST
+[17]      INFO:     169.254.169.126:56860 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:12:33.078 IST
+[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:33.078 IST
+Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-12 15:12:33.078 IST
+        user_id=user_id,
+2026-06-12 15:12:33.078 IST
+        ^^^^^^^^^^^^^^^^
+2026-06-12 15:12:33.078 IST
+    ...<2 lines>...
+2026-06-12 15:12:33.078 IST
+        **kwargs,
+2026-06-12 15:12:33.078 IST
+        ^^^^^^^^^
+2026-06-12 15:12:33.078 IST
+    ):
+2026-06-12 15:12:33.078 IST
+    ^
+2026-06-12 15:12:34.167 IST
+TypeError: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:35.615 IST
+[20]      INFO:     169.254.169.126:41860 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:12:35.616 IST
+[20]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:35.616 IST
+Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-12 15:12:35.616 IST
+        user_id=user_id,
+2026-06-12 15:12:35.616 IST
+        ^^^^^^^^^^^^^^^^
+2026-06-12 15:12:35.616 IST
+    ...<2 lines>...
+2026-06-12 15:12:35.616 IST
+        **kwargs,
+2026-06-12 15:12:35.616 IST
+        ^^^^^^^^^
+2026-06-12 15:12:35.616 IST
+    ):
+2026-06-12 15:12:35.616 IST
+    ^
+2026-06-12 15:12:36.688 IST
+TypeError: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:38.128 IST
+[17]      INFO:     169.254.169.126:41868 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:12:38.129 IST
+[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:38.129 IST
+Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-12 15:12:38.129 IST
+        user_id=user_id,
+2026-06-12 15:12:38.129 IST
+        ^^^^^^^^^^^^^^^^
+2026-06-12 15:12:38.129 IST
+    ...<2 lines>...
+2026-06-12 15:12:38.129 IST
+        **kwargs,
+2026-06-12 15:12:38.129 IST
+        ^^^^^^^^^
+2026-06-12 15:12:38.129 IST
+    ):
+2026-06-12 15:12:38.129 IST
+    ^
+2026-06-12 15:12:39.208 IST
+TypeError: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:40.714 IST
+[18]      INFO:     169.254.169.126:41872 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:12:40.715 IST
+[18]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:40.715 IST
+Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-12 15:12:40.715 IST
+        user_id=user_id,
+2026-06-12 15:12:40.715 IST
+        ^^^^^^^^^^^^^^^^
+2026-06-12 15:12:40.715 IST
+    ...<2 lines>...
+2026-06-12 15:12:40.715 IST
+        **kwargs,
+2026-06-12 15:12:40.715 IST
+        ^^^^^^^^^
+2026-06-12 15:12:40.715 IST
+    ):
+2026-06-12 15:12:40.715 IST
+    ^
+2026-06-12 15:12:41.728 IST
+TypeError: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:43.254 IST
+[20]      INFO:     169.254.169.126:41886 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:12:43.255 IST
+[20]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:43.255 IST
+Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-12 15:12:43.255 IST
+        user_id=user_id,
+2026-06-12 15:12:43.255 IST
+        ^^^^^^^^^^^^^^^^
+2026-06-12 15:12:43.255 IST
+    ...<2 lines>...
+2026-06-12 15:12:43.255 IST
+        **kwargs,
+2026-06-12 15:12:43.255 IST
+        ^^^^^^^^^
+2026-06-12 15:12:43.255 IST
+    ):
+2026-06-12 15:12:43.255 IST
+    ^
+2026-06-12 15:12:44.357 IST
+TypeError: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:45.918 IST
+[17]      INFO:     169.254.169.126:15664 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:12:45.919 IST
+[17]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:45.919 IST
+Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-12 15:12:45.919 IST
+        user_id=user_id,
+2026-06-12 15:12:45.919 IST
+        ^^^^^^^^^^^^^^^^
+2026-06-12 15:12:45.919 IST
+    ...<2 lines>...
+2026-06-12 15:12:45.919 IST
+        **kwargs,
+2026-06-12 15:12:45.919 IST
+        ^^^^^^^^^
+2026-06-12 15:12:45.919 IST
+    ):
+2026-06-12 15:12:45.919 IST
+    ^
+2026-06-12 15:12:46.987 IST
+TypeError: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:48.374 IST
+[23]      INFO:     169.254.169.126:15672 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 15:12:48.375 IST
+[23]      ERROR:    Error during stream generation: Runner.run() got an unexpected keyword argument 'config'
+2026-06-12 15:12:48.376 IST
+Traceback (most recent call last):   File "/code/app/api/factory/python_file_api_builder.py", line 556, in _stream_json_generator     for chunk in output:                  ^^^^^^   File "/code/.venv/lib/python3.13/site-packages/vertexai/preview/reasoning_engines/templates/adk.py", line 942, in stream_query     for event in self._tmpl_attrs.get("runner").run(                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+2026-06-12 15:12:48.376 IST
+        user_id=user_id,
+2026-06-12 15:12:48.376 IST
+        ^^^^^^^^^^^^^^^^
+2026-06-12 15:12:48.376 IST
+    ...<2 lines>...
+2026-06-12 15:12:48.376 IST
+        **kwargs,
+2026-06-12 15:12:48.376 IST
+        ^^^^^^^^^
+2026-06-12 15:12:48.376 IST
+    ):
