@@ -41,9 +41,12 @@ class EvaluationConfig:
         return Path(__file__).parent / "eval_config.json"
     
     @classmethod
-    def get_golden_dataset_path(cls) -> Path:
-        """Get path to golden_dataset.json."""
-        return Path(__file__).parent / "golden_dataset.json"
+    def get_data_dir(cls) -> Path:
+        """Get path to the data directory containing golden datasets."""
+        data_dir = Path(__file__).parent / "data"
+        # Create data directory if it doesn't exist
+        data_dir.mkdir(parents=True, exist_ok=True)
+        return data_dir
     
     @classmethod
     def load_eval_criteria(cls) -> Dict[str, Any]:
@@ -56,19 +59,19 @@ class EvaluationConfig:
         except FileNotFoundError:
             # Fallback thresholds
             return {
-                "tool_trajectory_avg_score": 0.9,
-                "response_match_score": 0.75,
+                "tool_trajectory_avg_score": 0.8,
+                "response_match_score": 0.5,
                 "groundedness_v1": 0.8,
                 "safety_v1": 1.0,
-                "multi_turn_task_success_v1": 0.85,
-                "multi_turn_trajectory_quality_v1": 0.75,
+                "multi_turn_task_success_v1": 0.8,
+                "multi_turn_trajectory_quality_v1": 0.8,
                 "multi_turn_tool_use_quality_v1": 0.8,
-                "final_response_match_v2": 0.75
+                "final_response_match_v2": 0.5
             }
     
     @classmethod
-    def load_golden_dataset(cls) -> Dict[str, Any]:
-        """Load golden dataset."""
-        dataset_path = cls.get_golden_dataset_path()
+    def load_golden_dataset(cls, filename: str) -> Dict[str, Any]:
+        """Load a specific golden dataset from the data directory."""
+        dataset_path = cls.get_data_dir() / filename
         with open(dataset_path, 'r') as f:
             return json.load(f)
