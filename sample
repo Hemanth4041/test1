@@ -1,107 +1,663 @@
-================================================================================
-Evaluating Session: session_1777463419356577792
-Description: Progressive refinement with export - Finance transformation campaign
-Total Turns: 9
-================================================================================
 
-Turn 1/9: hi
-   --- Tools ---
-   Expected: []
-   Actual:   []
-   Score:    1.00 ✓ PASS
-   --- Response ---
-   Expected: 'Hello! I am the Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform.'
-   Actual:   'Hello! I'm Gemini, the Orchestrator Agent for the Deloitte Conversational AI marketing and campaign optimization platform. I can help you with tasks like identifying audience segments for your campaigns. How can I assist you today?'
-   Score:    1.00 ✓ PASS
-
-Turn 2/9: i am creating a finance transformation campaign in US, help me find audience
-   --- Tools ---
-   Expected: ['audience_segmentation_agent_1']
-   Actual:   ['audience_segmentation_agent_1']
-   Score:    1.00 ✓ PASS
-   --- Response ---
-   Expected: 'Here are the existing audience segments based on the available data:
-| **Segment** | **Title** | **Total Accounts** | **Total Contacts** |'
-   Actual:   ''
-   Score:    1.00 ✓ PASS
-
-Turn 3/9: give me a deeper breakdown for The Next-Gen Finance Leader
-   --- Tools ---
-   Expected: ['audience_segmentation_agent_1']
-   Actual:   ['audience_segmentation_agent_1']
-   Score:    1.00 ✓ PASS
-   --- Response ---
-   Expected: 'Account Breakdowns for The Next-Gen Finance Leader:
-| Account ID | % of Segment | Top Job Levels |'
-   Actual:   ''
-   Score:    1.00 ✓ PASS
-
-Turn 4/9: give me a deeper breakdown for The Integrated Finance & Tax Strategist
-   --- Tools ---
-   Expected: ['audience_segmentation_agent_1']
-   Actual:   ['audience_segmentation_agent_1']
-   Score:    1.00 ✓ PASS
-   --- Response ---
-   Expected: 'Account Breakdown for The Integrated Finance & Tax Strategist:
-| Account SID | % of Segment | Top Job Levels |'
-   Actual:   ''
-   Score:    1.00 ✓ PASS
-
-Turn 5/9: i like The Next-Gen Finance Leader and only keep job levels: Executive and C-suite
-   --- Tools ---
-   Expected: ['audience_segmentation_agent_1']
-   Actual:   ['audience_segmentation_agent_1']
-   Score:    1.00 ✓ PASS
-   --- Response ---
-   Expected: 'Here is your refined audience:
-Updated Total Contacts
-Active Filters: Segment: The Next-Gen Finance Leader'
-   Actual:   ''
-   Score:    1.00 ✓ PASS
-
-Turn 6/9: also only keep job function: Finance, Tax and Accounting
-   --- Tools ---
-   Expected: ['audience_segmentation_agent_1']
-   Actual:   ['audience_segmentation_agent_1']
-   Score:    1.00 ✓ PASS
-   --- Response ---
-   Expected: 'Here is your refined audience with the applied filters.'
-   Actual:   ''
-   Score:    1.00 ✓ PASS
-
-Turn 7/9: give me top 5 account ids in this refined audience
-   --- Tools ---
-   Expected: ['audience_segmentation_agent_1']
-   Actual:   []
-   Score:    0.00 ✗ FAIL
-   --- Response ---
-   Expected: 'Here are the top accounts in your refined audience.'
-   Actual:   'I can provide that information, but 'top' can be defined in several ways. Are you looking for the top 5 accounts by revenue, engagement, or some other metric? Please clarify so I can give you the most accurate information.'
-   Score:    0.50 ✗ FAIL
-
-Turn 8/9: also, from the refined audience I just want account ids 297949 and 230542
-   --- Tools ---
-   Expected: ['audience_segmentation_agent_1']
-   Actual:   ['audience_segmentation_agent_1']
-   Score:    1.00 ✓ PASS
-   --- Response ---
-   Expected: 'Here is your refined audience.'
-   Actual:   ''
-   Score:    1.00 ✓ PASS
-
-Turn 9/9: yes, this is a good list export this final list of audience
-   --- Tools ---
-   Expected: ['audience_segmentation_agent_1']
-   Actual:   ['audience_segmentation_agent_1']
-   Score:    1.00 ✓ PASS
-   --- Response ---
-   Expected: 'What format would you like the export to be in?'
-   Actual:   ''
-   Score:    0.00 ✗ FAIL
-
-────────────────────────────────────────────────────────────────────────────
-Session Results:
-   Success Rate: 100.00%
-   Avg Tool Score: 0.89
-   Avg Response Score: 0.83
-────────────────────────────────────────────────────────────────────────────
+Sessions
+Trace
+State
+Search using session ID
+2772497253238046720
+6/12/2026, 12:20:44 PM
+2191251426330542080
+6/12/2026, 11:38:28 AM
+180957142663036928
+6/12/2026, 11:38:17 AM
+5925861417327525888
+6/12/2026, 11:37:52 AM
+7770085464735744000
+6/12/2026, 11:37:07 AM
+2437823505929076736
+6/12/2026, 11:35:43 AM
+Read-only
+8369064215176019968
+6/12/2026, 11:35:23 AM
+6860358340006903808
+6/12/2026, 11:35:15 AM
+Read-only
+5495767652913643520
+6/12/2026, 11:34:23 AM
+Read-only
+4441925340108947456
+6/12/2026, 11:34:16 AM
+Read-only
+3568227012399071232
+6/12/2026, 11:33:35 AM
+Read-only
+8540201001016098816
+6/12/2026, 11:32:37 AM
+Read-only
+2378150810866417664
+6/12/2026, 11:32:12 AM
+Read-only
+2533524998010699776
+6/12/2026, 11:31:33 AM
+Read-only
+1462259823952265216
+6/12/2026, 11:31:25 AM
+Read-only
+5433843158037299200
+6/12/2026, 11:30:35 AM
+Read-only
+4749296014676983808
+6/12/2026, 11:30:04 AM
+Read-only
+612739756937183232
+6/12/2026, 11:23:30 AM
+Read-only
+6800263432479178752
+6/12/2026, 11:23:16 AM
+Read-only
+8529645689389449216
+6/12/2026, 11:23:00 AM
+Read-only
+418662760495185920
+6/12/2026, 11:22:50 AM
+Read-only
+9074581244301279232
+6/12/2026, 11:22:01 AM
+Read-only
+4989816382276239360
+6/12/2026, 11:21:45 AM
+Read-only
+1170763898266058752
+6/12/2026, 11:21:11 AM
+Read-only
+2323685402872905728
+6/12/2026, 11:20:54 AM
+Read-only
+3607802833929240576
+6/12/2026, 12:10:23 AM
+Read-only
+6176824946367397888
+6/11/2026, 11:13:35 PM
+8381688807686144000
+6/11/2026, 10:35:03 PM
+Read-only
+1432634582653468672
+6/11/2026, 10:32:57 PM
+Read-only
+7192738506060333056
+6/11/2026, 10:32:54 PM
+Read-only
+3715959593730310144
+6/11/2026, 10:32:50 PM
+Read-only
+6446548342800384000
+6/11/2026, 10:31:11 PM
+Read-only
+7106325688210161664
+6/11/2026, 10:30:14 PM
+Read-only
+3531312009008119808
+6/11/2026, 10:29:30 PM
+Read-only
+6651462125845741568
+6/11/2026, 10:29:00 PM
+Read-only
+4341959941934809088
+6/11/2026, 10:28:29 PM
+Read-only
+2738678474590912512
+6/11/2026, 10:28:23 PM
+Read-only
+1512854951016005632
+6/11/2026, 10:28:11 PM
+Read-only
+5167526048627163136
+6/11/2026, 10:25:37 PM
+Read-only
+6393631047178780672
+6/11/2026, 10:20:14 PM
+Read-only
+6916048603953758208
+6/11/2026, 10:19:28 PM
+Read-only
+1795455827633504256
+6/11/2026, 10:19:21 PM
+Read-only
+7195271780850728960
+6/11/2026, 10:18:45 PM
+Read-only
+8834582045213589504
+6/11/2026, 10:18:27 PM
+Read-only
+7433962561101365248
+6/11/2026, 10:17:55 PM
+Read-only
+2961888131122462720
+6/11/2026, 10:17:48 PM
+Read-only
+187670760662237184
+6/11/2026, 10:17:43 PM
+Read-only
+606505526007693312
+6/11/2026, 10:17:29 PM
+Read-only
+2288599986830573568
+6/11/2026, 10:17:24 PM
+Read-only
+6499465638421987328
+6/11/2026, 10:17:18 PM
+Read-only
+3299658103175249920
+6/11/2026, 10:16:50 PM
+Read-only
+6380120248296669184
+6/11/2026, 10:15:32 PM
+Read-only
+6179710064878682112
+6/11/2026, 10:15:13 PM
+Read-only
+5678121656380293120
+6/11/2026, 10:14:57 PM
+Read-only
+7959194867643449344
+6/11/2026, 10:14:43 PM
+Read-only
+4364759415048372224
+6/11/2026, 10:14:37 PM
+Read-only
+1631074441234481152
+6/11/2026, 10:13:38 PM
+Read-only
+8454027876700782592
+6/11/2026, 10:12:40 PM
+Read-only
+3693723070570168320
+6/11/2026, 10:12:02 PM
+3225348709323636736
+6/11/2026, 10:11:53 PM
+Read-only
+3495564686965866496
+6/11/2026, 10:11:47 PM
+Read-only
+3394796645303451648
+6/11/2026, 10:10:59 PM
+Read-only
+7263388725214707712
+6/11/2026, 10:10:40 PM
+Read-only
+2723760300825247744
+6/11/2026, 10:10:13 PM
+5574538864950771712
+6/11/2026, 10:09:53 PM
+Read-only
+1153692880733208576
+6/11/2026, 10:09:32 PM
+Read-only
+2809328693745287168
+6/11/2026, 10:08:59 PM
+Read-only
+8605461414171115520
+6/11/2026, 10:08:53 PM
+Read-only
+1075442837207646208
+6/11/2026, 10:08:25 PM
+Read-only
+2514342918152519680
+6/11/2026, 10:04:49 PM
+Read-only
+8184374849011974144
+6/11/2026, 10:04:17 PM
+Read-only
+2628058808743624704
+6/11/2026, 10:03:51 PM
+Read-only
+6505658087909621760
+6/11/2026, 10:00:54 PM
+Read-only
+425798590959452160
+6/11/2026, 10:00:09 PM
+Read-only
+5861643341195640832
+6/11/2026, 10:00:01 PM
+Read-only
+8714251492669784064
+6/11/2026, 9:51:24 PM
+Read-only
+5147400587792351232
+6/11/2026, 9:51:16 PM
+Read-only
+3168068551563018240
+6/11/2026, 9:50:20 PM
+Read-only
+7743725772971442176
+6/11/2026, 9:50:12 PM
+Read-only
+8698488893973987328
+6/11/2026, 9:49:13 PM
+Read-only
+619031162471317504
+6/11/2026, 9:48:42 PM
+Read-only
+1916067855154020352
+6/11/2026, 9:48:18 PM
+Read-only
+4325493655797235712
+6/11/2026, 9:47:35 PM
+Read-only
+7284358610979651584
+6/11/2026, 9:47:04 PM
+Read-only
+6519872574233509888
+6/11/2026, 9:46:47 PM
+Read-only
+7327705757393092608
+6/11/2026, 9:30:25 PM
+Read-only
+5223680306480939008
+6/11/2026, 9:30:10 PM
+Read-only
+2740789536916242432
+6/11/2026, 9:29:10 PM
+Read-only
+3801387249161994240
+6/11/2026, 9:27:51 PM
+Read-only
+7084511377515085824
+6/11/2026, 9:27:17 PM
+Read-only
+5697402692284973056
+6/11/2026, 9:27:12 PM
+Read-only
+846181468676816896
+6/11/2026, 9:26:42 PM
+Read-only
+1414479446655631360
+6/11/2026, 9:26:08 PM
+Read-only
+5601982675180060672
+6/11/2026, 9:25:44 PM
+Read-only
+3350182861494812672
+6/11/2026, 9:24:47 PM
+Read-only
+229188319727058944
+6/11/2026, 9:24:00 PM
+Read-only
+5466874686358945792
+6/11/2026, 9:23:05 PM
+Read-only
+7633106107124154368
+6/11/2026, 9:22:35 PM
+Read-only
+2674642917389238272
+6/11/2026, 9:22:00 PM
+Read-only
+2267067151112208384
+6/11/2026, 9:21:56 PM
+Read-only
+Playground preview
+Session ID
+2772497253238046720
+New Session
+Type a Message...
+Logs
+Severity
+Default
+Filter
+Severity
+Time
+Summary
+No older entries found matching the current filter.
+2026-06-12 12:20:37.951 IST
+    result = await fn(*args, **kwargs)
+2026-06-12 12:20:37.951 IST
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:37.951 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/_api_client.py", line 1448, in _async_request_once
+2026-06-12 12:20:37.951 IST
+    await errors.APIError.raise_for_async_response(response)
+2026-06-12 12:20:37.951 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/errors.py", line 247, in raise_for_async_response
+2026-06-12 12:20:39.015 IST
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'List of found errors:\t1.Field: name; Message: Invalid Session resource name.\t', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.BadRequest', 'fieldViolations': [{'field': 'name', 'description': 'Invalid Session resource name.'}]}]}}
+2026-06-12 12:20:40.851 IST
+[20]      INFO:     169.254.169.126:35114 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 12:20:40.885 IST
+Exception in thread Thread-48 (_asyncio_thread_main):
+2026-06-12 12:20:40.888 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+2026-06-12 12:20:40.888 IST
+      event_queue.put(event)
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 12:20:40.888 IST
+    async for event in agen:
+2026-06-12 12:20:40.888 IST
+      yield event
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 12:20:40.888 IST
+    session = await self._get_or_create_session(
+2026-06-12 12:20:40.888 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+    ...<3 lines>...
+2026-06-12 12:20:40.888 IST
+    )
+2026-06-12 12:20:40.888 IST
+    ^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 422, in _get_or_create_session
+2026-06-12 12:20:40.888 IST
+    session = await self.session_service.get_session(
+2026-06-12 12:20:40.888 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+    ...<4 lines>...
+2026-06-12 12:20:40.888 IST
+    )
+2026-06-12 12:20:40.888 IST
+    ^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/sessions/vertex_ai_session_service.py", line 178, in get_session
+2026-06-12 12:20:40.888 IST
+    get_session_response, events_iterator = await asyncio.gather(
+2026-06-12 12:20:40.888 IST
+                                            ^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+    ...<5 lines>...
+2026-06-12 12:20:40.888 IST
+    )
+2026-06-12 12:20:40.888 IST
+    ^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/vertexai/_genai/session_events.py", line 466, in list
+2026-06-12 12:20:40.888 IST
+    await self._list(name=name, config=config),
+2026-06-12 12:20:40.888 IST
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/vertexai/_genai/session_events.py", line 428, in _list
+2026-06-12 12:20:40.888 IST
+    response = await self._api_client.async_request(
+2026-06-12 12:20:40.888 IST
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+        "get", path, request_dict, http_options
+2026-06-12 12:20:40.888 IST
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+    )
+2026-06-12 12:20:40.888 IST
+    ^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/_api_client.py", line 1583, in async_request
+2026-06-12 12:20:40.888 IST
+    result = await self._async_request(
+2026-06-12 12:20:40.888 IST
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+        http_request=http_request, http_options=http_options, stream=False
+2026-06-12 12:20:40.888 IST
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+    )
+2026-06-12 12:20:40.888 IST
+    ^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/_api_client.py", line 1516, in _async_request
+2026-06-12 12:20:40.888 IST
+    return await self._async_retry(  # type: ignore[no-any-return]
+2026-06-12 12:20:40.888 IST
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+        self._async_request_once, http_request, stream
+2026-06-12 12:20:40.888 IST
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+    )
+2026-06-12 12:20:40.888 IST
+    ^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/asyncio/__init__.py", line 112, in __call__
+2026-06-12 12:20:40.888 IST
+    do = await self.iter(retry_state=retry_state)
+2026-06-12 12:20:40.888 IST
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/asyncio/__init__.py", line 157, in iter
+2026-06-12 12:20:40.888 IST
+    result = await action(retry_state)
+2026-06-12 12:20:40.888 IST
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/_utils.py", line 111, in inner
+2026-06-12 12:20:40.888 IST
+    return call(*args, **kwargs)
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 413, in exc_check
+2026-06-12 12:20:40.888 IST
+    raise retry_exc.reraise()
+2026-06-12 12:20:40.888 IST
+          ~~~~~~~~~~~~~~~~~^^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 184, in reraise
+2026-06-12 12:20:40.888 IST
+    raise self.last_attempt.result()
+2026-06-12 12:20:40.888 IST
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-12 12:20:40.888 IST
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 449, in result
+2026-06-12 12:20:40.888 IST
+    return self.__get_result()
+2026-06-12 12:20:40.888 IST
+           ~~~~~~~~~~~~~~~~~^^
+2026-06-12 12:20:40.888 IST
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+2026-06-12 12:20:40.888 IST
+    raise self._exception
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/asyncio/__init__.py", line 116, in __call__
+2026-06-12 12:20:40.888 IST
+    result = await fn(*args, **kwargs)
+2026-06-12 12:20:40.888 IST
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/_api_client.py", line 1448, in _async_request_once
+2026-06-12 12:20:40.888 IST
+    await errors.APIError.raise_for_async_response(response)
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/errors.py", line 247, in raise_for_async_response
+2026-06-12 12:20:40.888 IST
+    await cls.raise_error_async(status_code, response_json, response)
+2026-06-12 12:20:40.888 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/errors.py", line 269, in raise_error_async
+2026-06-12 12:20:40.888 IST
+    raise ClientError(status_code, response_json, response)
+2026-06-12 12:20:41.974 IST
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'Request contains an invalid argument.', 'status': 'INVALID_ARGUMENT'}}
+2026-06-12 12:20:43.279 IST
+[18]      INFO:     169.254.169.126:35118 - "POST /api/stream_reasoning_engine HTTP/1.1" 200 OK
+2026-06-12 12:20:43.333 IST
+Exception in thread Thread-36 (_asyncio_thread_main):
+2026-06-12 12:20:43.335 IST
+Traceback (most recent call last):   File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner     self.run()     ~~~~~~~~^^   File "/usr/local/lib/python3.13/threading.py", line 995, in run     self._target(*self._args, **self._kwargs)     ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main     asyncio.run(_invoke_run_async())     ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run     return runner.run(main)            ~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run     return self._loop.run_until_complete(task)            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^   File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete     return future.result()            ~~~~~~~~~~~~~^^   File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async     async for event in agen:
+{
+insertId: "6a2bac4300051fe9eb59951a"
+logName: "projects/us-gcp-ame-its-1ec3e-npd-1/logs/aiplatform.googleapis.com%2Freasoning_engine_stderr"
+receiveTimestamp: "2026-06-12T06:50:43.358132319Z"
+resource: {2}
+severity: "ERROR"
+textPayload: "Traceback (most recent call last):
+  File "/usr/local/lib/python3.13/threading.py", line 1044, in _bootstrap_inner
+    self.run()
+    ~~~~~~~~^^
+  File "/usr/local/lib/python3.13/threading.py", line 995, in run
+    self._target(*self._args, **self._kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 486, in _asyncio_thread_main
+    asyncio.run(_invoke_run_async())
+    ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 479, in _invoke_run_async
+    async for event in agen:"
+timestamp: "2026-06-12T06:50:43.335849Z"
+}
+2026-06-12 12:20:43.335 IST
+      event_queue.put(event)
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 632, in run_async
+2026-06-12 12:20:43.335 IST
+    async for event in agen:
+2026-06-12 12:20:43.335 IST
+      yield event
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 547, in _run_with_trace
+2026-06-12 12:20:43.335 IST
+    session = await self._get_or_create_session(
+2026-06-12 12:20:43.335 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+    ...<3 lines>...
+2026-06-12 12:20:43.335 IST
+    )
+2026-06-12 12:20:43.335 IST
+    ^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/runners.py", line 422, in _get_or_create_session
+2026-06-12 12:20:43.335 IST
+    session = await self.session_service.get_session(
+2026-06-12 12:20:43.335 IST
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+    ...<4 lines>...
+2026-06-12 12:20:43.335 IST
+    )
+2026-06-12 12:20:43.335 IST
+    ^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/adk/sessions/vertex_ai_session_service.py", line 178, in get_session
+2026-06-12 12:20:43.335 IST
+    get_session_response, events_iterator = await asyncio.gather(
+2026-06-12 12:20:43.335 IST
+                                            ^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+    ...<5 lines>...
+2026-06-12 12:20:43.335 IST
+    )
+2026-06-12 12:20:43.335 IST
+    ^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/vertexai/_genai/sessions.py", line 872, in get
+2026-06-12 12:20:43.335 IST
+    response = await self._api_client.async_request(
+2026-06-12 12:20:43.335 IST
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+        "get", path, request_dict, http_options
+2026-06-12 12:20:43.335 IST
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+    )
+2026-06-12 12:20:43.335 IST
+    ^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/_api_client.py", line 1583, in async_request
+2026-06-12 12:20:43.335 IST
+    result = await self._async_request(
+2026-06-12 12:20:43.335 IST
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+        http_request=http_request, http_options=http_options, stream=False
+2026-06-12 12:20:43.335 IST
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+    )
+2026-06-12 12:20:43.335 IST
+    ^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/_api_client.py", line 1516, in _async_request
+2026-06-12 12:20:43.335 IST
+    return await self._async_retry(  # type: ignore[no-any-return]
+2026-06-12 12:20:43.335 IST
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+        self._async_request_once, http_request, stream
+2026-06-12 12:20:43.335 IST
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+    )
+2026-06-12 12:20:43.335 IST
+    ^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/asyncio/__init__.py", line 112, in __call__
+2026-06-12 12:20:43.335 IST
+    do = await self.iter(retry_state=retry_state)
+2026-06-12 12:20:43.335 IST
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/asyncio/__init__.py", line 157, in iter
+2026-06-12 12:20:43.335 IST
+    result = await action(retry_state)
+2026-06-12 12:20:43.335 IST
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/_utils.py", line 111, in inner
+2026-06-12 12:20:43.335 IST
+    return call(*args, **kwargs)
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 413, in exc_check
+2026-06-12 12:20:43.335 IST
+    raise retry_exc.reraise()
+2026-06-12 12:20:43.335 IST
+          ~~~~~~~~~~~~~~~~~^^
+2026-06-12 12:20:43.335 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/__init__.py", line 184, in reraise
+2026-06-12 12:20:43.335 IST
+    raise self.last_attempt.result()
+2026-06-12 12:20:43.335 IST
+          ~~~~~~~~~~~~~~~~~~~~~~~~^^
+2026-06-12 12:20:43.335 IST
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 449, in result
+2026-06-12 12:20:43.336 IST
+    return self.__get_result()
+2026-06-12 12:20:43.336 IST
+           ~~~~~~~~~~~~~~~~~^^
+2026-06-12 12:20:43.336 IST
+  File "/usr/local/lib/python3.13/concurrent/futures/_base.py", line 401, in __get_result
+2026-06-12 12:20:43.336 IST
+    raise self._exception
+2026-06-12 12:20:43.336 IST
+  File "/code/.venv/lib/python3.13/site-packages/tenacity/asyncio/__init__.py", line 116, in __call__
+2026-06-12 12:20:43.336 IST
+    result = await fn(*args, **kwargs)
+2026-06-12 12:20:43.336 IST
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+2026-06-12 12:20:43.336 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/_api_client.py", line 1448, in _async_request_once
+2026-06-12 12:20:43.336 IST
+    await errors.APIError.raise_for_async_response(response)
+2026-06-12 12:20:43.336 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/errors.py", line 247, in raise_for_async_response
+2026-06-12 12:20:43.336 IST
+    await cls.raise_error_async(status_code, response_json, response)
+2026-06-12 12:20:43.336 IST
+  File "/code/.venv/lib/python3.13/site-packages/google/genai/errors.py", line 269, in raise_error_async
+2026-06-12 12:20:43.336 IST
+    raise ClientError(status_code, response_json, response)
+2026-06-12 12:20:44.385 IST
+google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'List of found errors:\t1.Field: name; Message: Invalid Session resource name.\t', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.BadRequest', 'fieldViolations': [{'field': 'name', 'description': 'Invalid Session resource name.'}]}]}}
+{
+insertId: "6a2bac440005e010a9aa1f89"
+logName: "projects/us-gcp-ame-its-1ec3e-npd-1/logs/aiplatform.googleapis.com%2Freasoning_engine_stderr"
+receiveTimestamp: "2026-06-12T06:50:44.691816137Z"
+resource: {2}
+textPayload: "google.genai.errors.ClientError: 400 INVALID_ARGUMENT. {'error': {'code': 400, 'message': 'List of found errors:\t1.Field: name; Message: Invalid Session resource name.\t', 'status': 'INVALID_ARGUMENT', 'details': [{'@type': 'type.googleapis.com/google.rpc.BadRequest', 'fieldViolations': [{'field': 'name', 'description': 'Invalid Session resource name.'}]}]}}"
+timestamp: "2026-06-12T06:50:44.385040Z"
