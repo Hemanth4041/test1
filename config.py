@@ -1,7 +1,6 @@
-# filename: config.py
-
 """
-Configuration management for evaluation pipeline.
+Configuration management for the agent evaluation pipeline.
+All pipeline settings are centralized here; no magic values elsewhere.
 """
 
 import os
@@ -11,53 +10,55 @@ from pathlib import Path
 
 
 class EvaluationConfig:
-    """Central configuration for evaluation pipeline."""
-    
-    # GCP Configuration
+    """Central configuration for the evaluation pipeline."""
+
+    # GCP project settings
     PROJECT_ID = "us-gcp-ame-its-1ec3e-npd-1"
     LOCATION = "us-central1"
-    BQ_DATASET = "agent_evaluation_framework"
-    BQ_TABLE = "baseline_performance_snapshots"
-    
-    # Agent Configuration
+
+    # BigQuery destination
+    BQ_DATASET = "agent_evaluation"
+    BQ_TABLE = "baseline_performance"
+
+    # Vertex AI Reasoning Engine
     REASONING_ENGINE_ID = "4023555599462563840"
-    
-    # Evaluation Settings
-    REQUEST_TIMEOUT = 120  # seconds
+
+    # Evaluation runtime settings
+    REQUEST_TIMEOUT = 120
     BRANCH_NAME = os.environ.get("BRANCH_NAME", "dev")
-    
+
     @classmethod
     def get_resource_name(cls) -> str:
-        """Get the full resource name for the reasoning engine."""
+        """Return the fully-qualified Vertex AI Reasoning Engine resource name."""
         return (
             f"projects/{cls.PROJECT_ID}/"
             f"locations/{cls.LOCATION}/"
             f"reasoningEngines/{cls.REASONING_ENGINE_ID}"
         )
-    
+
     @classmethod
     def get_eval_config_path(cls) -> Path:
-        """Get path to eval_config.json."""
+        """Return the path to eval_config.json."""
         return Path(__file__).parent / "eval_config.json"
-    
+
     @classmethod
     def get_data_dir(cls) -> Path:
-        """Get path to the data directory containing golden datasets."""
+        """Return the path to the golden dataset directory, creating it if absent."""
         data_dir = Path(__file__).parent / "data"
-        # Create data directory if it doesn't exist
         data_dir.mkdir(parents=True, exist_ok=True)
         return data_dir
-    
+
     @classmethod
     def load_eval_criteria(cls) -> Dict[str, Any]:
-        """Load evaluation criteria from config file."""
+        """
+        Load pass/fail thresholds from eval_config.json.
+        Falls back to hardcoded defaults if the file is missing.
+        """
         config_path = cls.get_eval_config_path()
         try:
-            with open(config_path, 'r') as f:
-                config = json.load(f)
-                return config.get("criteria", {})
+            with open(config_path, "r") as f:
+                return json.load(f).get("criteria", {})
         except FileNotFoundError:
-            # Fallback thresholds
             return {
                 "tool_trajectory_avg_score": 0.8,
                 "response_match_score": 0.5,
@@ -66,12 +67,12 @@ class EvaluationConfig:
                 "multi_turn_task_success_v1": 0.8,
                 "multi_turn_trajectory_quality_v1": 0.8,
                 "multi_turn_tool_use_quality_v1": 0.8,
-                "final_response_match_v2": 0.5
+                "final_response_match_v2": 0.5,
             }
-    
+
     @classmethod
     def load_golden_dataset(cls, filename: str) -> Dict[str, Any]:
-        """Load a specific golden dataset from the data directory."""
+        """Load and return the contents of a golden dataset JSON file."""
         dataset_path = cls.get_data_dir() / filename
-        with open(dataset_path, 'r') as f:
+        with open(dataset_path, "r") as f:
             return json.load(f)
