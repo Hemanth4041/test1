@@ -3,7 +3,6 @@ Configuration management for the agent evaluation pipeline.
 All pipeline settings are centralized here; no magic values elsewhere.
 """
 
-import os
 import json
 from typing import Dict, Any
 from pathlib import Path
@@ -25,7 +24,6 @@ class EvaluationConfig:
 
     # Evaluation runtime settings
     REQUEST_TIMEOUT = 120
-    BRANCH_NAME = os.environ.get("BRANCH_NAME", "dev")
 
     @classmethod
     def get_resource_name(cls) -> str:
@@ -40,13 +38,6 @@ class EvaluationConfig:
     def get_eval_config_path(cls) -> Path:
         """Return the path to eval_config.json."""
         return Path(__file__).parent / "eval_config.json"
-
-    @classmethod
-    def get_data_dir(cls) -> Path:
-        """Return the path to the golden dataset directory, creating it if absent."""
-        data_dir = Path(__file__).parent / "data"
-        data_dir.mkdir(parents=True, exist_ok=True)
-        return data_dir
 
     @classmethod
     def load_eval_criteria(cls) -> Dict[str, Any]:
@@ -69,10 +60,3 @@ class EvaluationConfig:
                 "multi_turn_tool_use_quality_v1": 0.8,
                 "final_response_match_v2": 0.5,
             }
-
-    @classmethod
-    def load_golden_dataset(cls, filename: str) -> Dict[str, Any]:
-        """Load and return the contents of a golden dataset JSON file."""
-        dataset_path = cls.get_data_dir() / filename
-        with open(dataset_path, "r") as f:
-            return json.load(f)
