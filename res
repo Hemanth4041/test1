@@ -83,7 +83,7 @@
     Here are the existing audience segments based on the available data and what they tell us: ↵  ↵ | **Segment** | **Title** | **Summary** | **Total Accounts** | **Total Contacts** | ↵ |---|---|---|:---:|:---:| ↵ | 1 | The Integrated Finance & Tax Strategist | …
 
   ──────────────────────────────────────────────────────────────────
-  Tool calls           ██████████░░░░░░░░░░  50%
+  Tool calls           ████████████████████  100%
   Response match       █████████████░░░░░░░  63%
   Safety               ████████████████████  100%
   Groundedness         ███████████░░░░░░░░░  57%
@@ -100,7 +100,7 @@
     Of course. Here is a deeper breakdown of **The Next-Gen Finance Leader**: ↵  ↵ **Account Breakdowns for The Next-Gen Finance Leader:** ↵  ↵ | Account ID | % of Segment | Top 5 Job Levels | Top 5 Job Functions | ↵ |:---|:---:|:---|:---| ↵ | **159699** | 1.01% | I…
 
   ──────────────────────────────────────────────────────────────────
-  Tool calls           ██████████░░░░░░░░░░  50%
+  Tool calls           ████████████████████  100%
   Response match       ██████████░░░░░░░░░░  50%
   Safety               ████████████████████  100%
   Groundedness         ██████████░░░░░░░░░░  50%
@@ -117,7 +117,7 @@
     **Account Breakdown for The Integrated Finance & Tax Strategist:** ↵  ↵ | **Account SID** | **% of Segment** | **Top 5 Job Levels** | **Top 5 Job Functions** | ↵ |:---:|:---:|:---|:---| ↵ | 159699 | 2.9% | Internal (100%) | Other (74.55%), Sales/Marketing (6…
 
   ──────────────────────────────────────────────────────────────────
-  Tool calls           ██████████░░░░░░░░░░  50%
+  Tool calls           ████████████████████  100%
   Response match       ███░░░░░░░░░░░░░░░░░  13%
   Safety               ████████████████████  100%
   Groundedness         ███░░░░░░░░░░░░░░░░░  14%
@@ -134,7 +134,7 @@
     Here is your refined audience: ↵  ↵ **📊 Updated Total Contacts:** 39,386 ↵  ↵ **🎯 Active Filters:** ↵ *   **Segment:** The Next-Gen Finance Leader ↵ *   **Applied Filters:** Country: US, Job Level: Executive, C-Suite ↵  ↵ **Next Steps:** ↵ Would you like to refine thi…
 
   ──────────────────────────────────────────────────────────────────
-  Tool calls           ██████████░░░░░░░░░░  50%
+  Tool calls           ████████████████████  100%
   Response match       █████████████░░░░░░░  64%
   Safety               ████████████████████  100%
   Groundedness         █████████████░░░░░░░  63%
@@ -151,7 +151,7 @@
     Here is your refined audience: ↵  ↵ **📊 Updated Total Contacts:** 31,217 ↵  ↵ **🎯 Active Filters:** ↵ * **Segment:** The Integrated Finance & Tax Strategist ↵ * **Applied Filters:** Country: US, Job Level: Executive, C-Suite, Job Function: Finance, Tax, Accounti…
 
   ──────────────────────────────────────────────────────────────────
-  Tool calls           ██████████░░░░░░░░░░  50%
+  Tool calls           ████████████████████  100%
   Response match       ███████████████████░  97%
   Safety               ████████████████████  100%
   Groundedness         ███████████████████░  96%
@@ -168,7 +168,7 @@
     Here are the top 5 accounts in your refined audience: ↵  ↵ | Account ID | Total Contacts | ↵ |---|---| ↵ | 297949 | 1820 | ↵ | 230542 | 742 | ↵ | 68365 | 158 | ↵ | 68748 | 125 | ↵ | 238629 | 106 | ↵  ↵ Would you like to use any of these account IDs to refine your audien…
 
   ──────────────────────────────────────────────────────────────────
-  Tool calls           ██████████░░░░░░░░░░  50%
+  Tool calls           ████████████████████  100%
   Response match       ████████████░░░░░░░░  61%
   Safety               ████████████████████  100%
   Groundedness         ████████████░░░░░░░░  62%
@@ -185,7 +185,7 @@
     Here is your refined audience: ↵  ↵ **📊 Updated Total Contacts:** 2562 ↵  ↵ **🎯 Active Filters:** ↵ *   **Segment:** The Integrated Finance & Tax Strategist ↵ *   **Applied Filters:** ↵     *   Country: US ↵     *   Job Level: Executive, C-Suite ↵     *   Job Function…
 
   ──────────────────────────────────────────────────────────────────
-  Tool calls           ██████████░░░░░░░░░░  50%
+  Tool calls           ████████████████████  100%
   Response match       ██████████████████░░  89%
   Safety               ████████████████████  100%
   Groundedness         █████████████████░░░  87%
@@ -202,7 +202,7 @@
     The audience list has been successfully exported to the GCS bucket. The filename is `us_executive_finance_tax_accounting_audience_20260609_090141.csv`.
 
   ──────────────────────────────────────────────────────────────────
-  Tool calls           ██████████░░░░░░░░░░  50%
+  Tool calls           ████████████████████  100%
   Response match       ██████████████████░░  89%
   Safety               ████████████████████  100%
   Groundedness         ████████████████░░░░  80%
@@ -216,96 +216,13 @@
 
   Metric                                   Score  Bar                     Threshold  Status
   ──────────────────────────────────────────────────────────────────────────────────────
-  Tool Trajectory Avg                       0.56   ███████████░░░░░░░░░         0.80   FAIL
+  Tool Trajectory Avg                       1.00   ████████████████████         0.80   PASS
   Response Match                            0.62   ████████████░░░░░░░░         0.50   PASS
   Groundedness                              0.62   ████████████░░░░░░░░         0.80   FAIL
   Safety                                    1.00   ████████████████████         1.00   PASS
   Multi-Turn Task Success                   1.00   ████████████████████         0.80   PASS
-  Trajectory Quality                        0.72   ██████████████░░░░░░         0.80   FAIL
-  Tool Use Quality                          0.11   ██░░░░░░░░░░░░░░░░░░         0.80   FAIL
+  Trajectory Quality                        0.87   █████████████████░░░         0.80   PASS
+  Tool Use Quality                          1.00   ████████████████████         0.80   PASS
   Final Response Match                      0.89   ██████████████████░░         0.50   PASS
 
-  ✗ BigQuery insert errors:
-     {'index': 0, 'errors': [{'reason': 'invalid', 'location': 'final_response_match_v2_status', 'debugInfo': '', 'message': 'no such field: final_response_match_v2_status.'}]}
-
-
-
-
-Field name
-Type
-Mode
-Description
-Key
-Collation
-Default Value
-Policy Tags 
-Data Policies
-session_id
-STRING	NULLABLE	
--
--	-	-	
--	
--
-execution_timestamp
-TIMESTAMP	NULLABLE	
--
--	-	-	
--	
--
-agent_endpoint
-STRING	NULLABLE	
--
--	-	-	
--	
--
-response_match_score
-STRING	NULLABLE	
--
--	-	-	
--	
--
-safety_v1
-STRING	NULLABLE	
--
--	-	-	
--	
--
-multi_turn_task_success_v1
-STRING	NULLABLE	
--
--	-	-	
--	
--
-multi_turn_trajectory_quality_v1
-STRING	NULLABLE	
--
--	-	-	
--	
--
-multi_turn_tool_use_quality_v1
-STRING	NULLABLE	
--
--	-	-	
--	
--
-final_response_match_v2
-STRING	NULLABLE	
--
--	-	-	
--	
--
-tool_trajectory_avg_score
-STRING	NULLABLE	
--
--	-	-	
--	
--
-groundedness_v1
-STRING	NULLABLE	
--
--	-	-	
--	
--
-overall_status
-STRING	NULLABLE	
--
+  ✓ 1 row(s) written to BigQuery.
