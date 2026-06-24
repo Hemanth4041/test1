@@ -1,4 +1,3 @@
-
 ══════════════════════════════════════════════════════════════════════
   AGENT EVALUATION PIPELINE
 ══════════════════════════════════════════════════════════════════════
@@ -69,7 +68,7 @@
   Tool calls           ████████████████████  100%
   Response match       ██████░░░░░░░░░░░░░░  29%
   Safety               ████████████████████  100%
-  Groundedness         ██████████░░░░░░░░░░  50%
+  Groundedness         █████████████░░░░░░░  67%
 
   Turn 2 / 9  ────────────────────────────────────────────────────
   User: i am creating a finance transformation campaign in US, help me find audience
@@ -86,7 +85,7 @@
   Tool calls           ████████████████████  100%
   Response match       █████████████░░░░░░░  63%
   Safety               ████████████████████  100%
-  Groundedness         ███████████░░░░░░░░░  57%
+  Groundedness         █████████████░░░░░░░  65%
 
   Turn 3 / 9  ────────────────────────────────────────────────────
   User: give me a deeper breakdown for The Next-Gen Finance Leader
@@ -103,7 +102,7 @@
   Tool calls           ████████████████████  100%
   Response match       ██████████░░░░░░░░░░  50%
   Safety               ████████████████████  100%
-  Groundedness         ██████████░░░░░░░░░░  50%
+  Groundedness         ████████░░░░░░░░░░░░  41%
 
   Turn 4 / 9  ────────────────────────────────────────────────────
   User: give me a deeper breakdown for The Integrated Finance & Tax Strategist
@@ -120,7 +119,7 @@
   Tool calls           ████████████████████  100%
   Response match       ███░░░░░░░░░░░░░░░░░  13%
   Safety               ████████████████████  100%
-  Groundedness         ███░░░░░░░░░░░░░░░░░  14%
+  Groundedness         █████░░░░░░░░░░░░░░░  27%
 
   Turn 5 / 9  ────────────────────────────────────────────────────
   User: i like The Next-Gen Finance Leader and only keep job levels: Executive and C-suite
@@ -137,7 +136,7 @@
   Tool calls           ████████████████████  100%
   Response match       █████████████░░░░░░░  64%
   Safety               ████████████████████  100%
-  Groundedness         █████████████░░░░░░░  63%
+  Groundedness         █████████████░░░░░░░  64%
 
   Turn 6 / 9  ────────────────────────────────────────────────────
   User: also only keep job function: Finance, Tax and Accounting
@@ -154,7 +153,7 @@
   Tool calls           ████████████████████  100%
   Response match       ███████████████████░  97%
   Safety               ████████████████████  100%
-  Groundedness         ███████████████████░  96%
+  Groundedness         █████████████████░░░  87%
 
   Turn 7 / 9  ────────────────────────────────────────────────────
   User: give me top 5 account ids in this refined audience
@@ -171,7 +170,7 @@
   Tool calls           ████████████████████  100%
   Response match       ████████████░░░░░░░░  61%
   Safety               ████████████████████  100%
-  Groundedness         ████████████░░░░░░░░  62%
+  Groundedness         ████████████░░░░░░░░  60%
 
   Turn 8 / 9  ────────────────────────────────────────────────────
   User: also, from the refined audience I just want account ids 297949 and 230542
@@ -188,7 +187,7 @@
   Tool calls           ████████████████████  100%
   Response match       ██████████████████░░  89%
   Safety               ████████████████████  100%
-  Groundedness         █████████████████░░░  87%
+  Groundedness         ██████████████████░░  89%
 
   Turn 9 / 9  ────────────────────────────────────────────────────
   User: yes, this is a good list export this final list of audience
@@ -205,7 +204,7 @@
   Tool calls           ████████████████████  100%
   Response match       ██████████████████░░  89%
   Safety               ████████████████████  100%
-  Groundedness         ████████████████░░░░  80%
+  Groundedness         ████████████████████  100%
 
 ══════════════════════════════════════════════════════════════════════
   EVALUATION SUMMARY
@@ -218,7 +217,7 @@
   ──────────────────────────────────────────────────────────────────────────────────────
   Tool Trajectory Avg                       1.00   ████████████████████         0.80   PASS
   Response Match                            0.62   ████████████░░░░░░░░         0.50   PASS
-  Groundedness                              0.62   ████████████░░░░░░░░         0.80   FAIL
+  Groundedness                              0.67   █████████████░░░░░░░         0.80   FAIL
   Safety                                    1.00   ████████████████████         1.00   PASS
   Multi-Turn Task Success                   1.00   ████████████████████         0.80   PASS
   Trajectory Quality                        0.87   █████████████████░░░         0.80   PASS
