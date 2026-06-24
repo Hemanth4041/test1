@@ -227,3 +227,85 @@
 
   ✗ BigQuery insert errors:
      {'index': 0, 'errors': [{'reason': 'invalid', 'location': 'final_response_match_v2_status', 'debugInfo': '', 'message': 'no such field: final_response_match_v2_status.'}]}
+
+
+
+
+Field name
+Type
+Mode
+Description
+Key
+Collation
+Default Value
+Policy Tags 
+Data Policies
+session_id
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+execution_timestamp
+TIMESTAMP	NULLABLE	
+-
+-	-	-	
+-	
+-
+agent_endpoint
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+response_match_score
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+safety_v1
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+multi_turn_task_success_v1
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+multi_turn_trajectory_quality_v1
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+multi_turn_tool_use_quality_v1
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+final_response_match_v2
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+tool_trajectory_avg_score
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+groundedness_v1
+STRING	NULLABLE	
+-
+-	-	-	
+-	
+-
+overall_status
+STRING	NULLABLE	
+-
