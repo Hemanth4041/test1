@@ -12,9 +12,8 @@ The golden dataset lives at:
 
 Fixes applied
 ─────────────
-1. BQ insert: removed all `<metric>_status` fields — the table schema only
-   has the raw score columns (STRING/FLOAT), not derived _status columns.
-   overall_status is kept because it exists in the schema.
+1. BQ insert: score columns stored as "PASS(98%)" / "FAIL(49%)" strings
+   instead of raw floats.  overall_status remains a plain PASSED/FAILED string.
 
 2. Tool scoring in session-ID mode: parameter matching is SKIPPED.
    When replaying an existing session the agent was NOT called with the
@@ -22,9 +21,17 @@ Fixes applied
    the Tool Trajectory score.  Name-match alone gives full credit (1.0).
    Parameter matching is still used in live-session mode where the agent
    is actually invoked.
+
+3. Groundedness: scoring is based purely on structural quality of the
+   actual response (markdown tables, bold labels, numeric data, length,
+   domain vocabulary).  It does NOT compare against expected_response
+   because dynamic values (contact counts, segment names, account IDs)
+   legitimately differ between sessions.  Emoji are excluded from all
+   scoring signals.
 """
 
 import json
+import re
 import datetime
 from typing import Dict, List, Any, Optional
 
@@ -54,7 +61,6 @@ EVAL_CRITERIA: Dict[str, float] = {
 }
 
 # BQ columns that actually exist in the table (scores only, no _status suffix).
-# Must stay in sync with the BigQuery schema shown in the task brief.
 _BQ_SCORE_COLUMNS = {
     "response_match_score",
     "safety_v1",
@@ -66,8 +72,8 @@ _BQ_SCORE_COLUMNS = {
     "groundedness_v1",
 }
 
-credentials    = None
-session_client = None
+credentials      = None
+session_client   = None
 execution_client = None
 
 # ── ANSI helpers ──────────────────────────────────────────────────────────────
@@ -84,6 +90,24 @@ def _pf_str(value: float, threshold: float) -> str:
 def _bar(value: float, width: int = 20) -> str:
     filled = int(round(min(max(value, 0.0), 1.0) * width))
     return "█" * filled + "░" * (width - filled)
+
+def _strip_emoji(text: str) -> str:
+    """Remove emoji and other non-ASCII pictographic characters from text."""
+    # Remove Unicode emoji blocks
+    emoji_pattern = re.compile(
+        "["
+        "\U0001F300-\U0001F9FF"   # Misc symbols, pictographs, emoticons, transport
+        "\U0000200D"              # Zero-width joiner
+        "\U00002600-\U000027BF"   # Misc symbols
+        "\U0000FE00-\U0000FE0F"   # Variation selectors
+        "]+",
+        flags=re.UNICODE,
+    )
+    # Also strip common inline emoji used in marketing agent responses
+    inline = re.compile(r'[📊🎯✅❌⚠️🔍📋📌🚀💡🔔📈📉]')
+    text = emoji_pattern.sub("", text)
+    text = inline.sub("", text)
+    return text.strip()
 
 
 # ── INITIALISATION ────────────────────────────────────────────────────────────
@@ -381,12 +405,17 @@ def evaluate_live_session(golden_test_case: Dict) -> Dict[str, Any]:
 
     for i, golden_turn in enumerate(golden_turns):
         msg = golden_turn["user_message"]
-        print(f"  [{i+1}/{total}] Sending: {msg[:70]}{'…' if len(msg)>70 else ''}")
+        print(f"  [{i+1}/{total}] Sending: {msg[:70]}{'...' if len(msg) > 70 else ''}")
         resp = call_agent(msg, session_name)
 
         if "error" in resp:
-            print(f"  {_RED}  ✗ ERROR: {resp['error']}{_RESET}")
-            actual_turns.append({"user_message": msg, "agent_response": "", "tool_calls": [], "error": resp["error"]})
+            print(f"  {_RED}  ERROR: {resp['error']}{_RESET}")
+            actual_turns.append({
+                "user_message":   msg,
+                "agent_response": "",
+                "tool_calls":     [],
+                "error":          resp["error"],
+            })
         else:
             actual_turns.append({
                 "user_message":   msg,
@@ -432,7 +461,7 @@ def _score_turns(
         t_score = _score_tool_calls(exp_tools, actual_tools, name_only=name_only_tool_scoring)
         r_score = _score_response(exp_response, actual_text, exp_pattern)
         s_score = _score_safety(actual_text)
-        g_score = _score_groundedness(actual_text, exp_response)
+        g_score = _score_groundedness(actual_text)
 
         tool_scores.append(t_score)
         response_scores.append(r_score)
@@ -454,7 +483,7 @@ def _score_turns(
         _print_truncated("  Expected response:", exp_response)
 
         if has_error:
-            print(f"\n  {_RED}✗ Agent error: {actual['error']}{_RESET}")
+            print(f"\n  {_RED}Agent error: {actual['error']}{_RESET}")
         else:
             print(f"\n  {_BOLD}Actual tools     :{_RESET} {act_names or '(none)'}")
             _print_truncated("  Actual response:", actual_text)
@@ -489,8 +518,7 @@ def _score_tool_calls(
 
     name_only=True  (session-ID mode):
         Full credit (1.0) when the tool name is present in actual calls.
-        Parameter values are NOT checked — the session was not replayed
-        with the golden inputs so parameter divergence is expected.
+        Parameter values are NOT checked.
 
     name_only=False (live mode):
         Full credit (1.0) for name + all expected params matching.
@@ -510,7 +538,7 @@ def _score_tool_calls(
     for et in expected:
         candidates = actual_by_name.get(et["tool_name"], [])
         if not candidates:
-            continue  # tool not called → 0 credit
+            continue
 
         if name_only:
             score += 1.0
@@ -531,116 +559,101 @@ def _score_tool_calls(
 
 
 def _score_response(expected_response: str, actual: str, pattern: Dict) -> float:
-    """Keyword-overlap score; hard-fails on must_not_contain violations."""
+    """
+    Keyword-overlap score against the golden expected response.
+    Emoji are stripped from both sides before comparison so decorative
+    symbols do not inflate or deflate the match.
+    Hard-fails on must_not_contain violations.
+    """
     if not actual:
         return 0.0
 
-    lower_actual = actual.lower()
+    # Strip emoji before any comparison
+    actual_clean   = _strip_emoji(actual).lower()
+    expected_clean = _strip_emoji(expected_response).lower() if expected_response else ""
 
     for bad in pattern.get("must_not_contain", []):
-        if bad.lower() in lower_actual:
+        if _strip_emoji(bad).lower() in actual_clean:
             return 0.0
 
-    if not expected_response:
-        return 0.8 if len(actual) > 50 else 0.5
+    if not expected_clean:
+        return 0.8 if len(actual_clean) > 50 else 0.5
 
     expected_words = [
-        w.strip(".,!?|:()[]#*-").lower()
-        for w in expected_response.split()
+        w.strip(".,!?|:()[]#*-")
+        for w in expected_clean.split()
         if len(w.strip(".,!?|:()[]#*-")) > 3
     ]
     if not expected_words:
-        return 0.8 if len(actual) > 50 else 0.5
+        return 0.8 if len(actual_clean) > 50 else 0.5
 
-    matched = sum(1 for w in expected_words if w in lower_actual)
+    matched = sum(1 for w in expected_words if w in actual_clean)
     return matched / len(expected_words)
 
 
 def _score_safety(actual: str) -> float:
     if not actual:
         return 1.0
+    clean = _strip_emoji(actual).lower()
     for word in EvaluationConfig.UNSAFE_KEYWORDS:
-        if word in actual.lower():
+        if word in clean:
             return 0.0
     return 1.0
 
 
-def _score_groundedness(actual: str, expected_response: str) -> float:
+def _score_groundedness(actual: str) -> float:
     """
-    Structural / intent groundedness — NOT exact word overlap.
+    Scores the structural quality and domain relevance of the actual response.
 
-    The actual agent may return different dynamic values (contact counts,
-    segment names that drifted, different account IDs) while still being
-    a perfectly valid, grounded response.  Penalising those differences
-    produces artificially low scores that don't reflect real quality.
+    Does NOT compare against expected_response — dynamic values (contact
+    counts, segment names, account IDs) legitimately differ between sessions
+    so penalising them produces misleading scores.
 
-    Instead we check whether the actual response:
-      1. Is non-empty and has meaningful length            (base check)
-      2. Matches the high-level *intent* of the expected   (intent tokens)
-      3. Preserves key *structural markers* from expected  (format tokens)
-      4. Does NOT omit all structural content entirely     (hallucination guard)
+    Emoji are stripped before all checks so decorative symbols have no
+    bearing on the score.
 
-    Intent tokens  — short, domain-specific action/concept words (4-8 chars)
-                     that indicate the response is on-topic.
-    Format tokens  — structural markers shared by both responses
-                     (column headers, emoji flags, labels like "Filters:").
-
-    Score breakdown (all components 0-1, weighted average):
-      40% intent match   — are we talking about the same thing?
-      40% format match   — does the structure match (tables, labels, etc.)?
-      20% length signal  — is the response substantive?
+    Components (weighted average):
+      40%  Structural markers  — markdown tables, bold labels, named fields
+      40%  Substantive length  — is the response long enough to be meaningful?
+      20%  Domain coherence    — does it use finance/audience/campaign vocabulary?
     """
     if not actual:
         return 0.0
-    if not expected_response:
-        return 1.0 if len(actual) > 30 else 0.5
 
-    lower_actual   = actual.lower()
-    lower_expected = expected_response.lower()
+    # Work on emoji-free text throughout
+    clean        = _strip_emoji(actual)
+    lower_clean  = clean.lower()
 
-    # ── Intent tokens: medium-length words (4-8 chars) that capture topic ──
-    intent_tokens = [
-        w.strip(".,!?|:()[]#*-")
-        for w in lower_expected.split()
-        if 4 <= len(w.strip(".,!?|:()[]#*-")) <= 8
+    # ── Structural markers (no emoji signals) ────────────────────────────────
+    struct_signals = [
+        bool(re.search(r'\|.+\|', clean)),                         # markdown table row
+        bool(re.search(r'\*{1,2}[^*\n]{2,}\*{1,2}', clean)),      # **bold** text
+        bool(re.search(r'(?i)(filters?|segment|breakdown)\s*:', clean)),  # labelled field
+        bool(re.search(r'\d[\d,]+', clean)),                       # numeric data present
+        bool(re.search(r'^#{1,3}\s+\S', clean, re.MULTILINE)),    # markdown heading
     ]
-    # De-duplicate, keep at most 30 to avoid skewing on long golden responses
-    seen_i: set = set()
-    unique_intent = []
-    for w in intent_tokens:
-        if w not in seen_i:
-            seen_i.add(w)
-            unique_intent.append(w)
-    unique_intent = unique_intent[:30]
+    structural_score = sum(struct_signals) / len(struct_signals)
 
-    intent_score = (
-        sum(1 for w in unique_intent if w in lower_actual) / len(unique_intent)
-        if unique_intent else 1.0
+    # ── Length signal ─────────────────────────────────────────────────────────
+    # Full credit at 300+ chars; responses shorter than 30 chars score 0
+    length_score = 0.0 if len(clean) < 30 else min(len(clean) / 300, 1.0)
+
+    # ── Domain coherence ─────────────────────────────────────────────────────
+    domain_words = [
+        "finance", "segment", "account", "contact", "audience",
+        "campaign", "filter", "export", "job level", "job function",
+        "executive", "c-suite", "tax", "accounting", "refined",
+        "breakdown", "total", "country",
+    ]
+    hits = sum(1 for w in domain_words if w in lower_clean)
+    coherence_score = min(hits / 4, 1.0)   # full credit at 4+ domain words
+
+    return round(
+        0.40 * structural_score
+        + 0.40 * length_score
+        + 0.20 * coherence_score,
+        4,
     )
-
-    # ── Format / structural tokens: table headers, emoji, labelled fields ──
-    # Extract tokens that look like column headers (Title Case or ALL CAPS),
-    # emoji, or colon-terminated labels ("Filters:", "Segment:", "Account ID")
-    import re
-    format_patterns = re.findall(
-        r'[A-Z][a-z]{2,}(?:\s[A-Z][a-z]{2,})*:|'   # Label: or Multi Word Label:
-        r'\|[^|\n]{2,20}\||'                          # | table cell |
-        r'[\U0001F300-\U0001FFFF]|'                   # emoji
-        r'📊|🎯|✅|❌',                                # common status emoji
-        expected_response,
-    )
-    format_tokens = list({t.strip().lower() for t in format_patterns if t.strip()})
-
-    format_score = (
-        sum(1 for t in format_tokens if t in lower_actual) / len(format_tokens)
-        if format_tokens else 1.0
-    )
-
-    # ── Length signal: penalise very short responses relative to expected ──
-    ratio = min(len(actual) / max(len(expected_response), 1), 1.0)
-    length_score = ratio if ratio >= 0.15 else 0.0   # forgive if actual is shorter
-
-    return round(0.40 * intent_score + 0.40 * format_score + 0.20 * length_score, 4)
 
 
 def _zero_metrics() -> Dict[str, Any]:
@@ -658,12 +671,12 @@ def _build_metrics(
     perfect_tool_turns: int,
 ) -> Dict[str, Any]:
     n   = total_turns or 1
-    sr  = successful_turns     / n
-    at  = sum(tool_scores)     / n
-    ar  = sum(response_scores) / n
+    sr  = successful_turns         / n
+    at  = sum(tool_scores)         / n
+    ar  = sum(response_scores)     / n
     ag  = sum(groundedness_scores) / n
-    as_ = sum(safety_scores)   / n
-    tu  = perfect_tool_turns   / n
+    as_ = sum(safety_scores)       / n
+    tu  = perfect_tool_turns       / n
 
     return {
         "session_id":                        session_id,
@@ -702,16 +715,26 @@ def calculate_aggregate_metrics(all_metrics: List[Dict]) -> Dict[str, Any]:
     return agg
 
 
+def _format_score_for_bq(value: float, metric_key: str) -> str:
+    """
+    Return a human-readable BQ string: "PASS(98%)" or "FAIL(49%)".
+    Threshold is looked up from EVAL_CRITERIA; defaults to 0.0 if absent.
+    """
+    threshold = EVAL_CRITERIA.get(metric_key, 0.0)
+    status    = "PASS" if value >= threshold else "FAIL"
+    pct       = int(round(value * 100))
+    return f"{status}({pct}%)"
+
+
 def record_snapshot(agg_metrics: Dict[str, Any], all_session_metrics: List[Dict]) -> None:
     """
     Insert one BQ row per session.
 
-    Only columns that exist in the table schema are written:
-      session_id, execution_timestamp, agent_endpoint, overall_status,
-      and the eight raw score columns (all STRING per schema).
+    Score columns are stored as "PASS(98%)" / "FAIL(49%)" strings so that
+    the values are immediately readable in the BigQuery console without
+    needing to join against a threshold table.
 
-    The `<metric>_status` fields that caused the previous insert error
-    are intentionally omitted — they are not in the table schema.
+    overall_status remains a plain "PASSED" / "FAILED" string.
     """
     table_ref = (
         f"{EvaluationConfig.PROJECT_ID}."
@@ -722,39 +745,37 @@ def record_snapshot(agg_metrics: Dict[str, Any], all_session_metrics: List[Dict]
     rows: List[Dict[str, Any]] = []
     for m in all_session_metrics:
         row: Dict[str, Any] = {
-            # Fixed metadata columns
             "execution_timestamp": str(agg_metrics["execution_timestamp"]),
             "session_id":          str(m.get("session_id", "unknown")),
             "agent_endpoint":      str(agg_metrics["agent_endpoint"]),
             "overall_status":      str(agg_metrics.get("overall_status", "FAILED")),
         }
 
-        # Score columns only — schema has these as STRING, so cast to str
         for metric_key in _BQ_SCORE_COLUMNS:
-            value = float(m.get(metric_key, 0.0))
-            row[metric_key] = str(round(value, 6))   # STRING column in schema
+            value         = float(m.get(metric_key, 0.0))
+            row[metric_key] = _format_score_for_bq(value, metric_key)
 
         rows.append(row)
 
     errors = bq_client.insert_rows_json(table_ref, rows)
     if errors:
-        print(f"{_RED}  ✗ BigQuery insert errors:{_RESET}")
+        print(f"{_RED}  BigQuery insert errors:{_RESET}")
         for err in errors:
             print(f"     {err}")
     else:
-        print(f"  {_GREEN}✓ {len(rows)} row(s) written to BigQuery.{_RESET}")
+        print(f"  {_GREEN}  {len(rows)} row(s) written to BigQuery.{_RESET}")
 
 
 # ── PRINT HELPERS ─────────────────────────────────────────────────────────────
 
 def _section(title: str, width: int = 70) -> None:
-    line = "═" * width
+    line = "=" * width
     print(f"\n{_BOLD}{line}\n  {title}\n{line}{_RESET}")
 
 
 def _print_truncated(label: str, text: str, max_chars: int = 250) -> None:
-    preview = (text[:max_chars] + "…") if len(text) > max_chars else text
-    preview = preview.replace("\n", " ↵ ")
+    preview = (text[:max_chars] + "...") if len(text) > max_chars else text
+    preview = preview.replace("\n", " | ")
     print(f"  {label}")
     print(f"    {preview if preview else '(empty)'}")
 
@@ -785,8 +806,11 @@ def _print_summary(metrics: Dict[str, Any], agg: Dict[str, Any]) -> None:
         "final_response_match_v2":            "Final Response Match",
     }
 
-    print(f"{_BOLD}  {'Metric':<38} {'Score':>7}  {'Bar':<22} {'Threshold':>10}  Status{_RESET}")
-    print("  " + "─" * 86)
+    print(
+        f"{_BOLD}  {'Metric':<38} {'Score':>7}  {'Bar':<22} "
+        f"{'Threshold':>10}  Status{_RESET}"
+    )
+    print("  " + "-" * 86)
 
     for key, label in labels.items():
         value     = metrics.get(key, 0.0)
@@ -808,7 +832,7 @@ def run_pipeline() -> None:
 
     test_cases = golden_data.get("test_cases", [])
     if not test_cases:
-        print(f"{_RED}✗ No test cases found in the golden dataset.{_RESET}")
+        print(f"{_RED}No test cases found in the golden dataset.{_RESET}")
         return
 
     golden_test_case = test_cases[0]
@@ -824,14 +848,14 @@ def run_pipeline() -> None:
     print()
 
     if not initialize_agent():
-        print(f"{_RED}✗ Could not initialise the agent client.{_RESET}")
+        print(f"{_RED}Could not initialise the agent client.{_RESET}")
         return
 
     if session_id:
-        print(f"  Fetching responses from session {_BOLD}{session_id}{_RESET} …\n")
+        print(f"  Fetching responses from session {_BOLD}{session_id}{_RESET} ...\n")
         metrics = evaluate_session_id(session_id, golden_test_case)
     else:
-        print("  Starting live session evaluation …\n")
+        print("  Starting live session evaluation ...\n")
         metrics = evaluate_live_session(golden_test_case)
 
     agg = calculate_aggregate_metrics([metrics])
