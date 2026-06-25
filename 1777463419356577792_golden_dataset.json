@@ -1,0 +1,199 @@
+{
+  "test_cases": [
+    {
+      "test_case_id": "session_1777463419356577792",
+      "description": "Progressive refinement with export - Finance transformation campaign",
+      "turns": [
+        {
+          "user_message": "hi",
+          "user_message_variants": [
+            "hello",
+            "hey",
+            "hi there"
+          ],
+          "expected_tool_calls": [],
+          "expected_response_pattern": {
+            "match_type": "semantic_similarity",
+            "similarity_threshold": 0.7,
+            "required_keywords": [
+              "audience segmentation",
+              "email drafting",
+              "campaign optimization"
+            ]
+          },
+          "expected_response": "Hello! I'm here to help you with your marketing needs. I can help with audience segmentation, email drafting, and campaign optimization. What can I do for you today?",
+          "context": {}
+        },
+        {
+          "user_message": "i am creating a finance transformation campaign in US, help me find audience",
+          "user_message_variants": [
+            "help me find audience for a finance transformation campaign in the US"
+          ],
+          "expected_tool_calls": [
+            {
+              "tool_name": "audience_segmentation_agent_1",
+              "parameters": {
+                "country": "US",
+                "campaign_type": "finance_transformation"
+              }
+            }
+          ],
+          "expected_response_pattern": {},
+          "expected_response": "Here are the existing audience segments based on the available data and what they tell us:\n| Segment | Title | Summary | Total Accounts | Total Contacts |\n|---|---|---|---|---|\n| 1 | The Cross-Functional Finance Modernizer | This segment represents a broad group of professionals... | 46,581 | 172,508 |\n| 2 | The Strategic Tech-Finance Leader | This segment is characterized by highly effective engagement... | 17,282 | 58,638 |\n| 3 | The Eager Adopter of Financial Innovation | This segment shows exceptional engagement and growth... | 14,178 | 34,424 |\n| 4 | The Disengaged Traditionalist | This segment is large but shows significant underperformance... | 31,543 | 128,105 |\n| 5 | The Overwhelmed Professional | This segment is a mix of finance and IT professionals... | 26,716 | 77,866 |\nWould you like to see the top account breakdowns for a specific segment, or would you like to apply filters to narrow down an audience?",
+          "context": {}
+        },
+        {
+          "user_message": "give me a deeper breakdown for The Next-Gen Finance Leader",
+          "user_message_variants": [
+            "show me more details about The Next-Gen Finance Leader"
+          ],
+          "expected_tool_calls": [
+            {
+              "tool_name": "audience_segmentation_agent_1",
+              "parameters": {
+                "segment_name": "The Next-Gen Finance Leader"
+              }
+            }
+          ],
+          "expected_response_pattern": {},
+          "expected_response": "I believe you meant \"The Strategic Tech-Finance Leader,\" here is a deeper breakdown of that segment.\n\nAccount Breakdown for The Strategic Tech-Finance Leader:\n| Account SID | Parent Account Client Segment | % of Segment | Top 5 Job Levels | Top 5 Job Functions |\n|---|---|---|---|---|\n| 35804 | ACP | 2.06% | Executive (51.16%), Manager (20.39%)... | Sales/Marketing (26.37%), Information Technology (26.13%)... |\n| 159699 | No Segment | 1.31% | Internal (99.81%), Unknown (0.19%) | Other (61.73%), Information Technology (15.77%)... |\n| 188155 | ACP | 0.98% | Manager (52.56%), Unknown (20.26%)... | Other (30%), Information Technology (21.79%)... |\n| 51186 | ACP | 0.9% | Executive (41.23%), Manager (35.1%)... | Finance (27.02%), Sales/Marketing (27.02%)... |\n| 137195 | ECP | 0.73% | Manager (63.45%), Executive (25.17%)... | Information Technology (46.55%), Finance (19.66%)... |\n\nAudience interaction details:\n| Metric | Percentage |\n|---|---|\n| Total Campaigns | -80.96% |\n| Total Interactions | -80.96% |\n| Average Interactions per Campaign | -0.02% |\n| Total Sent | -97.04% |\n| Total Opened | -27.36% |\n| Total Clicked | -80.87% |\n| Percent Opened | 284.82% |\n| Percent Clicked | 78.26% |\n\nBehavior summary: Highly Effective Engagement with Reduced Volume\nDespite a massive reduction in campaign volume and emails sent (over 80-97%), engagement quality soared. We observed an outstanding 285% increase in open rates and a strong 78% rise in click-through rates. This indicates highly effective, targeted content, revealing significant promise for future engagement by strategically scaling successful approaches.\n\nNow that you have a deeper insight into this segment, are you ready to refine it using specific filters?",
+          "context": {}
+        },
+        {
+          "user_message": "give me a deeper breakdown for The Integrated Finance & Tax Strategist",
+          "user_message_variants": [
+            "show details for The Integrated Finance & Tax Strategist"
+          ],
+          "expected_tool_calls": [
+            {
+              "tool_name": "audience_segmentation_agent_1",
+              "parameters": {
+                "segment_name": "The Integrated Finance & Tax Strategist"
+              }
+            }
+          ],
+          "expected_response_pattern": {},
+          "expected_response": "That segment does not exist, please select one of the following:\n\n| Segment | Title |\n|---|---|\n| 1 | The Cross-Functional Finance Modernizer |\n| 2 | The Strategic Tech-Finance Leader |\n| 3 | The Eager Adopter of Financial Innovation |\n| 4 | The Disengaged Traditionalist |\n| 5 | The Overwhelmed Professional |",
+          "context": {}
+        },
+        {
+          "user_message": "i like The Next-Gen Finance Leader and only keep job levels: Executive and C-suite",
+          "user_message_variants": [
+            "filter The Next-Gen Finance Leader to only show Executives and C-suite"
+          ],
+          "expected_tool_calls": [
+            {
+              "tool_name": "audience_segmentation_agent_1",
+              "parameters": {
+                "segment_name": "The Next-Gen Finance Leader",
+                "job_levels": [
+                  "Executive",
+                  "C-Suite"
+                ]
+              }
+            }
+          ],
+          "expected_response_pattern": {},
+          "expected_response": "I believe you meant \"The Strategic Tech-Finance Leader\". I have now filtered that segment to only include Executive and C-Suite job levels. Here is the revised breakdown:\n\nHere is your refined audience:\n\n📊 Updated Total Contacts: 27,085\n\n🎯 Active Filters:\nSegment: The Strategic Tech-Finance Leader\nApplied Filters:\nCountry: US\nJob Levels: Executive, C-Suite\nNext Steps: Would you like to refine this further, or are you ready to finalize and export this list?",
+          "context": {}
+        },
+        {
+          "user_message": "also only keep job function: Finance, Tax and Accounting",
+          "user_message_variants": [
+            "add filter for Finance, Tax and Accounting job functions"
+          ],
+          "expected_tool_calls": [
+            {
+              "tool_name": "audience_segmentation_agent_1",
+              "parameters": {
+                "job_functions": [
+                  "Finance",
+                  "Tax",
+                  "Accounting"
+                ]
+              }
+            }
+          ],
+          "expected_response_pattern": {},
+          "expected_response": "Here is your refined audience:\n\n📊 Updated Total Contacts: 16,241\n\n🎯 Active Filters:\nSegment: The Integrated Finance & Tax Strategist\nApplied Filters:\nCountry: US\nJob Level: Executive, C-Suite\nJob Function: Finance, Tax, Accounting\nNext Steps: Would you like to refine this further, or are you ready to finalize and export this list?",
+          "context": {}
+        },
+        {
+          "user_message": "give me top 5 account ids in this refined audience",
+          "user_message_variants": [
+            "show me the top accounts in this filtered audience"
+          ],
+          "expected_tool_calls": [
+            {
+              "tool_name": "audience_segmentation_agent_1",
+              "parameters": {
+                "limit": 5
+              }
+            }
+          ],
+          "expected_response_pattern": {
+            "match_type": "keyword_and_structure",
+            "similarity_threshold": 0.75,
+            "required_keywords": [
+              "account",
+              "contacts"
+            ]
+          },
+          "expected_response": "Of course. Here are the top 5 accounts in your refined audience based on the number of contacts:\n\n| Account ID | Total Contacts |\n|---|---|\n| 297949 | 1847 |\n| 230542 | 248 |\n| 35804 | 164 |\n| 84059 | 111 |\n| 51186 | 90 |\n\nWould you like to use any of these accounts to refine your audience further, or are you ready to finalize and export this list?",
+          "context": {}
+        },
+        {
+          "user_message": "also, from the refined audience I just want account ids 297949 and 230542",
+          "user_message_variants": [
+            "filter to only accounts 297949 and 230542"
+          ],
+          "expected_tool_calls": [
+            {
+              "tool_name": "audience_segmentation_agent_1",
+              "parameters": {
+                "account_ids": [
+                  "297949",
+                  "230542"
+                ]
+              }
+            }
+          ],
+          "expected_response_pattern": {},
+          "expected_response": "Here is your refined audience:\n\n📊 Updated Total Contacts: 2,095\n\n🎯 Active Filters:\nSegment: The Strategic Tech-Finance Leader\nApplied Filters:\nCountry: US\nJob Level: Executive, C-Suite\nJob Function: Finance, Tax, Accounting\nAccount ID: 297949, 230542\nNext Steps: Would you like to refine this further, or are you ready to finalize and export this list?",
+          "context": {}
+        },
+        {
+          "user_message": "yes, this is a good list export this final list of audience",
+          "user_message_variants": [
+            "export this list please",
+            "download this list"
+          ],
+          "expected_tool_calls": [
+            {
+              "tool_name": "audience_segmentation_agent_1",
+              "parameters": {
+                "export_format": "csv"
+              }
+            }
+          ],
+          "expected_response_pattern": {
+            "match_type": "keyword_pattern",
+            "similarity_threshold": 0.75,
+            "required_keywords": [
+              "export",
+              "bucket",
+              ".csv"
+            ],
+            "must_not_contain": [
+              "format",
+              "which",
+              "how"
+            ]
+          },
+          "expected_response": "The audience list has been successfully exported to the GCS bucket. The file name is us_executive_finance_tax_accounting_contacts_20260618_132543.csv.",
+          "context": {}
+        }
+      ]
+    }
+  ]
+}
