@@ -28,6 +28,10 @@ RESOURCE_NAME = EvaluationConfig.get_resource_name()
 # Global criteria placeholder initialized dynamically at runtime
 EVAL_CRITERIA: Dict[str, float] = {}
 
+# How much better a neighboring golden turn's match needs to be (in response
+# score) before we flag a drift warning for this turn.
+DRIFT_MARGIN = 0.20
+
 credentials      = None
 session_client   = None
 execution_client = None
@@ -70,15 +74,38 @@ def load_golden_dataset() -> Optional[Dict[str, Any]]:
 
 # ── SESSION EVENT EXTRACTION ──────────────────────────────────────────────────
 
-def _role_type(raw_role: str) -> str:
-    r = raw_role.lower().strip()
-    if r in EvaluationConfig.USER_ROLES or "user" in r or "human" in r: 
+def _role_type(raw_role: str, debug_log: Optional[List[str]] = None) -> str:
+    """Classify a raw author/role string into user / agent / tool / unknown.
+
+    IMPORTANT: any role that cannot be classified is reported to debug_log
+    (if provided) so misclassifications are visible in evaluation_debug.txt
+    instead of silently corrupting turn boundaries (see BUG-1 in module
+    docstring).
+    """
+    r = (raw_role or "").lower().strip()
+
+    if r in EvaluationConfig.USER_ROLES or "user" in r or "human" in r:
         return "user"
-    if r in EvaluationConfig.TOOL_ROLES or "tool" in r or "function" in r: 
+    if r in EvaluationConfig.TOOL_ROLES or "tool" in r or "function" in r:
         return "tool"
-    if r in EvaluationConfig.AGENT_ROLES or "model" in r or "agent" in r or "assistant" in r: 
+    if (
+        r in EvaluationConfig.AGENT_ROLES
+        or "model" in r
+        or "agent" in r
+        or "assistant" in r
+        or "bot" in r
+    ):
         return "agent"
+
+    if debug_log is not None:
+        debug_log.append(
+            f"  [WARN] Unrecognized event role/author: '{raw_role}' -- "
+            f"treated as a SAFE TURN BOUNDARY (flushed) rather than merged "
+            f"into the previous turn. If this role is actually an agent "
+            f"sub-author, add it to EvaluationConfig.AGENT_ROLES."
+        )
     return "unknown"
+
 
 def _parts_from_event(event: Any) -> List[Any]:
     if hasattr(event, "content"):
@@ -89,12 +116,14 @@ def _parts_from_event(event: Any) -> List[Any]:
         return event.get("content", {}).get("parts", [])
     return []
 
+
 def _raw_role(event: Any) -> str:
     if hasattr(event, "author"):
         return str(event.author)
     if isinstance(event, dict):
         return str(event.get("author", event.get("role", "")))
     return ""
+
 
 def _extract_text(parts: List[Any]) -> str:
     texts = []
@@ -106,6 +135,7 @@ def _extract_text(parts: List[Any]) -> str:
         elif hasattr(part, "text") and part.text:
             texts.append(part.text)
     return " ".join(texts).strip()
+
 
 def _extract_tool_calls(parts: List[Any]) -> List[Dict[str, Any]]:
     tool_calls = []
@@ -129,6 +159,7 @@ def _extract_tool_calls(parts: List[Any]) -> List[Dict[str, Any]]:
                 })
     return tool_calls
 
+
 def fetch_session_events(session_id: str) -> List[Any]:
     session_resource = f"{RESOURCE_NAME}/sessions/{session_id}"
     try:
@@ -140,7 +171,20 @@ def fetch_session_events(session_id: str) -> List[Any]:
         print(f"Error fetching session events: {e}", file=sys.stderr)
         return []
 
-def fetch_session_responses(session_id: str) -> List[Dict[str, Any]]:
+
+def fetch_session_responses(
+    session_id: str,
+    role_debug_log: Optional[List[str]] = None,
+) -> List[Dict[str, Any]]:
+    """Reconstruct (user_message, agent_response, tool_calls) turns from raw
+    session events.
+
+    BUG-1 FIX: a turn boundary is now flushed whenever we see a `user` event
+    OR an `unknown` event (one we couldn't classify). Previously, unknown
+    events were silently dropped with no flush, which caused the next
+    agent reply to be appended onto the wrong (stale) turn -- corrupting
+    every subsequent turn's index alignment against the golden dataset.
+    """
     events = fetch_session_events(session_id)
     if not events:
         return []
@@ -160,7 +204,7 @@ def fetch_session_responses(session_id: str) -> List[Dict[str, Any]]:
 
     for event in events:
         rr    = _raw_role(event)
-        kind  = _role_type(rr)
+        kind  = _role_type(rr, debug_log=role_debug_log)
         parts = _parts_from_event(event)
         text  = _extract_text(parts)
         tools = _extract_tool_calls(parts)
@@ -174,6 +218,22 @@ def fetch_session_responses(session_id: str) -> List[Dict[str, Any]]:
             if text:
                 pending_text.append(text)
             pending_tools.extend(tools)
+        elif kind == "tool":
+            # Tool-result events carry no user-facing text; tool calls
+            # themselves are already captured from the preceding agent
+            # event's function_call parts. Nothing to do here, but we do
+            # NOT want this to fall into the "unknown" flush branch below.
+            pass
+        else:
+            # kind == "unknown": flush defensively so we never silently
+            # merge two real turns together (see BUG-1). We deliberately
+            # do NOT start a new pending_user here, since we don't know
+            # what user message (if any) this event represents -- the next
+            # legitimate "user" event will set it correctly.
+            _flush()
+            pending_user  = None
+            pending_text  = []
+            pending_tools = []
 
     _flush()
     return turns
@@ -183,7 +243,8 @@ def fetch_session_responses(session_id: str) -> List[Dict[str, Any]]:
 
 def evaluate_session_id(session_id: str, golden_test_case: Dict) -> Dict[str, Any]:
     golden_turns  = golden_test_case["turns"]
-    session_turns = fetch_session_responses(session_id)
+    role_debug_log: List[str] = []
+    session_turns = fetch_session_responses(session_id, role_debug_log=role_debug_log)
 
     if not session_turns:
         print(f"Error: No turns could be extracted from session {session_id}.", file=sys.stderr)
@@ -191,11 +252,21 @@ def evaluate_session_id(session_id: str, golden_test_case: Dict) -> Dict[str, An
         m["session_id"] = session_id
         return m
 
+    if len(session_turns) != len(golden_turns):
+        print(
+            f"WARNING: extracted {len(session_turns)} turns from session "
+            f"{session_id} but golden dataset has {len(golden_turns)} turns. "
+            f"Turn-index alignment may be off -- check evaluation_debug.txt "
+            f"role-classification log.",
+            file=sys.stderr,
+        )
+
     return _score_turns(
         session_id=session_id,
         golden_turns=golden_turns,
         actual_turns=session_turns,
         name_only_tool_scoring=True,
+        role_debug_log=role_debug_log,
     )
 
 
@@ -320,6 +391,9 @@ def evaluate_live_session(golden_test_case: Dict) -> Dict[str, Any]:
                 "tool_calls":     resp.get("tool_calls", []),
             })
 
+    # Live mode drives the agent one golden turn at a time, so turn-index
+    # alignment cannot drift the way it can in session-replay mode -- no
+    # role_debug_log needed here.
     return _score_turns(
         session_id=bare_session_id,
         golden_turns=golden_turns,
@@ -335,26 +409,45 @@ def _score_turns(
     golden_turns: List[Dict],
     actual_turns: List[Dict],
     name_only_tool_scoring: bool = False,
-    debug_file_path: str = "evaluation_debug.txt"
+    debug_file_path: str = "evaluation_debug.txt",
+    role_debug_log: Optional[List[str]] = None,
 ) -> Dict[str, Any]:
     total_turns = len(golden_turns)
     tool_scores, response_scores, safety_scores, groundedness_scores = [], [], [], []
     successful_turns   = 0
     perfect_tool_turns = 0
+    drift_flags: List[int] = []
 
-    # Write debug information to file instead of stdout
     with open(debug_file_path, "w", encoding="utf-8") as dbg:
         print("\n" + "=" * 60, file=dbg)
         print(f" LIVE AGENT EVALUATION RUN & COMPARISON ", file=dbg)
         print(f" Session ID: {session_id}", file=dbg)
         print("=" * 60, file=dbg)
 
+        if role_debug_log:
+            print("\n" + "-" * 60, file=dbg)
+            print(" SESSION EVENT ROLE-CLASSIFICATION WARNINGS", file=dbg)
+            print(" (unrecognized author/role strings -- see BUG-1 in module", file=dbg)
+            print("  docstring; these were treated as safe turn boundaries)", file=dbg)
+            print("-" * 60, file=dbg)
+            for line in role_debug_log:
+                print(line, file=dbg)
+
+        if len(actual_turns) != total_turns:
+            print(
+                f"\n[ALIGNMENT WARNING] Extracted {len(actual_turns)} actual "
+                f"turns vs {total_turns} golden turns. Turn indices below may "
+                f"not correspond 1:1 -- treat any low scores from this point "
+                f"forward with suspicion until the counts match.",
+                file=dbg,
+            )
+
         for i, golden_turn in enumerate(golden_turns):
             actual       = actual_turns[i] if i < len(actual_turns) else {}
             actual_text  = actual.get("agent_response", "")
             actual_tools = actual.get("tool_calls", [])
 
-            exp_tools    = golden_turn.get("expected_tool_calls", [])
+            exp_tools    = _expected_tool_names(golden_turn)
             exp_pattern  = golden_turn.get("expected_response_pattern", {})
             exp_response = golden_turn.get("expected_response", "")
             user_message = golden_turn.get("user_message", "")
@@ -374,7 +467,16 @@ def _score_turns(
             if actual_tools or actual_text:
                 successful_turns += 1
 
-            # Print detailed visual evaluation mapping for the ongoing turn to the text file
+            # ── Drift detection (BUG-3 fix) ──
+            drift_note = _detect_drift(
+                actual_text=actual_text,
+                this_turn_score=r_score,
+                this_index=i,
+                golden_turns=golden_turns,
+            )
+            if drift_note:
+                drift_flags.append(i + 1)
+
             print(f"\n[TURN {i + 1} / {total_turns}]", file=dbg)
             print(f"  User Input:        {user_message}", file=dbg)
             print(f"  ── Response Verification ──", file=dbg)
@@ -392,10 +494,18 @@ def _score_turns(
             print(f"    Tool Use Score:  {t_score:.4f}", file=dbg)
             print(f"    Groundedness:    {g_score:.4f}", file=dbg)
             print(f"    Safety Check:    {s_score:.4f}", file=dbg)
+            if drift_note:
+                print(f"    ⚠ {drift_note}", file=dbg)
             print("-" * 60, file=dbg)
 
         print("\n" + "=" * 60, file=dbg)
         print(" END OF TESTING STEP COMPARISONS ", file=dbg)
+        if drift_flags:
+            print(f" ⚠ DRIFT FLAGGED AT TURN(S): {drift_flags}", file=dbg)
+            print(" This usually means turn-index alignment broke somewhere", file=dbg)
+            print(" upstream (see role-classification warnings above, and/or", file=dbg)
+            print(" check agent-side session/counter state). Fix the root", file=dbg)
+            print(" cause before trusting scores from the flagged turn onward.", file=dbg)
         print("=" * 60 + "\n", file=dbg)
 
     return _build_metrics(
@@ -412,50 +522,62 @@ def _score_turns(
 
 # ── SCORING HELPERS ───────────────────────────────────────────────────────────
 
+def _expected_tool_names(golden_turn: Dict) -> List[str]:
+    """Supports both the new flat `expected_tool_names` format and the old
+    `expected_tool_calls` (list of {"tool_name": ..., "parameters": {...}})
+    format for backward compatibility with older golden datasets."""
+    if "expected_tool_names" in golden_turn:
+        return list(golden_turn["expected_tool_names"])
+    legacy = golden_turn.get("expected_tool_calls", [])
+    return [t["tool_name"] for t in legacy if "tool_name" in t]
+
+
 def _score_tool_calls(
-    expected: List[Dict],
+    expected_names: List[str],
     actual: List[Dict],
-    name_only: bool = False,
+    name_only: bool = True,
 ) -> float:
-    if not expected:
+    """Set-based recall over tool NAMES only.
+
+    score = |expected ∩ executed| / |expected|
+
+    This is intentionally agnostic to: call order, repeat counts, which
+    sub-agent issued the call, and parameter values -- the live agent
+    exposes a raw tool trace (get_session_value, execute_sql, ...) rather
+    than the abstracted single-call-per-agent shape the dataset used to
+    assume, and strict parameter matching against that abstraction is what
+    caused tool_use_score to be near-zero across nearly every turn in the
+    original run despite the agent doing the right thing.
+    """
+    if not expected_names:
         return 1.0
     if not actual:
         return 0.0
 
-    actual_by_name: Dict[str, List[Dict]] = {}
-    for at in actual:
-        actual_by_name.setdefault(at["tool_name"], []).append(at)
+    executed_names = {t.get("tool_name", "unknown") for t in actual}
+    expected_set = set(expected_names)
+    hit = expected_set & executed_names
+    return len(hit) / len(expected_set)
 
-    score = 0.0
-    for et in expected:
-        candidates = actual_by_name.get(et["tool_name"], [])
-        if not candidates:
-            continue
 
-        if name_only:
-            score += 1.0
-            continue
-
-        ep = et.get("parameters", {})
-        if not ep:
-            score += 1.0
-            continue
-
-        full_match = any(
-            all(c.get("parameters", {}).get(k) == v for k, v in ep.items())
-            for c in candidates
-        )
-        score += 1.0 if full_match else 0.5
-
-    return min(score / len(expected), 1.0)
+def _normalize_for_compare(s: str) -> str:
+    """Strip markdown emphasis/bullets/headers so formatting differences
+    (the live agent uses **bold**/bullets inconsistently vs. the golden
+    text) don't get penalized as content mismatches."""
+    s = s.lower()
+    s = re.sub(r"[*_`#>~]+", " ", s)
+    s = re.sub(r"[-]{2,}", " ", s)
+    s = re.sub(r"[^\w\s%.]", " ", s)
+    s = re.sub(r"\s+", " ", s).strip()
+    return s
 
 
 def _score_response(expected_response: str, actual: str, pattern: Dict) -> float:
     if not actual:
         return 0.0
 
-    actual_clean   = actual.lower()
-    expected_clean = expected_response.lower() if expected_response else ""
+    actual_clean   = _normalize_for_compare(actual)
+    expected_clean = _normalize_for_compare(expected_response) if expected_response else ""
 
     for bad in pattern.get("must_not_contain", []):
         if bad.lower() in actual_clean:
@@ -464,16 +586,51 @@ def _score_response(expected_response: str, actual: str, pattern: Dict) -> float
     if not expected_clean:
         return 0.8 if len(actual_clean) > 50 else 0.5
 
-    expected_words = [
-        w.strip(".,!?|:()[]#*-")
-        for w in expected_clean.split()
-        if len(w.strip(".,!?|:()[]#*-")) > 3
-    ]
+    expected_words = [w for w in expected_clean.split() if len(w) > 3]
     if not expected_words:
         return 0.8 if len(actual_clean) > 50 else 0.5
 
     matched = sum(1 for w in expected_words if w in actual_clean)
     return matched / len(expected_words)
+
+
+def _detect_drift(
+    actual_text: str,
+    this_turn_score: float,
+    this_index: int,
+    golden_turns: List[Dict],
+) -> Optional[str]:
+    """Checks whether actual_text matches a NEIGHBORING golden turn's
+    expected_response meaningfully better than its own golden turn. If so,
+    returns a human-readable warning string; otherwise None.
+
+    This is a deliberately cheap/local check (±1, ±2 turns) rather than a
+    full re-alignment search, since its only job is to surface an early,
+    loud signal when index drift happens -- not to auto-correct it.
+    """
+    if not actual_text:
+        return None
+
+    best_idx, best_score = None, 0.0
+    for offset in (1, -1, 2, -2):
+        j = this_index + offset
+        if j < 0 or j >= len(golden_turns):
+            continue
+        candidate_expected = golden_turns[j].get("expected_response", "")
+        if not candidate_expected:
+            continue
+        score = _score_response(candidate_expected, actual_text, {})
+        if score > best_score:
+            best_score = score
+            best_idx = j
+
+    if best_idx is not None and best_score > this_turn_score + DRIFT_MARGIN and best_score >= 0.6:
+        return (
+            f"DRIFT: this turn's response matches golden turn {best_idx + 1} "
+            f"(score {best_score:.2f}) better than its own golden turn "
+            f"{this_index + 1} (score {this_turn_score:.2f})."
+        )
+    return None
 
 
 def _score_safety(actual: str) -> float:
@@ -494,11 +651,11 @@ def _score_groundedness(actual: str) -> float:
     lower_clean  = clean.lower()
 
     struct_signals = [
-        bool(re.search(r'\|.+\|', clean)),                         
-        bool(re.search(r'\*{1,2}[^*\n]{2,}\*{1,2}', clean)),      
-        bool(re.search(r'(?i)(filters?|segment|breakdown)\s*:', clean)),  
-        bool(re.search(r'\d[\d,]+', clean)),                       
-        bool(re.search(r'^#{1,3}\s+\S', clean, re.MULTILINE)),    
+        bool(re.search(r'\|.+\|', clean)),
+        bool(re.search(r'\*{1,2}[^*\n]{2,}\*{1,2}', clean)),
+        bool(re.search(r'(?i)(filters?|segment|breakdown)\s*:', clean)),
+        bool(re.search(r'\d[\d,]+', clean)),
+        bool(re.search(r'^#{1,3}\s+\S', clean, re.MULTILINE)),
     ]
     structural_score = sum(struct_signals) / len(struct_signals)
 
@@ -511,7 +668,7 @@ def _score_groundedness(actual: str) -> float:
         "breakdown", "total", "country",
     ]
     hits = sum(1 for w in domain_words if w in lower_clean)
-    coherence_score = min(hits / 4, 1.0)   
+    coherence_score = min(hits / 4, 1.0)
 
     return round(
         0.40 * structural_score
@@ -554,7 +711,7 @@ def _build_metrics(
         "multi_turn_tool_use_quality_v1":    tu,
         "final_response_match_v2":           response_scores[-1] if response_scores else 0.0,
     }
-    
+
     return {k: computed.get(k, 0.0) for k in ["session_id"] + list(EVAL_CRITERIA.keys())}
 
 
@@ -601,7 +758,7 @@ def record_snapshot(agg_metrics: Dict[str, Any], all_session_metrics: List[Dict]
 
     for m in all_session_metrics:
         row: Dict[str, Any] = {}
-        
+
         for col in all_bq_columns:
             if col == "execution_timestamp":
                 row[col] = str(agg_metrics.get("execution_timestamp", ""))
