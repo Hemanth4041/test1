@@ -335,35 +335,68 @@ def _score_turns(
     golden_turns: List[Dict],
     actual_turns: List[Dict],
     name_only_tool_scoring: bool = False,
+    debug_file_path: str = "evaluation_debug.txt"
 ) -> Dict[str, Any]:
     total_turns = len(golden_turns)
     tool_scores, response_scores, safety_scores, groundedness_scores = [], [], [], []
     successful_turns   = 0
     perfect_tool_turns = 0
 
-    for i, golden_turn in enumerate(golden_turns):
-        actual       = actual_turns[i] if i < len(actual_turns) else {}
-        actual_text  = actual.get("agent_response", "")
-        actual_tools = actual.get("tool_calls", [])
+    # Write debug information to file instead of stdout
+    with open(debug_file_path, "w", encoding="utf-8") as dbg:
+        print("\n" + "=" * 60, file=dbg)
+        print(f" LIVE AGENT EVALUATION RUN & COMPARISON ", file=dbg)
+        print(f" Session ID: {session_id}", file=dbg)
+        print("=" * 60, file=dbg)
 
-        exp_tools    = golden_turn.get("expected_tool_calls", [])
-        exp_pattern  = golden_turn.get("expected_response_pattern", {})
-        exp_response = golden_turn.get("expected_response", "")
+        for i, golden_turn in enumerate(golden_turns):
+            actual       = actual_turns[i] if i < len(actual_turns) else {}
+            actual_text  = actual.get("agent_response", "")
+            actual_tools = actual.get("tool_calls", [])
 
-        t_score = _score_tool_calls(exp_tools, actual_tools, name_only=name_only_tool_scoring)
-        r_score = _score_response(exp_response, actual_text, exp_pattern)
-        s_score = _score_safety(actual_text)
-        g_score = _score_groundedness(actual_text)
+            exp_tools    = golden_turn.get("expected_tool_calls", [])
+            exp_pattern  = golden_turn.get("expected_response_pattern", {})
+            exp_response = golden_turn.get("expected_response", "")
+            user_message = golden_turn.get("user_message", "")
 
-        tool_scores.append(t_score)
-        response_scores.append(r_score)
-        safety_scores.append(s_score)
-        groundedness_scores.append(g_score)
+            t_score = _score_tool_calls(exp_tools, actual_tools, name_only=name_only_tool_scoring)
+            r_score = _score_response(exp_response, actual_text, exp_pattern)
+            s_score = _score_safety(actual_text)
+            g_score = _score_groundedness(actual_text)
 
-        if t_score >= 1.0:
-            perfect_tool_turns += 1
-        if actual_tools or actual_text:
-            successful_turns += 1
+            tool_scores.append(t_score)
+            response_scores.append(r_score)
+            safety_scores.append(s_score)
+            groundedness_scores.append(g_score)
+
+            if t_score >= 1.0:
+                perfect_tool_turns += 1
+            if actual_tools or actual_text:
+                successful_turns += 1
+
+            # Print detailed visual evaluation mapping for the ongoing turn to the text file
+            print(f"\n[TURN {i + 1} / {total_turns}]", file=dbg)
+            print(f"  User Input:        {user_message}", file=dbg)
+            print(f"  ── Response Verification ──", file=dbg)
+            print(f"    Expected Match:  {exp_response if exp_response else '[Pattern Matching Only]'}", file=dbg)
+            print(f"    Agent Response:  {actual_text if actual_text else '[Empty response or error state]'}", file=dbg)
+            if exp_pattern.get("must_not_contain"):
+                print(f"    Negative Filter: Must NOT contain: {exp_pattern['must_not_contain']}", file=dbg)
+            print(f"  ── Tool Call Trajectory ──", file=dbg)
+            print(f"    Expected Tools:  {json.dumps(exp_tools)}", file=dbg)
+            print(f"    Executed Tools:  {json.dumps(actual_tools)}", file=dbg)
+            if actual.get("error"):
+                print(f"    Execution Error: {actual.get('error')}", file=dbg)
+            print(f"  ── Calculated Turn Metrics ──", file=dbg)
+            print(f"    Response Score:  {r_score:.4f}", file=dbg)
+            print(f"    Tool Use Score:  {t_score:.4f}", file=dbg)
+            print(f"    Groundedness:    {g_score:.4f}", file=dbg)
+            print(f"    Safety Check:    {s_score:.4f}", file=dbg)
+            print("-" * 60, file=dbg)
+
+        print("\n" + "=" * 60, file=dbg)
+        print(" END OF TESTING STEP COMPARISONS ", file=dbg)
+        print("=" * 60 + "\n", file=dbg)
 
     return _build_metrics(
         session_id=session_id,
@@ -514,7 +547,7 @@ def _build_metrics(
         "session_id":                        session_id,
         "tool_trajectory_avg_score":          at,
         "response_match_score":              ar,
-        "groundedness_v1":                   ag,
+        "groundedness_v1":                    ag,
         "safety_v1":                         as_,
         "multi_turn_task_success_v1":        sr,
         "multi_turn_trajectory_quality_v1":  (sr + at + ar) / 3.0,
@@ -619,13 +652,15 @@ def run_pipeline() -> None:
         metrics = evaluate_session_id(session_id, golden_test_case)
         actual_session = session_id
     else:
+        print("Running live evaluation, this may take a moment...")
         metrics = evaluate_live_session(golden_test_case)
         actual_session = metrics.get("session_id", "N/A")
 
     agg = calculate_aggregate_metrics([metrics])
     record_snapshot(agg, [metrics])
 
-    print(f"Evaluation completed for session: {actual_session}")
+    print(f"\nEvaluation completed for session: {actual_session}")
+    print(f"Detailed turn-by-turn evaluation written to: evaluation_debug.txt")
 
 
 if __name__ == "__main__":
