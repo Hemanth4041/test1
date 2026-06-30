@@ -4,6 +4,8 @@
  Session ID: 2152319643736342528
 ============================================================
 
+[ALIGNMENT WARNING] Extracted 29 actual turns vs 30 golden turns. Turn indices below may not correspond 1:1 -- treat any low scores from this point forward with suspicion until the counts match.
+
 [TURN 1 / 30]
   User Input:        hi how can you help
   ── Response Verification ──
@@ -52,11 +54,11 @@ Would you like to see the top account breakdowns for a specific segment, or woul
 
 Would you like to see the top account breakdowns for a specific segment, or would you like to apply filters to narrow down an audience?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"campaign_type": "finance_transformation"}}]
+    Expected Tools:  ["transfer_to_agent", "get_segments", "set_session_value"]
     Executed Tools:  [{"tool_name": "transfer_to_agent", "parameters": {"agent_name": "audience_segmentation_agent_1"}}, {"tool_name": "get_segments", "parameters": {"centroid_id": 0.0}}, {"tool_name": "set_session_value", "parameters": {"value": "{\"The Disengaged Diversified Professionals\": 1, \"The Efficient Audience\": 2, \"The Underperforming Financial Specialists\": 3, \"The Highly Engaged Professionals\": 4}", "key": "persona_to_centroid_id_mapping"}}, {"tool_name": "set_session_value", "parameters": {"value": "", "key": "baseline_filters"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Response Score:  0.9474
+    Tool Use Score:  1.0000
     Groundedness:    0.8400
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -125,11 +127,11 @@ While overall campaign volume and interactions have significantly decreased, a p
 
 Are you ready to refine this segment using specific filters?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"segment_name": "The Efficient Audience"}}]
+    Expected Tools:  ["get_segments", "set_session_value"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "persona_to_centroid_id_mapping"}}, {"tool_name": "get_segments", "parameters": {"centroid_id": 2.0}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  0.5000
     Groundedness:    0.8400
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -156,11 +158,11 @@ Next Steps: Would you like to refine this further, or are you ready to finalize 
 **Next Steps:**
 Would you like to refine this further, or are you ready to finalize and export this list?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"segment_name": "The Efficient Audience", "job_functions": ["Finance", "Tax"]}}]
+    Expected Tools:  ["get_session_value", "execute_sql", "set_session_value"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "persona_to_centroid_id_mapping"}}, {"tool_name": "get_session_value", "parameters": {"key": "current_sql"}}, {"tool_name": "get_session_value", "parameters": {"key": "baseline_filters"}}, {"tool_name": "execute_sql", "parameters": {"project_id": "us-gcp-ame-its-1ec3e-npd-1", "query": "SELECT COUNT(*) FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax'))"}}, {"tool_name": "set_session_value", "parameters": {"value": "SELECT COUNT(*) FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax'))", "key": "current_sql"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.8213
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -191,11 +193,11 @@ Next Steps: Would you like to refine this further, or are you ready to finalize 
 **Next Steps:**
 Would you like to refine this further, or are you ready to finalize and export this list?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"country": "US"}}]
+    Expected Tools:  ["get_session_value", "execute_sql", "set_session_value"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "current_sql"}}, {"tool_name": "execute_sql", "parameters": {"project_id": "us-gcp-ame-its-1ec3e-npd-1", "query": "SELECT COUNT(*) FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US')"}}, {"tool_name": "set_session_value", "parameters": {"value": "SELECT COUNT(*) FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US')", "key": "current_sql"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.8400
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -232,11 +234,11 @@ Would you like to use any of these job levels to refine your audience further? F
 
 Would you like to use any of these job levels to refine your audience further? For example, we could include only 'Executive' and 'C-Suite', or exclude 'Unknown'.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"breakdown_by": "job_level"}}]
+    Expected Tools:  ["get_session_value", "execute_sql"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "current_sql"}}, {"tool_name": "execute_sql", "parameters": {"project_id": "us-gcp-ame-its-1ec3e-npd-1", "query": "SELECT contact_primary_job_level, COUNT(*) as total_contacts FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US') GROUP BY contact_primary_job_level ORDER BY total_contacts DESC LIMIT 10"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.7600
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -269,11 +271,11 @@ Next Steps: Would you like to refine this further, or are you ready to finalize 
 **Next Steps:**
 Would you like to refine this further, or are you ready to finalize and export this list?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"job_levels": ["Executive", "C-Suite"]}}]
+    Expected Tools:  ["get_session_value", "execute_sql", "set_session_value"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "current_sql"}}, {"tool_name": "execute_sql", "parameters": {"project_id": "us-gcp-ame-its-1ec3e-npd-1", "query": "SELECT COUNT(*) FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US') AND LOWER(contact_primary_job_level) IN (LOWER('Executive'), LOWER('C-Suite'))"}}, {"tool_name": "set_session_value", "parameters": {"value": "SELECT COUNT(*) FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US') AND LOWER(contact_primary_job_level) IN (LOWER('Executive'), LOWER('C-Suite'))", "key": "current_sql"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.8400
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -304,11 +306,11 @@ Would you like to use this information to refine your audience further? For exam
 
 Would you like to use this information to refine your audience further? For example, we could focus on a specific set of accounts.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"limit": 5, "breakdown_by": "account_id"}}]
+    Expected Tools:  ["get_session_value", "execute_sql"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "current_sql"}}, {"tool_name": "execute_sql", "parameters": {"project_id": "us-gcp-ame-its-1ec3e-npd-1", "query": "SELECT account_sid, COUNT(*) as total_contacts FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US') AND LOWER(contact_primary_job_level) IN (LOWER('Executive'), LOWER('C-Suite')) GROUP BY account_sid ORDER BY total_contacts DESC LIMIT 5"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.7600
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -343,11 +345,11 @@ Next Steps: Would you like to refine this further, or are you ready to finalize 
 **Next Steps:**
 Would you like to refine this further, or are you ready to finalize and export this list?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"account_ids": ["297949", "436181", "230542"]}}]
+    Expected Tools:  ["get_session_value", "execute_sql", "set_session_value"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "current_sql"}}, {"tool_name": "execute_sql", "parameters": {"project_id": "us-gcp-ame-its-1ec3e-npd-1", "query": "SELECT COUNT(*) FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US') AND LOWER(contact_primary_job_level) IN (LOWER('Executive'), LOWER('C-Suite')) AND account_sid IN (297949, 436181, 230542)"}}, {"tool_name": "set_session_value", "parameters": {"value": "SELECT COUNT(*) FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US') AND LOWER(contact_primary_job_level) IN (LOWER('Executive'), LOWER('C-Suite')) AND account_sid IN (297949, 436181, 230542)", "key": "current_sql"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.8400
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -358,7 +360,7 @@ Would you like to refine this further, or are you ready to finalize and export t
     Expected Match:  Great! What would you like to name the CSV file?
     Agent Response:  Great! What would you like to name the CSV file?
   ── Tool Call Trajectory ──
-    Expected Tools:  []
+    Expected Tools:  ["get_session_value"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "current_sql"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
@@ -381,11 +383,11 @@ The finalized file, named **`efficient_financ_audience_20260626_110111.csv`**, h
 
 Congratulations on creating your targeted audience
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "audience_segmentation_agent_1", "parameters": {"export_format": "csv", "file_name": "efficient_financ_audience"}}]
+    Expected Tools:  ["export_values_to_gcs_logic"]
     Executed Tools:  [{"tool_name": "export_values_to_gcs_logic", "parameters": {"sql_query": "SELECT contact_sid, source_contact_id, account_sid, contact_country, contact_primary_job_level, contact_primary_job_function, contact_primary_job_title, contact_persona, account_industry_text, account_sector_text FROM `us-gcp-ame-its-1ec3e-npd-1.segmentation_final.model_output` WHERE CENTROID_ID = 2 AND LOWER(contact_primary_job_function) IN (LOWER('Finance'), LOWER('Tax')) AND LOWER(contact_country) = LOWER('US') AND LOWER(contact_primary_job_level) IN (LOWER('Executive'), LOWER('C-Suite')) AND account_sid IN (297949, 436181, 230542)", "file_name": "efficient_financ_audience.csv"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.6687
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -408,11 +410,11 @@ Please review this list and let me know which of these personas you would like t
 
 Please review this list and let me know which of these personas you would like to target. You can select any combination (e.g., just one, all three, or any two). Or, if you'd prefer, we can explore alternative personas.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "generate_personas"}}]
+    Expected Tools:  ["transfer_to_agent", "get_session_value", "initialise_campaign_workflow", "top_n_personas"]
     Executed Tools:  [{"tool_name": "transfer_to_agent", "parameters": {"agent_name": "campaign_optimisation_agent"}}, {"tool_name": "get_session_value", "parameters": {"key": "workflow_step"}}, {"tool_name": "initialise_campaign_workflow", "parameters": {}}, {"tool_name": "top_n_personas", "parameters": {}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.7600
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -447,7 +449,7 @@ We can either proceed with a selection from this list, or if you'd like to see d
 
 How would you like to proceed?
   ── Tool Call Trajectory ──
-    Expected Tools:  []
+    Expected Tools:  ["get_session_value"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "all_available_personas"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
@@ -494,11 +496,11 @@ Here are three potential hooks and angles for this persona. Please choose the on
 *   **Hook:** "How are you mitigating risk in an increasingly complex regulatory landscape?"
 *   **Angle:** Address the growing compliance burdens on finance leaders and position our solution as a way to enhance risk management and ensure an agile response to new regulations.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "generate_hooks", "persona": "Executive - Finance"}}]
+    Expected Tools:  ["get_session_value", "set_session_value"]
     Executed Tools:  [{"tool_name": "set_session_value", "parameters": {"value": "[\"Executive - Finance\", \"C-Suite - Finance\", \"Executive - Tax\"]", "key": "personas"}}, {"tool_name": "set_session_value", "parameters": {"value": "CAMPAIGN_CREATION", "key": "workflow_step"}}, {"tool_name": "get_session_value", "parameters": {"key": "current_persona_index"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Response Score:  0.9916
+    Tool Use Score:  1.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -529,11 +531,11 @@ Here are two revised options with more impactful hooks. Please let me know which
 *   **Hook:** "Can you trust last quarter's data to make next quarter's decisions?"
 *   **Angle:** Highlight the challenges of forecasting with disconnected data and introduce a solution that provides a unified, real-time view of your enterprise's financial health to improve decision-making.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "refine_hook", "base_option": "Option 2"}}]
+    Expected Tools:  []
     Executed Tools:  []
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.4800
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -598,11 +600,11 @@ Here are three potential hooks and angles for this persona. Please choose the on
 *   **Hook:** "What is the long-term cost of inaction when it comes to financial transformation?"
 *   **Angle:** Frame financial transformation not as a cost, but as a strategic imperative for future-proofing the business, and position our solution as the catalyst for building a more agile and resilient finance function.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "draft_email", "persona": "Executive - Finance", "hook_choice": "Option 2b"}}]
+    Expected Tools:  ["set_session_value"]
     Executed Tools:  [{"tool_name": "set_session_value", "parameters": {"value": "{\"Executive - Finance\": {\"hook\": \"Can you trust last quarter's data to make next quarter's decisions?\", \"angle\": \"Highlight the challenges of forecasting with disconnected data and introduce a solution that provides a unified, real-time view of your enterprise's financial health to improve decision-making.\"}}", "key": "angles_and_hooks"}}, {"tool_name": "set_session_value", "parameters": {"value": "**Subject:** Rethinking your approach to financial forecasting\n\n**Body:**\n\nCan you trust last quarter's data to make next quarter's decisions? In today's dynamic market, strategic planning requires agile and forward-looking insights, yet many finance leaders are held back by disconnected and outdated information.\n\nOur approach helps organizations like yours move beyond static reports. We help integrate your financial data into a unified, real-time view. This allows your team to spend less time on data consolidation and more on the strategic analysis that drives enterprise value.\n\nThis shift empowers you to not only improve forecast accuracy but also to model future scenarios with greater confidence, turning your finance function into a more strategic partner to the business.\n\n**Call to Action:** Schedule a consult\n\n**Suggested Content Asset:** A whitepaper on \"The Future of Financial Planning: From Hindsight to Foresight.\"", "key": "Executive - Finance"}}, {"tool_name": "increment_counter", "parameters": {"key": "current_persona_index"}}]
   ── Calculated Turn Metrics ──
     Response Score:  1.0000
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.6300
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -631,13 +633,14 @@ Angle: Frame financial transformation not as a cost, but as a strategic imperati
 
 Please provide the new subject line you'd like to use, and I will update the email draft for your final approval.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "generate_hooks", "persona": "C-Suite - Finance"}}]
+    Expected Tools:  ["increment_counter", "set_session_value"]
     Executed Tools:  [{"tool_name": "set_session_value", "parameters": {"value": "0", "key": "current_persona_index"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  0.0672
-    Tool Use Score:  0.0000
+    Response Score:  0.0500
+    Tool Use Score:  0.5000
     Groundedness:    0.4933
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 18 (score 1.00) better than its own golden turn 17 (score 0.05).
 ------------------------------------------------------------
 
 [TURN 18 / 30]
@@ -655,13 +658,14 @@ Please provide the new subject line you'd like to use, and I will update the ema
 
 Or, we can stick with the original: **Rethinking your approach to financial forecasting**.
   ── Tool Call Trajectory ──
-    Expected Tools:  []
+    Expected Tools:  ["set_session_value"]
     Executed Tools:  []
   ── Calculated Turn Metrics ──
-    Response Score:  0.5217
-    Tool Use Score:  1.0000
+    Response Score:  0.5000
+    Tool Use Score:  0.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 19 (score 0.98) better than its own golden turn 18 (score 0.50).
 ------------------------------------------------------------
 
 [TURN 19 / 30]
@@ -699,13 +703,14 @@ This shift empowers you to not only improve forecast accuracy but also to model 
 
 If you're happy with this version, please confirm, and we can finalize this persona and move on to the next one.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "suggest_subject_lines", "persona": "Executive - Finance"}}]
+    Expected Tools:  []
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "Executive - Finance"}}, {"tool_name": "set_session_value", "parameters": {"value": "**Subject:** Is your financial data working for you, or against you?\n\n**Body:**\n\nCan you trust last quarter's data to make next quarter's decisions? In today's dynamic market, strategic planning requires agile and forward-looking insights, yet many finance leaders are held back by disconnected and outdated information.\n\nOur approach helps organizations like yours move beyond static reports. We help integrate your financial data into a unified, real-time view. This allows your team to spend less time on data consolidation and more on the strategic analysis that drives enterprise value.\n\nThis shift empowers you to not only improve forecast accuracy but also to model future scenarios with greater confidence, turning your finance function into a more strategic partner to the business.\n\n**Call to Action:** Schedule a consult\n\n**Suggested Content Asset:** A whitepaper on \"The Future of Financial Planning: From Hindsight to Foresight.\"", "key": "Executive - Finance"}}]
   ── Calculated Turn Metrics ──
     Response Score:  0.5814
-    Tool Use Score:  0.0000
+    Tool Use Score:  1.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 20 (score 1.00) better than its own golden turn 19 (score 0.58).
 ------------------------------------------------------------
 
 [TURN 20 / 30]
@@ -746,13 +751,14 @@ Here are three potential hooks and angles for this persona. Please choose the on
 *   **Hook:** "What is the long-term cost of inaction when it comes to financial transformation?"
 *   **Angle:** Frame financial transformation not as a cost, but as a strategic imperative for future-proofing the business, and position our solution as the catalyst for building a more agile and resilient finance function.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "update_draft", "persona": "Executive - Finance", "subject": "Is your financial data working for you, or against you?"}}]
+    Expected Tools:  ["set_session_value", "get_session_value"]
     Executed Tools:  [{"tool_name": "increment_counter", "parameters": {"key": "current_persona_index"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  0.3788
+    Response Score:  0.3534
     Tool Use Score:  0.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 21 (score 0.99) better than its own golden turn 20 (score 0.35).
 ------------------------------------------------------------
 
 [TURN 21 / 30]
@@ -799,13 +805,14 @@ Our perspective is that this transformation is not a mere operational upgrade, b
 
 How does this look?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "generate_hooks", "persona": "C-Suite - Finance"}}]
+    Expected Tools:  ["increment_counter"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "angles_and_hooks"}}, {"tool_name": "set_session_value", "parameters": {"value": "{\"Executive - Finance\": {\"hook\": \"Can you trust last quarter's data to make next quarter's decisions?\", \"angle\": \"Highlight the challenges of forecasting with disconnected data and introduce a solution that provides a unified, real-time view of your enterprise's financial health to improve decision-making.\"}, \"C-Suite - Finance\": {\"hook\": \"What is the long-term cost of inaction when it comes to financial transformation?\", \"angle\": \"Frame financial transformation not as a cost, but as a strategic imperative for future-proofing the business, and position our solution as the catalyst for building a more agile and resilient finance function.\"}}", "key": "angles_and_hooks"}}, {"tool_name": "set_session_value", "parameters": {"value": "**Subject:** The true cost of \"business as usual\"\n\n**Body:**\n[Recipient Name],\n\nAs we look to the future, the most significant risks are not always the most apparent. For finance leaders, the true cost of maintaining the status quo in financial systems and processes can be a silent drain on enterprise agility and long-term resilience.\n\nPostponing financial transformation is not a neutral choice; it's a decision that can leave the business vulnerable to market shifts and operational friction.\n\nOur perspective is that this transformation is not a mere operational upgrade, but a strategic imperative. We partner with leaders like you to build a more agile and resilient finance function, future-proofing your business and creating a platform for sustained growth.\n\n**Call to Action:** Schedule a consult\n\n**Suggested Content Asset:** A POV on \"The Resilient CFO: Navigating the Future of Finance\"", "key": "C-Suite - Finance"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  0.4590
+    Response Score:  0.4715
     Tool Use Score:  0.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 22 (score 1.00) better than its own golden turn 21 (score 0.47).
 ------------------------------------------------------------
 
 [TURN 22 / 30]
@@ -835,13 +842,14 @@ How does this look?
 **Option C:** A question for your next board meeting
 **Option D:** Beyond cost savings: The new role of finance
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "draft_email", "persona": "C-Suite - Finance", "hook_choice": "Option 3"}}]
+    Expected Tools:  ["get_session_value", "set_session_value"]
     Executed Tools:  []
   ── Calculated Turn Metrics ──
-    Response Score:  0.1961
+    Response Score:  0.2079
     Tool Use Score:  0.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 23 (score 1.00) better than its own golden turn 22 (score 0.21).
 ------------------------------------------------------------
 
 [TURN 23 / 30]
@@ -877,13 +885,14 @@ Our perspective is that this transformation is not a mere operational upgrade, b
 
 If you're happy with this version, please confirm, and we can finalize this persona and move on to our last one.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "suggest_subject_lines", "persona": "C-Suite - Finance", "tone": "intriguing_c_suite"}}]
+    Expected Tools:  []
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "C-Suite - Finance"}}, {"tool_name": "set_session_value", "parameters": {"value": "**Subject:** Beyond cost savings: The new role of finance\n\n**Body:**\n[Recipient Name],\n\nAs we look to the future, the most significant risks are not always the most apparent. For finance leaders, the true cost of maintaining the status quo in financial systems and processes can be a silent drain on enterprise agility and long-term resilience.\n\nPostponing financial transformation is not a neutral choice; it's a decision that can leave the business vulnerable to market shifts and operational friction.\n\nOur perspective is that this transformation is not a mere operational upgrade, but a strategic imperative. We partner with leaders like you to build a more agile and resilient finance function, future-proofing your business and creating a platform for sustained growth.\n\n**Call to Action:** Schedule a consult\n\n**Suggested Content Asset:** A POV on \"The Resilient CFO: Navigating the Future of Finance\"", "key": "C-Suite - Finance"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  0.5000
-    Tool Use Score:  0.0000
+    Response Score:  0.5122
+    Tool Use Score:  1.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 24 (score 1.00) better than its own golden turn 23 (score 0.51).
 ------------------------------------------------------------
 
 [TURN 24 / 30]
@@ -930,11 +939,11 @@ Our perspective is that this transformation is not a mere operational upgrade, b
 
 How does this revised version look?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "update_draft", "persona": "C-Suite - Finance", "subject": "Beyond cost savings: The new role of finance"}}]
+    Expected Tools:  ["get_session_value", "set_session_value"]
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "C-Suite - Finance"}}, {"tool_name": "set_session_value", "parameters": {"value": "**Subject:** Beyond cost savings: The new role of finance\n\n**Body:**\nAs we look to the future, the most significant risks are not always the most apparent. With **over 70% of CFOs** acknowledging that their current financial systems are ill-equipped for future demands, the true cost of maintaining the status quo can be a silent drain on enterprise agility and long-term resilience.\n\nPostponing financial transformation is not a neutral choice. It's a decision that can leave the business vulnerable to market shifts and operational friction, with teams spending up to **40% of their time on manual, low-value tasks**.\n\nOur perspective is that this transformation is not a mere operational upgrade, but a strategic imperative. We partner with leaders like you to build a more agile and resilient finance function, unlocking the potential to **improve forecast accuracy by up to 25%** and creating a platform for sustained growth.\n\n**Call to Action:** Schedule a consult\n\n**Suggested Content Asset:** A POV on \"The Resilient CFO: Navigating the Future of Finance\"", "key": "C-Suite - Finance"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  0.8661
-    Tool Use Score:  0.0000
+    Response Score:  0.8559
+    Tool Use Score:  1.0000
     Groundedness:    0.6600
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -979,13 +988,14 @@ Here are three potential hooks and angles for this persona. Please choose the on
 *   **Hook:** "Are you leveraging your tax data to its full strategic potential?"
 *   **Angle:** Frame tax not just as a compliance obligation, but as a source of strategic insight, and highlight how our solution can help unlock the value of your tax data to inform broader business decisions.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "refine_body", "persona": "C-Suite - Finance", "enhancement": "add_numerics"}}]
+    Expected Tools:  ["get_session_value", "set_session_value"]
     Executed Tools:  [{"tool_name": "increment_counter", "parameters": {"key": "current_persona_index"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  0.1890
+    Response Score:  0.2000
     Tool Use Score:  0.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 26 (score 0.99) better than its own golden turn 25 (score 0.20).
 ------------------------------------------------------------
 
 [TURN 26 / 30]
@@ -1024,13 +1034,14 @@ Angle: Frame tax not just as a compliance obligation, but as a source of strateg
 *   **Hook:** "Are you prepared for the next wave of digital tax reporting mandates?"
 *   **Angle:** Highlight a specific, timely industry trend (like the move towards real-time tax reporting) and position our solution as a way to get ahead of the curve and turn a compliance challenge into a strategic advantage.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "generate_hooks", "persona": "Executive - Tax"}}]
+    Expected Tools:  ["increment_counter"]
     Executed Tools:  []
   ── Calculated Turn Metrics ──
-    Response Score:  0.3945
+    Response Score:  0.3796
     Tool Use Score:  0.0000
     Groundedness:    0.5800
     Safety Check:    0.0000
+    ⚠ DRIFT: this turn's response matches golden turn 27 (score 1.00) better than its own golden turn 26 (score 0.38).
 ------------------------------------------------------------
 
 [TURN 27 / 30]
@@ -1073,13 +1084,14 @@ We help tax functions get ahead of this curve, transforming compliance from a re
 
 How does this look?
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "generate_more_hooks", "persona": "Executive - Tax"}}]
+    Expected Tools:  []
     Executed Tools:  [{"tool_name": "get_session_value", "parameters": {"key": "angles_and_hooks"}}, {"tool_name": "set_session_value", "parameters": {"value": "{\"Executive - Finance\": {\"hook\": \"Can you trust last quarter's data to make next quarter's decisions?\", \"angle\": \"Highlight the challenges of forecasting with disconnected data and introduce a solution that provides a unified, real-time view of your enterprise's financial health to improve decision-making.\"}, \"C-Suite - Finance\": {\"hook\": \"Beyond cost savings: The new role of finance\", \"angle\": \"Frame financial transformation not as a cost, but as a strategic imperative for future-proofing the business, and position our solution as the catalyst for building a more agile and resilient finance function.\"}, \"Executive - Tax\": {\"hook\": \"Are you prepared for the next wave of digital tax reporting mandates?\", \"angle\": \"Highlight a specific, timely industry trend (like the move towards real-time tax reporting) and position our solution as a way to get ahead of the curve and turn a compliance challenge into a strategic advantage.\"}}", "key": "angles_and_hooks"}}, {"tool_name": "set_session_value", "parameters": {"value": "**Subject:** The shift to real-time tax reporting is here. Are you ready?\n\n**Body:**\n[Recipient Name],\n\nAre you prepared for the next wave of digital tax reporting mandates? Around the globe, tax authorities are accelerating the shift towards real-time reporting, and for many tax leaders, this presents a significant operational challenge.\n\nRelying on traditional, batch-based processes for this new reality is not a sustainable strategy. It introduces risk and puts a heavy strain on already busy teams.\n\nWe help tax functions get ahead of this curve, transforming compliance from a reactive burden into a strategic advantage. Our approach helps automate data acquisition and processing, providing a unified platform to manage your global tax obligations with confidence.\n\n**Call to Action:** Download the POV\n\n**Suggested Content Asset:** A POV on \"The Future of Tax: Navigating the Shift to Digital Reporting\"", "key": "Executive - Tax"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  0.4375
-    Tool Use Score:  0.0000
+    Response Score:  0.4737
+    Tool Use Score:  1.0000
     Groundedness:    0.5800
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 28 (score 1.00) better than its own golden turn 27 (score 0.47).
 ------------------------------------------------------------
 
 [TURN 28 / 30]
@@ -1160,11 +1172,11 @@ We help tax functions get ahead of this curve, transforming compliance from a re
 
 **Suggested Content Asset:** A POV on "The Future of Tax: Navigating the Shift to Digital Reporting"
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "draft_email", "persona": "Executive - Tax", "hook_choice": "Option 6"}}]
+    Expected Tools:  ["get_session_value", "set_session_value"]
     Executed Tools:  [{"tool_name": "increment_counter", "parameters": {"key": "current_persona_index"}}, {"tool_name": "set_session_value", "parameters": {"value": "COMPLETED", "key": "workflow_step"}}, {"tool_name": "get_session_value", "parameters": {"key": "Executive - Finance"}}, {"tool_name": "get_session_value", "parameters": {"key": "C-Suite - Finance"}}, {"tool_name": "get_session_value", "parameters": {"key": "Executive - Tax"}}]
   ── Calculated Turn Metrics ──
-    Response Score:  0.9231
-    Tool Use Score:  0.0000
+    Response Score:  0.9238
+    Tool Use Score:  1.0000
     Groundedness:    0.8400
     Safety Check:    1.0000
 ------------------------------------------------------------
@@ -1216,13 +1228,14 @@ We help tax functions get ahead of this curve, transforming compliance from a re
 **Suggested Content Asset:** A POV on "The Future of Tax: Navigating the Shift to Digital Reporting"
     Agent Response:  You're very welcome! I'm glad I could help you build out your campaign. If you have any more campaigns to create or need further assistance in the future, just let me know.
   ── Tool Call Trajectory ──
-    Expected Tools:  [{"tool_name": "email_drafting_agent", "parameters": {"action": "finalize_campaign"}}]
+    Expected Tools:  ["increment_counter", "set_session_value", "get_session_value"]
     Executed Tools:  []
   ── Calculated Turn Metrics ──
-    Response Score:  0.0665
+    Response Score:  0.0660
     Tool Use Score:  0.0000
     Groundedness:    0.2793
     Safety Check:    1.0000
+    ⚠ DRIFT: this turn's response matches golden turn 30 (score 1.00) better than its own golden turn 29 (score 0.07).
 ------------------------------------------------------------
 
 [TURN 30 / 30]
@@ -1242,6 +1255,11 @@ We help tax functions get ahead of this curve, transforming compliance from a re
 
 ============================================================
  END OF TESTING STEP COMPARISONS 
+ ⚠ DRIFT FLAGGED AT TURN(S): [17, 18, 19, 20, 21, 22, 23, 25, 26, 27, 29]
+ This usually means turn-index alignment broke somewhere
+ upstream (see role-classification warnings above, and/or
+ check agent-side session/counter state). Fix the root
+ cause before trusting scores from the flagged turn onward.
 ============================================================
 
-6	2152319643736342528	2026-06-30 09:39:05.980195 UTC	projects/us-gcp-ame-its-1ec3e-npd-1/locations/us-central1/reasoningEngines/4023555599462563840	PASS(72%)	FAIL(97%)	PASS(97%)	FAIL(62%)	FAIL(17%)	FAIL(0%)	FAIL(17%)	FAIL(62%)	FAILED
+
