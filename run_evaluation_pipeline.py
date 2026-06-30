@@ -172,8 +172,69 @@ def fetch_session_events(session_id: str) -> List[Any]:
         return []
 
 
+# ── BUG-3 FIX: embedded user-message detection ────────────────────────────────
+
+def _normalize_for_embed_match(s: str) -> str:
+    """Lightweight normalization used only for finding an embedded golden
+    user_message inside an agent/tool event's text. Deliberately looser than
+    _normalize_for_compare (used for scoring) -- this just needs to locate a
+    substring boundary, not judge content similarity."""
+    return re.sub(r"\s+", " ", s.strip().lower())
+
+
+def _find_embedded_user_message(
+    text: str,
+    golden_turns: List[Dict],
+    next_expected_turn_idx: int,
+) -> Optional[Dict[str, Any]]:
+    """Look for the literal text of the NEXT not-yet-consumed golden
+    user_message (or one of its variants) appearing inside `text`. This
+    catches cases where a transfer/handoff event echoes the user's message
+    as part of its own content, with an author/role that never classifies
+    as "user" -- see BUG-3.
+
+    Only checks the immediate next expected golden turn (not a wider
+    window) to avoid false positives from coincidental short-phrase
+    overlaps; we want a clear, low-risk signal here, not a broad search.
+
+    Returns a dict {"start": int, "end": int, "golden_idx": int} giving the
+    character span of the match in the ORIGINAL (non-normalized) text, or
+    None if no match was found. Because we normalize whitespace/case only
+    (no other transformation), span offsets map back cleanly onto `text`.
+    """
+    if next_expected_turn_idx >= len(golden_turns):
+        return None
+
+    golden_turn = golden_turns[next_expected_turn_idx]
+    candidates = [golden_turn.get("user_message", "")] + list(
+        golden_turn.get("user_message_variants", [])
+    )
+
+    norm_text = _normalize_for_embed_match(text)
+
+    for cand in candidates:
+        cand = (cand or "").strip()
+        if len(cand) < 4:
+            continue  # too short to be a reliable signal
+        norm_cand = _normalize_for_embed_match(cand)
+        pos = norm_text.find(norm_cand)
+        if pos == -1:
+            continue
+        # Map the normalized-text position back to the original text. Since
+        # our normalization only collapses whitespace and lowercases (no
+        # length-changing substitution besides whitespace collapse), do a
+        # direct case-insensitive regex search on the original text for the
+        # exact candidate phrase to get a precise span.
+        m = re.search(re.escape(cand), text, re.IGNORECASE)
+        if m:
+            return {"start": m.start(), "end": m.end(), "golden_idx": next_expected_turn_idx}
+
+    return None
+
+
 def fetch_session_responses(
     session_id: str,
+    golden_turns: Optional[List[Dict]] = None,
     role_debug_log: Optional[List[str]] = None,
 ) -> List[Dict[str, Any]]:
     """Reconstruct (user_message, agent_response, tool_calls) turns from raw
@@ -184,6 +245,20 @@ def fetch_session_responses(
     events were silently dropped with no flush, which caused the next
     agent reply to be appended onto the wrong (stale) turn -- corrupting
     every subsequent turn's index alignment against the golden dataset.
+
+    BUG-3 FIX: in addition to the author/role signal, every agent-classified
+    event's text is scanned for an embedded copy of the next not-yet-consumed
+    golden user_message. If found, the event's text is split at that point:
+    everything before the match is appended to the turn currently being
+    built; the match itself and everything after it starts a NEW turn, with
+    pending_user set from the matched golden user_message (and remaining
+    text after the match treated as the start of that new turn's agent
+    response). This is logged to role_debug_log so it's visible, even
+    though no role/author misclassification occurred -- it's a distinct
+    failure mode (transfer/handoff events echoing user text) from BUG-1.
+
+    `golden_turns` is optional: if not supplied, the BUG-3 embedded-message
+    check is skipped (e.g. callers that don't have a golden dataset handy).
     """
     events = fetch_session_events(session_id)
     if not events:
@@ -202,6 +277,11 @@ def fetch_session_responses(
                 "tool_calls":     list(pending_tools),
             })
 
+    def _next_expected_idx() -> int:
+        # We've flushed `len(turns)` turns so far; the turn currently being
+        # built (if any) doesn't count as consumed until _flush() runs.
+        return len(turns) + (1 if pending_user is not None else 0)
+
     for event in events:
         rr    = _raw_role(event)
         kind  = _role_type(rr, debug_log=role_debug_log)
@@ -214,10 +294,47 @@ def fetch_session_responses(
             pending_user  = text
             pending_text  = []
             pending_tools = []
+
         elif kind == "agent":
-            if text:
-                pending_text.append(text)
+            remaining_text = text
+            # BUG-3: keep splitting in case (rarely) more than one golden
+            # user_message got concatenated into a single event's text.
+            while golden_turns is not None and remaining_text:
+                match = _find_embedded_user_message(
+                    remaining_text, golden_turns, _next_expected_idx()
+                )
+                if not match:
+                    break
+
+                before = remaining_text[: match["start"]].strip()
+                matched_phrase = remaining_text[match["start"]: match["end"]]
+                after = remaining_text[match["end"]:].strip()
+
+                if before:
+                    pending_text.append(before)
+                _flush()
+
+                if role_debug_log is not None:
+                    role_debug_log.append(
+                        f"  [WARN] Detected golden turn "
+                        f"{match['golden_idx'] + 1}'s user_message embedded "
+                        f"inside an event classified as '{kind}' (author="
+                        f"'{rr}'). Forced a turn flush at that boundary "
+                        f"instead of merging it into the previous turn "
+                        f"(see BUG-3 in module docstring)."
+                    )
+
+                pending_user  = golden_turns[match["golden_idx"]].get(
+                    "user_message", matched_phrase
+                )
+                pending_text  = []
+                pending_tools = []
+                remaining_text = after
+
+            if remaining_text:
+                pending_text.append(remaining_text)
             pending_tools.extend(tools)
+
         elif kind == "tool":
             # Tool-result events carry no user-facing text; tool calls
             # themselves are already captured from the preceding agent
@@ -244,7 +361,9 @@ def fetch_session_responses(
 def evaluate_session_id(session_id: str, golden_test_case: Dict) -> Dict[str, Any]:
     golden_turns  = golden_test_case["turns"]
     role_debug_log: List[str] = []
-    session_turns = fetch_session_responses(session_id, role_debug_log=role_debug_log)
+    session_turns = fetch_session_responses(
+        session_id, golden_turns=golden_turns, role_debug_log=role_debug_log
+    )
 
     if not session_turns:
         print(f"Error: No turns could be extracted from session {session_id}.", file=sys.stderr)
@@ -427,8 +546,9 @@ def _score_turns(
         if role_debug_log:
             print("\n" + "-" * 60, file=dbg)
             print(" SESSION EVENT ROLE-CLASSIFICATION WARNINGS", file=dbg)
-            print(" (unrecognized author/role strings -- see BUG-1 in module", file=dbg)
-            print("  docstring; these were treated as safe turn boundaries)", file=dbg)
+            print(" (unrecognized author/role strings, or embedded golden", file=dbg)
+            print("  user_messages found inside agent/tool events -- see", file=dbg)
+            print("  BUG-1 / BUG-3 in module docstring)", file=dbg)
             print("-" * 60, file=dbg)
             for line in role_debug_log:
                 print(line, file=dbg)
@@ -634,11 +754,27 @@ def _detect_drift(
 
 
 def _score_safety(actual: str) -> float:
+    """BUG-2 FIX: previously used plain substring containment ("word in
+    clean"), which produces false positives whenever an UNSAFE_KEYWORDS
+    entry happens to be a substring of an unrelated, benign word (e.g. a
+    short banned token matching inside "risk", "strategic", "reporting",
+    etc.). This caused turn 26 in the live run -- ordinary marketing copy
+    about ROI/legacy systems/risk reduction -- to score 0.0 even though no
+    actually unsafe content was present.
+
+    Switched to whole-word matching via regex word boundaries. This still
+    catches the keyword as a standalone word or hyphen/punctuation-bounded
+    token, but no longer matches it as a fragment buried inside a longer,
+    unrelated word.
+    """
     if not actual:
         return 1.0
     clean = actual.lower()
     for word in EvaluationConfig.UNSAFE_KEYWORDS:
-        if word in clean:
+        word_clean = word.lower().strip()
+        if not word_clean:
+            continue
+        if re.search(rf"\b{re.escape(word_clean)}\b", clean):
             return 0.0
     return 1.0
 
